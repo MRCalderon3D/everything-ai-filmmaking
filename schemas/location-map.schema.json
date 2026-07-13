@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://everything-ai-filmmaking.dev/schemas/location-map.schema.json",
+  "title": "Location Map",
+  "description": "Spatial map of a location (production/locations/<LOC_ID>/map.yaml): landmark positions and named camera-angle stations so shots reuse consistent, geometry-true viewpoints.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["location", "camera_stations"],
+  "properties": {
+    "location": {
+      "type": "string",
+      "pattern": "^LOC_[A-Z][A-Z0-9_]*$",
+      "description": "Location this map describes."
+    },
+    "units": {
+      "enum": ["meters"],
+      "description": "Coordinate units. Always meters; field exists to make that explicit."
+    },
+    "origin": {
+      "type": "string",
+      "description": "Where (0, 0) is and which way +y points (e.g. \"bench center, +y toward the tracks\")."
+    },
+    "landmarks": {
+      "type": "array",
+      "description": "Named fixed features cameras and blocking refer to.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "position"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$",
+            "description": "Snake_case landmark name used in blocking and station sightlines."
+          },
+          "position": { "$ref": "#/$defs/position" },
+          "description": { "type": "string" }
+        }
+      }
+    },
+    "camera_stations": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Reusable camera positions. Shots placed at a station inherit its geometry, keeping backgrounds and parallax consistent across generations.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "position", "orientation", "sees"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^LOC_[A-Z][A-Z0-9_]*_C\\d+$",
+            "description": "Station ID (e.g. LOC_STATION_C1)."
+          },
+          "position": { "$ref": "#/$defs/position" },
+          "orientation": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["heading_deg"],
+            "properties": {
+              "heading_deg": {
+                "type": "number",
+                "minimum": 0,
+                "exclusiveMaximum": 360,
+                "description": "Camera facing in degrees, 0 = +y axis, clockwise."
+              },
+              "tilt_deg": {
+                "type": "number",
+                "minimum": -90,
+                "maximum": 90,
+                "description": "Up/down tilt; negative looks down."
+              },
+              "description": { "type": "string" }
+            }
+          },
+          "sees": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "minLength": 1 },
+            "description": "What is visible from this station: landmark names, characters' marks, background elements."
+          },
+          "suggested_shot_sizes": {
+            "type": "array",
+            "items": {
+              "enum": ["extreme_wide", "wide", "full", "medium_wide", "medium", "medium_close_up", "close_up", "extreme_close_up", "insert", "over_the_shoulder"]
+            },
+            "description": "Shot sizes this station covers well."
+          },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "notes": { "type": "string" }
+  },
+  "$defs": {
+    "position": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y"],
+      "description": "Position in meters relative to the map origin; z is height above the floor.",
+      "properties": {
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "z": { "type": "number" },
+        "description": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+# Music
+
+## Purpose
+
+Treat score as structure, not decoration: music is planned per cue against
+story beats, tracked with provenance and license status, and never lets a
+temp track silently become the film's score.
+
+## Scope
+
+Audio layer. Applies to temp music, generated music (fal, local, elevenlabs
+where applicable), licensed tracks, the cue sheet, and music notes in
+`production/edit/edit-plan.yaml`.
+
+## Core Principles
+
+- Every piece of music in the project is a cue with an ID, an intent, and a
+  license status. Untracked audio in the timeline is a defect.
+- Temp is temp: temp music informs pacing and tone but MUST be replaced or
+  explicitly licensed before the project is deliverable.
+- Music placement is motivated by beats, the same way camera moves are
+  motivated by story (`video/motion-language.md`).
+
+## Cue Sheet
+
+- The project keeps one cue sheet in `production/edit/` listing every cue:
+  cue ID (`MUS_##`), in/out points against scene/shot IDs, narrative intent
+  (what the cue is doing), source (temp / generated / licensed / original),
+  and license status.
+- Cues declare their relationship to dialogue and effects (ducking, tacet
+  under key lines); the edit plan's pacing notes reference cue IDs, not
+  filenames.
+- Motifs are named and tracked: a motif attached to a character or idea is
+  reused deliberately, and its appearances are listed on the cue sheet —
+  same discipline as accent colors in `visual/visual-language.md`.
+
+## Temp Score
+
+- Temp cues are clearly marked `temp` on the cue sheet and in filenames;
+  a temp cue MUST NOT be promoted to final by omission.
+- Commercial recordings used as temp are never redistributed with cuts sent
+  outside the project and MUST carry a replacement plan (generate, license,
+  or compose) on the cue sheet.
+- Generated replacement cues SHOULD match temp intent (tempo, energy,
+  instrumentation notes), not clone the temp track's melody.
+
+## Licensing and Provenance
+
+- Every non-generated cue records its license: owner, terms, territory, and
+  proof location. `unknown` license blocks the postproduction exit gate.
+- Generated cues carry standard generation records (provider, model, prompt
+  hash, cost, timestamp) per `common/asset-provenance.md`, and note the
+  provider's commercial-use terms.
+- NEVER prompt music generation with "in the style of" a named living artist
+  or a specific copyrighted song.
+
+## Validation
+
+- `scripts/validate.js` checks every audio file referenced by the edit plan
+  appears on the cue sheet with a license status, and that no cue is both
+  `temp` and `final`.
+- Generation records for generated cues are checked like any asset
+  (`common/asset-provenance.md`).
+- License adequacy and creative fit are human review: sound-designer and
+  editor at edit review, with the license audit gating postproduction exit.

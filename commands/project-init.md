@@ -1,0 +1,73 @@
+---
+description: Scaffold a production/ workspace with project metadata, directory skeleton, and starter templates.
+---
+
+# /project-init
+
+## Purpose
+
+Create the `production/` workspace that every other command reads from and
+writes to. Establishes project identity (title, format, aspect ratio, target
+runtime, default providers), the canonical directory layout, and empty starter
+files so downstream commands never have to guess where anything lives.
+
+## Use When
+
+- Starting a new film project from scratch, before any script work.
+- Adopting an existing script into the scaffold — run this first, then
+  `/script-analyze`.
+- A workspace is missing directories or `project.yaml` is invalid and needs to
+  be re-scaffolded (existing files are never overwritten without confirmation).
+
+## Inputs
+
+- `title` (string, required): working title of the project.
+- `format` (string, optional, default `short`): `short` | `feature` | `episode` | `spot`.
+- `aspect_ratio` (string, optional, default `16:9`): must be supported by the
+  default video provider.
+- `target_runtime` (duration, optional): e.g. `90s`, `12m`.
+- `image_provider` / `video_provider` (string, optional, defaults `fal` / `veo`):
+  must exist in `manifests/*-providers.json`.
+
+## Invokes Agents
+
+- showrunner
+- production-qa
+
+## Required Skills
+
+- production-orchestration
+
+## Process
+
+1. Confirm there is no existing valid `production/project.yaml`; if one exists,
+   report its state and stop unless the user explicitly asks to repair.
+2. showrunner interviews for missing inputs — title, format, aspect ratio,
+   runtime target, provider defaults — and records intent, logline, and
+   audience in the project file.
+3. Create the directory skeleton: `story/`, `characters/`, `locations/`,
+   `props/`, `scenes/`, `shots/`, `references/`, `prompts/`, `generations/`,
+   `continuity/`, `edit/`.
+4. Write `project.yaml` and copy starter templates (treatment stub, empty
+   reference manifest, global continuity state).
+5. production-qa validates `project.yaml` against its schema and verifies the
+   layout matches `docs/conventions.md`; report any drift before finishing.
+
+## Outputs
+
+- `production/project.yaml` — validates against `schemas/project.schema.json`.
+- `production/story/treatment.md` — starter stub (human document, no schema).
+- `production/references/manifest.yaml` — empty approved-asset manifest.
+- `production/continuity/continuity-state.yaml` — empty global state,
+  validates against `schemas/continuity-state.schema.json`.
+- Full directory skeleton per the `production/` layout in `docs/conventions.md`.
+
+## Notes
+
+- This command generates nothing and costs nothing; it is safe to run first in
+  every project.
+- Provider defaults set here are inherited by `/smart-shot`,
+  `/generate-keyframes`, and `/generate-clips`; change them in `project.yaml`,
+  not in individual prompts.
+- Next step: put your screenplay at `production/story/script.fountain` and run
+  `/script-analyze`. For a fully guided pipeline, see `/full-production`.

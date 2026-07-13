@@ -1,0 +1,11 @@
+id: SH_020_001
+scene: SC_020
+order: 1
+blocking:
+  character_positions:
+    mara: platform_edge
+continuity:
+  enters_from: null
+  exits_to: SH_020_002
+  screen_direction: left_to_right
+  axis_id: AXIS_SC020_A

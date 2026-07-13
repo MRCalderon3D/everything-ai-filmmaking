@@ -1,0 +1,57 @@
+# Fixture shot (schemas/shot.schema.json) for reference-plan / prompt tests
+id: SH_004_002
+scene: SC_004
+order: 2
+
+narrative:
+  purpose: "Mara slides into the corner booth; the detective clocks her reflection in the window."
+  beat: discovery
+  emotion: "wary recognition"
+
+timing:
+  duration_seconds: 3.8
+  handles_before: 0.4
+  handles_after: 0.5
+
+camera:
+  shot_size: medium_close_up
+  angle: three_quarter
+  height_m: 1.55
+  lens_mm: 50
+  station: LOC_DINER_C1
+  movement:
+    type: dolly_in
+    distance_m: 0.7
+    speed: slow
+
+blocking:
+  character_positions:
+    mara: corner_booth
+    det: counter_stool
+  actions:
+    - "Mara slides into the corner booth without breaking eye contact with the window."
+    - "The detective sets down his cup and watches her reflection."
+  eyelines:
+    mara: window_reflection
+    det: mara
+
+continuity:
+  enters_from: SH_004_001
+  exits_to: SH_004_003
+  screen_direction: left_to_right
+  axis_id: AXIS_SC004_A
+
+references:
+  required:
+    - CHAR_MARA_FACE_MASTER_V03
+    - PROP_LOCKET_MASTER_V01
+  optional:
+    - LOOK_NEON_NOIR_MASTER_V02
+
+generation:
+  start_frame_required: true
+  end_frame_required: false
+  audio_generation: false
+
+dialogue: "You came back."
+notes: "Keep the locket visible on the table through the whole move."

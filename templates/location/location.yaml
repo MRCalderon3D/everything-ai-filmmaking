@@ -1,0 +1,43 @@
+# production/locations/LOC_STATION/location.yaml — location bible
+# Schema: schemas/location.schema.json
+# description.* fields are canonical: prompts are compiled from them.
+
+id: LOC_STATION                    # base location ID (no version suffix)
+name: "Central Railway Station"
+type: mixed                        # interior | exterior | mixed — covered platform open to the rain
+
+description:                       # canonical description (generation-ready)
+  summary: >
+    A 1950s European railway terminus at night: a long covered platform of wet
+    granite, cast-iron columns holding a soot-darkened glass canopy, empty
+    wooden benches, and sodium-vapor lamps throwing warm pools onto rain-slick
+    stone. Beyond the canopy edge, rain falls through blue darkness.
+  era: "1950s"
+  architecture: "cast-iron and glass trainshed, granite platform, brass fittings"
+  palette: "sodium-amber highlights over blue-grey shadow; oxblood accents"
+  key_features:                    # landmarks that must appear consistently
+    - "platform bench (slatted wood, mid-platform)"
+    - "cast-iron columns every 8 meters"
+    - "hanging clock reading 23:47"
+    - "departures board, half its letters missing"
+  atmosphere: "steady rain beyond the canopy, thin drifting steam, nearly deserted"
+  sounds: "rain on glass, distant shunting, a loose sign creaking"
+
+lighting_notes: "Practical sodium lamps only; no moonlight. Wet surfaces double every light source."
+map_file: map.yaml                 # sibling spatial map (location-map.schema.json)
+
+references:                        # reference asset registry; files live in refs/
+  - asset_id: LOC_STATION_PLATFORM_MASTER_V02
+    path: refs/loc_station_platform_master_v02.png
+    kind: establishing             # establishing | wide | detail | aerial | texture | lighting
+    status: approved               # draft | review | approved — approved is immutable
+    version: 2
+    notes: "Set-geometry master. Use for spatial_geometry in every platform shot."
+  - asset_id: LOC_STATION_BENCH_DETAIL_V01
+    path: refs/loc_station_bench_detail_v01.png
+    kind: detail
+    status: review
+    version: 1
+    notes: "Bench close detail for insert shots."
+
+notes: "The platform reads long and empty; never show more than two background figures."

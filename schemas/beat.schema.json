@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://everything-ai-filmmaking.dev/schemas/beat.schema.json",
+  "title": "Beat",
+  "description": "Single narrative beat within a scene: the smallest unit of dramatic change. Shots are designed to land beats, so every beat states its intent, conflict, and turn.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "scene", "order", "intent", "conflict", "turn"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^BT_SC\\d{3}_\\d{2}$",
+      "description": "Beat ID (e.g. BT_SC004_02)."
+    },
+    "scene": {
+      "type": "string",
+      "pattern": "^SC_\\d{3}$",
+      "description": "Scene this beat belongs to."
+    },
+    "order": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Position of the beat within the scene, 1-based."
+    },
+    "intent": {
+      "type": "string",
+      "minLength": 1,
+      "description": "What the driving character wants in this beat."
+    },
+    "conflict": {
+      "type": "string",
+      "minLength": 1,
+      "description": "What resists the intent — obstacle, doubt, or opposing want."
+    },
+    "turn": {
+      "type": "string",
+      "minLength": 1,
+      "description": "How the situation changes by the end of the beat; the reason the beat exists."
+    },
+    "summary": {
+      "type": "string",
+      "description": "One-line description of the on-screen action."
+    },
+    "characters": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^CHAR_[A-Z][A-Z0-9_]*$" },
+      "description": "Characters active in this beat."
+    },
+    "emotional_shift": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Audience-facing emotional change the beat produces.",
+      "properties": {
+        "from": { "type": "string" },
+        "to": { "type": "string" }
+      }
+    },
+    "notes": { "type": "string" }
+  }
+}

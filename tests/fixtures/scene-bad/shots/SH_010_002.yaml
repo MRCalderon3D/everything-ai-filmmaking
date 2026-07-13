@@ -1,0 +1,12 @@
+# chain break (both directions) + axis break + screen-direction flip
+id: SH_010_002
+scene: SC_010
+order: 2
+blocking:
+  character_positions:
+    mara: beside_bench
+continuity:
+  enters_from: SH_010_005     # WRONG: the previous shot in the cut is SH_010_001
+  exits_to: null
+  screen_direction: right_to_left   # flips without a neutral shot
+  axis_id: AXIS_SC010_B             # crosses the line without re-establishing

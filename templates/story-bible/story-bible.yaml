@@ -1,0 +1,58 @@
+# production/story/story-bible.yaml — canonical narrative reference
+# Schema: schemas/story-bible.schema.json
+# Bibles outrank prompts: facts recorded here bind every downstream artifact.
+
+logline: "A woman fleeing her past finds a stranger's red suitcase on a rain-soaked platform — and inside it, proof that her past is fleeing her."
+synopsis: >
+  Mara Voss boards the last night train out of the city with a one-way ticket
+  and a false name. On the platform she finds an abandoned red suitcase whose
+  contents mirror her own buried history. Deciding what to do with it — return
+  it, open it, or take it — forces her to decide who she is willing to be.
+
+themes:                            # thematic threads the film argues
+  - guilt
+  - escape
+  - identity
+
+tone: "rain-slick neon noir; quiet dread over melodrama"
+
+acts:                              # act -> sequences -> scene IDs (story order)
+  - title: "Act I — Departure"
+    summary: "Mara severs her old life and reaches the station unseen."
+    sequences:
+      - title: "The last train"
+        summary: "Empty platform, one stranger, and a suitcase nobody claims."
+        scenes: [SC_001, SC_002, SC_003, SC_004]
+  - title: "Act II — The Suitcase"
+    summary: "What is inside the suitcase pulls Mara back toward everything she ran from."
+    sequences:
+      - title: "Opening it"
+        summary: "Mara takes the suitcase aboard and confronts its contents."
+        scenes: [SC_005, SC_006, SC_007]
+  - title: "Act III — Arrival"
+    summary: "Mara chooses a name to travel under — hers."
+    sequences:
+      - title: "End of the line"
+        summary: "Dawn arrival; the suitcase changes hands one last time."
+        scenes: [SC_008]
+
+canon_facts:                       # immutable once approved; contradicting one fails validation
+  - fact: "The suitcase is oxblood red leather with a broken brass clasp on the left side."
+    category: prop
+    established_in: SC_004
+    immutable: true
+  - fact: "Mara travels under the false name 'Ann Kessler'."
+    category: character
+    established_in: SC_002
+    immutable: true
+  - fact: "It rains through the entire night at the station; surfaces stay wet."
+    category: world
+    established_in: SC_003
+    immutable: true
+
+characters:                        # index of character bibles under production/characters/
+  - CHAR_MARA
+locations:                         # index of location bibles under production/locations/
+  - LOC_STATION
+
+notes: "Working question: who left the suitcase — answered visually only, never in dialogue."

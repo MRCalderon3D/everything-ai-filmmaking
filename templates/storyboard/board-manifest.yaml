@@ -1,0 +1,30 @@
+# production/scenes/SC_004/storyboard/board-manifest.yaml — panel index
+# Machine-readable companion to storyboard.md: which image realizes which shot,
+# where it came from, and its review status. No dedicated JSON schema; shot IDs
+# and generation-record IDs follow docs/conventions.md and are cross-checked by
+# validate.js.
+
+scene: SC_004
+storyboard_file: storyboard.md     # the human-readable board these panels appear in
+
+panels:                            # one entry per panel image, in cut order
+  - shot: SH_004_001               # shot the panel visualizes
+    panel: 1                       # panel number within the shot (multi-panel for complex moves)
+    image: panels/sh_004_001_p01.png
+    source: generated              # generated | sketch | photo
+    generation_record: GEN_SH_004_001_01   # provenance, when source is generated
+    caption: "Wide: empty platform, Mara enters frame-left, bench mid-frame."
+    status: approved               # draft | review | approved
+  - shot: SH_004_002
+    panel: 1
+    image: panels/sh_004_002_p01.png
+    source: generated
+    generation_record: GEN_SH_004_002_01
+    caption: "MCU three-quarter: Mara stops, eyeline to the suitcase."
+    status: review
+  - shot: SH_004_003
+    panel: 1
+    image: panels/sh_004_003_p01.png
+    source: sketch                 # sketches have no generation record
+    caption: "Insert: oxblood suitcase, broken left clasp, rain-beaded."
+    status: draft

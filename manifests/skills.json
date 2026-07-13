@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "version": 1,
+  "skills": [
+    {
+      "name": "script-analysis",
+      "file": "skills/script-analysis/SKILL.md",
+      "description": "Extract structure, beats, characters, locations, and production flags from a script.",
+      "category": "story"
+    },
+    {
+      "name": "narrative-structure",
+      "file": "skills/narrative-structure/SKILL.md",
+      "description": "Evaluate and shape act structure, arcs, stakes, and pacing.",
+      "category": "story"
+    },
+    {
+      "name": "character-consistency",
+      "file": "skills/character-consistency/SKILL.md",
+      "description": "Define and enforce identity anchors so a character reads the same in every asset.",
+      "category": "visual"
+    },
+    {
+      "name": "character-sheet-generation",
+      "file": "skills/character-sheet-generation/SKILL.md",
+      "description": "Produce multi-angle character reference sheets suitable as generation references.",
+      "category": "visual"
+    },
+    {
+      "name": "location-design",
+      "file": "skills/location-design/SKILL.md",
+      "description": "Design locations with geography, lighting logic, and reusable reference angles.",
+      "category": "visual"
+    },
+    {
+      "name": "location-mapping",
+      "file": "skills/location-mapping/SKILL.md",
+      "description": "Build spatial maps of locations: zones, camera angles, entrances, and sightlines.",
+      "category": "visual"
+    },
+    {
+      "name": "visual-style-development",
+      "file": "skills/visual-style-development/SKILL.md",
+      "description": "Develop a coherent visual language: palette, texture, lensing, and grade intent.",
+      "category": "visual"
+    },
+    {
+      "name": "scene-blocking",
+      "file": "skills/scene-blocking/SKILL.md",
+      "description": "Stage characters and action in space, establishing axes and movement paths.",
+      "category": "production"
+    },
+    {
+      "name": "cinematography",
+      "file": "skills/cinematography/SKILL.md",
+      "description": "Choose shot sizes, lenses, camera moves, and lighting per scene intent.",
+      "category": "production"
+    },
+    {
+      "name": "shot-sequencing",
+      "file": "skills/shot-sequencing/SKILL.md",
+      "description": "Order shots into coverage that cuts: rhythm, axis discipline, and clip boundaries.",
+      "category": "production"
+    },
+    {
+      "name": "storyboard-generation",
+      "file": "skills/storyboard-generation/SKILL.md",
+      "description": "Turn shots into storyboard frames with composition and staging annotations.",
+      "category": "production"
+    },
+    {
+      "name": "reference-selection",
+      "file": "skills/reference-selection/SKILL.md",
+      "description": "Pick the reference images a generation must use, within provider slot limits.",
+      "category": "production"
+    },
+    {
+      "name": "prompt-compilation",
+      "file": "skills/prompt-compilation/SKILL.md",
+      "description": "Compile bibles, shots, and references into provider-ready prompt packages.",
+      "category": "generation"
+    },
+    {
+      "name": "image-generation",
+      "file": "skills/image-generation/SKILL.md",
+      "description": "Run image providers well: parameters, reference wiring, retries, and QC.",
+      "category": "generation"
+    },
+    {
+      "name": "video-generation",
+      "file": "skills/video-generation/SKILL.md",
+      "description": "Run video providers well: duration limits, frame conditioning, motion prompts, QC.",
+      "category": "generation"
+    },
+    {
+      "name": "continuity-checking",
+      "file": "skills/continuity-checking/SKILL.md",
+      "description": "Audit axes, screen direction, wardrobe, and prop state across shots and scenes.",
+      "category": "post"
+    },
+    {
+      "name": "edit-planning",
+      "file": "skills/edit-planning/SKILL.md",
+      "description": "Plan the edit: selects, order, transitions, sound, and timeline documentation.",
+      "category": "post"
+    },
+    {
+      "name": "production-orchestration",
+      "file": "skills/production-orchestration/SKILL.md",
+      "description": "Sequence pipeline phases, route work to agents, and enforce approval gates.",
+      "category": "production"
+    }
+  ]
+}

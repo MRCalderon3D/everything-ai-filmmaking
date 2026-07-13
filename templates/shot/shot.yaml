@@ -1,0 +1,59 @@
+# production/scenes/SC_004/shots/SH_004_002.yaml — single shot definition
+# Schema: schemas/shot.schema.json
+# One file per shot. /smart-shot writes these; keyframe, clip, and continuity
+# pipelines consume them.
+
+id: SH_004_002                     # SH_<scene-number>_<shot-number>
+scene: SC_004                      # must match the ID's scene number
+order: 2                           # position in the scene's cut order, 1-based
+
+narrative:                         # why this shot exists
+  purpose: "Mara registers the abandoned red suitcase for the first time; the audience must clock that she recognizes something about it."
+  beat: discovery                  # beat label or beat ID (e.g. BT_SC004_02)
+  emotion: "wary recognition tipping into dread"
+
+timing:                            # generated clip must cover duration + both handles
+  duration_seconds: 3.8            # intended on-screen duration
+  handles_before: 0.4              # extra seconds before the in-point
+  handles_after: 0.5               # extra seconds after the out-point
+
+camera:                            # compiled directly into prompt language
+  shot_size: medium_close_up       # extreme_wide|wide|full|medium_wide|medium|medium_close_up|close_up|extreme_close_up|insert|over_the_shoulder
+  angle: three_quarter             # front|three_quarter|profile|three_quarter_back|back|high_angle|low_angle|overhead|dutch
+  height_m: 1.55                   # lens height above floor (eye level)
+  lens_mm: 50                      # full-frame-equivalent focal length
+  station: LOC_STATION_C1          # optional camera station from the location map
+  movement:
+    type: dolly_in                 # static|pan|tilt|dolly_in|dolly_out|truck|crane|handheld|steadicam|zoom|arc
+    distance_m: 0.7                # travel distance for dolly/truck/crane/arc
+    speed: slow                    # slow | medium | fast
+
+blocking:                          # keys are lowercase character handles (mara = CHAR_MARA)
+  character_positions:
+    mara: beside_bench             # mark or landmark the character occupies
+  actions:                         # ordered physical actions during the shot
+    - "Mara stops mid-step, turning her head toward the bench."
+    - "Her hand tightens on the strap of her shoulder bag."
+  eyelines:
+    mara: suitcase                 # what the character is looking at
+
+continuity:                        # declared per shot; check-continuity.js validates across cuts
+  enters_from: SH_004_001          # previous shot; null for the scene's first shot
+  exits_to: SH_004_003             # next shot; null for the scene's last shot
+  screen_direction: left_to_right  # left_to_right|right_to_left|neutral|toward_camera|away_from_camera
+  axis_id: AXIS_SC004_A            # 180-degree line from the scene's continuity-state
+
+references:                        # refined per provider by the reference plan
+  required:                        # must condition generation
+    - CHAR_MARA_FACE_MASTER_V03
+    - LOC_STATION_PLATFORM_MASTER_V02
+    - PROP_RED_SUITCASE_MASTER_V01
+  optional:                        # included if the provider's reference budget allows
+    - LOOK_NOIR_NIGHT_V01
+
+generation:                        # flags for /generate-keyframes and /generate-clips
+  start_frame_required: true       # generate a start keyframe before the video pass
+  end_frame_required: true         # generate an end keyframe (start/end conditioning)
+  audio_generation: false          # no generated audio for this shot
+
+notes: "Hold the suitcase soft in the background until the final 0.5 s of the move."

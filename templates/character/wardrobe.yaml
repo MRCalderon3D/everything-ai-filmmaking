@@ -1,0 +1,47 @@
+# production/characters/CHAR_MARA/wardrobe.yaml — wardrobe bible
+# Schema: schemas/wardrobe.schema.json
+# Outfits are assigned to scene ranges; per-scene states let continuity checks
+# catch a coat that dries between consecutive shots.
+
+character: CHAR_MARA               # character this wardrobe belongs to
+
+outfits:
+  - id: LOOK_MARA_TRAVEL_V01       # outfit asset ID (LOOK_* prefix, versioned)
+    name: "Travel outfit"
+    description: >
+      Belted charcoal wool trench coat over a moss-green sweater, dark straight
+      trousers, low-heeled leather boots, rain-damp grey headscarf. A worn
+      leather shoulder bag hangs on her left side.
+    pieces:                        # individual garments and accessories
+      - "charcoal belted trench coat"
+      - "moss-green crew-neck sweater"
+      - "dark straight trousers"
+      - "low-heeled brown leather boots"
+      - "grey headscarf"
+      - "worn leather shoulder bag (left side)"
+    scene_range:                   # inclusive range this outfit is worn in
+      from: SC_001
+      to: SC_008
+    default_state: clean           # clean | dirty | wet | torn | bloodied | burned | wrinkled | repaired
+    states:                        # per-scene overrides of the default state
+      - scene: SC_003
+        state: wet
+        note: "Rain starts as she crosses the forecourt."
+      - scene: SC_004
+        state: wet
+        note: "Still raining on the platform; coat shoulders visibly darkened."
+    references:                    # outfit reference registry; files live in refs/
+      - asset_id: LOOK_MARA_TRAVEL_FRONT_V01
+        path: refs/look_mara_travel_front_v01.png
+        kind: outfit               # outfit | detail | fabric | worn
+        status: approved           # draft | review | approved
+        version: 1
+        notes: "Full outfit, front view, dry state."
+      - asset_id: LOOK_MARA_TRAVEL_WET_V01
+        path: refs/look_mara_travel_wet_v01.png
+        kind: worn                 # in-scene state reference
+        status: review
+        version: 1
+        notes: "Wet-state reference for SC_003–SC_004."
+
+notes: "One outfit for the whole short — state changes carry the continuity story."

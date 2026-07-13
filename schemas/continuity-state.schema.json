@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://everything-ai-filmmaking.dev/schemas/continuity-state.schema.json",
+  "title": "Continuity State",
+  "description": "Per-scene continuity ledger (production/scenes/<SC_ID>/continuity/scene-state.yaml and production/continuity/): established axes, character and prop state at scene time, lighting, and open issues. Updated after every scene; check-continuity.js validates shots against it.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["scene", "axes", "character_states", "last_validated"],
+  "properties": {
+    "scene": {
+      "type": "string",
+      "pattern": "^SC_\\d{3}$",
+      "description": "Scene this state describes."
+    },
+    "axes": {
+      "type": "array",
+      "description": "180-degree lines established in the scene. Every shot's axis_id must resolve here.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "established_in", "subjects"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^AXIS_SC\\d{3}_[A-Z]$",
+            "description": "Axis ID (e.g. AXIS_SC004_A)."
+          },
+          "established_in": {
+            "type": "string",
+            "pattern": "^SH_\\d{3}_\\d{3}$",
+            "description": "First shot that establishes this axis."
+          },
+          "subjects": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "pattern": "^(CHAR|LOC|PROP)_[A-Z][A-Z0-9_]*$"
+            },
+            "description": "Entities the line runs between (or along, for a movement axis)."
+          },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "character_states": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "State of each character at scene time, keyed by character ID.",
+      "patternProperties": {
+        "^CHAR_[A-Z][A-Z0-9_]*$": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["wardrobe", "position"],
+          "properties": {
+            "wardrobe": {
+              "type": "string",
+              "pattern": "^LOOK_[A-Z][A-Z0-9_]*(_V\\d{2})?$",
+              "description": "Outfit ID worn in this scene (from the character's wardrobe.yaml)."
+            },
+            "wardrobe_state": {
+              "enum": ["clean", "dirty", "wet", "torn", "bloodied", "burned", "wrinkled", "repaired"],
+              "description": "Condition of the outfit at scene time."
+            },
+            "props_held": {
+              "type": "array",
+              "items": { "type": "string", "pattern": "^PROP_[A-Z][A-Z0-9_]*$" },
+              "description": "Props the character is carrying; empty array means hands free."
+            },
+            "position": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Where the character is at scene time (mark or landmark, e.g. beside_bench)."
+            },
+            "last_seen_in": {
+              "type": ["string", "null"],
+              "pattern": "^SH_\\d{3}_\\d{3}$",
+              "description": "Most recent shot showing the character; null before first coverage."
+            }
+          }
+        }
+      }
+    },
+    "prop_states": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "State of each tracked prop at scene time, keyed by prop ID.",
+      "patternProperties": {
+        "^PROP_[A-Z][A-Z0-9_]*$": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["location"],
+          "properties": {
+            "location": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Where the prop is (landmark, mark, or \"held\")."
+            },
+            "state": {
+              "type": "string",
+              "description": "Physical condition (e.g. intact, open, rain-beaded, damaged)."
+            },
+            "holder": {
+              "type": ["string", "null"],
+              "pattern": "^CHAR_[A-Z][A-Z0-9_]*$",
+              "description": "Character holding the prop, or null if unheld."
+            },
+            "last_seen_in": {
+              "type": ["string", "null"],
+              "pattern": "^SH_\\d{3}_\\d{3}$"
+            }
+          }
+        }
+      }
+    },
+    "lighting": {
+      "type": "string",
+      "description": "Established lighting condition every shot in the scene must match."
+    },
+    "time_of_day": {
+      "enum": ["dawn", "morning", "day", "afternoon", "dusk", "evening", "night"],
+      "description": "Story time of day; must agree with the scene definition."
+    },
+    "open_issues": {
+      "type": "array",
+      "description": "Unresolved continuity problems found during review.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["severity", "shot", "description"],
+        "properties": {
+          "severity": {
+            "enum": ["critical", "major", "minor", "note"],
+            "description": "critical blocks generation/approval; note is informational."
+          },
+          "shot": {
+            "type": ["string", "null"],
+            "pattern": "^SH_\\d{3}_\\d{3}$",
+            "description": "Shot where the issue appears; null for scene-wide issues."
+          },
+          "description": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "last_validated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of the last continuity check over this scene."
+    },
+    "notes": { "type": "string" }
+  }
+}

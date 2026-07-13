@@ -1,0 +1,74 @@
+---
+name: edit-planning
+description: Plan the assembly — clip order, pacing, transitions, sound, and color notes — into an executable edit plan.
+origin: everything-ai-filmmaking
+category: post
+---
+
+# Edit Planning
+
+## Purpose
+Design the finished film on paper: which take of each shot is used, in what
+order, with what cut timing, transitions, sound and music intent, and color
+notes — a plan an editor (human or tool) can execute without guessing.
+
+## Use When
+- Scenes have continuity-approved clips and assembly is next.
+- Pacing problems demand reordering, trimming, or dropping shots.
+- Sound and color direction must be attached to the picture plan.
+
+## Inputs
+- Approved clips and generation records from `production/generations/`.
+- Sequenced shot files with timing and handles; story bible tension curve.
+- Continuity state for legal reorder limits; style bible for color intent.
+
+## Process
+1. Select takes: per shot, pick the approved generation attempt, by ID —
+   the plan cites `GEN_<shot>_<attempt##>`, never "the good one".
+2. Assemble in sequence order, then edit against it: trim into handles for
+   rhythm, drop shots whose function another shot already serves, and reorder
+   only where continuity state proves the move is legal.
+3. Set each cut's timing and motivation (action, look, sound, rhythm) and mark
+   the cut frame within the clip's handles.
+4. Choose transitions deliberately: cuts by default; a dissolve asserts time
+   passing, a fade asserts a chapter — every non-cut transition carries meaning
+   and is justified in the plan.
+5. Pace against the tension curve: measure scene durations, verify the rhythm
+   shortens into peaks and breathes after them; flag flat stretches back to
+   sequencing rather than papering over them.
+6. Write the sound plan per scene: dialogue treatment, ambience beds, spot
+   effects tied to on-screen events, music cues with in/out points and
+   emotional target (see `rules/audio/`).
+7. Write color notes per scene as deltas from the style bible grade: intent
+   ("colder from the midpoint"), not tool settings.
+8. Produce the human-readable timeline and validate every cited clip exists
+   and is approved.
+
+## Outputs
+- `production/edit/edit-plan.yaml` — ordered events with clip IDs, in/out
+  points, transitions, sound and color notes.
+- `production/edit/timeline.md` — readable assembly walkthrough.
+
+## Quality Bar
+- Every event cites an approved generation record by ID with in/out points.
+- Every non-cut transition and every reorder has a stated justification.
+- Sound and color notes exist per scene, tied to picture events.
+- Total runtime is computed and compared to the project target.
+
+## Common Failure Modes
+- Citing shots instead of specific takes, deferring the real decision.
+- Reordering across a continuity state change (wardrobe, injury) unnoticed.
+- Music notes as genre labels ("tense strings") with no in/out or target.
+- Fixing a planning defect in the edit that should be fixed by regenerating.
+
+## Related Agents
+- editor
+- sound-designer
+- colorist
+
+## Related Commands
+- /edit-plan
+
+## Notes
+The edit plan is the final arbiter of clip boundaries: if a cut needs a frame
+the clip lacks, the shot goes back to `/generate-clips`, not into slow motion.

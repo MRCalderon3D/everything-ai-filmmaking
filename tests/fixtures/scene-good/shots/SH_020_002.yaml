@@ -1,0 +1,12 @@
+# neutral re-establishing shot
+id: SH_020_002
+scene: SC_020
+order: 2
+blocking:
+  character_positions:
+    mara: beside_bench
+continuity:
+  enters_from: SH_020_001
+  exits_to: SH_020_003
+  screen_direction: neutral
+  axis_id: AXIS_SC020_A

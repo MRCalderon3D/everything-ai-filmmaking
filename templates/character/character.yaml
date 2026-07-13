@@ -1,0 +1,45 @@
+# production/characters/CHAR_MARA/character.yaml — character bible
+# Schema: schemas/character.schema.json
+# description.* fields are canonical: prompts are compiled from them, never contradict them.
+
+id: CHAR_MARA                      # base character ID (no version suffix)
+name: "Mara Voss"                  # full name as used in the script
+role: protagonist                  # protagonist | antagonist | deuteragonist | supporting | minor | background
+
+description:                       # canonical physical description (generation-ready)
+  summary: >
+    Woman in her mid-thirties, pale and travel-worn, dark auburn hair pinned up
+    loosely under a rain-damp scarf, sharp grey eyes that check exits before
+    faces. Carries herself upright but guarded, like someone used to being
+    followed.
+  age: "34"                        # apparent age; string so ranges like "mid-30s" work
+  height_cm: 168
+  build: "slim, straight-shouldered"
+  hair: "dark auburn, pinned up, loose strands at the temple"
+  eyes: "grey"
+  skin: "pale, faint freckles across the nose"
+  distinguishing_features:         # must survive every generation
+    - "thin scar through the left eyebrow"
+    - "silver signet ring on the right little finger"
+
+personality: "Controlled, watchful, dry-humored under pressure; kindness she treats as a liability."
+voice: "Low alto, measured, a slight hesitation before lies."
+arc: "From erasing herself to claiming her own name."
+first_appearance: SC_001           # scene of first appearance
+wardrobe_file: wardrobe.yaml       # sibling wardrobe bible (wardrobe.schema.json)
+
+references:                        # reference asset registry; files live in refs/
+  - asset_id: CHAR_MARA_FACE_MASTER_V03   # versioned asset ID (_V## matches version below)
+    path: refs/char_mara_face_master_v03.png
+    kind: face                     # face | body | turnaround | expression | pose | detail
+    status: approved               # draft | review | approved — approved is immutable
+    version: 3
+    notes: "Identity master. Use for facial_identity in every reference plan."
+  - asset_id: CHAR_MARA_TURNAROUND_V01
+    path: refs/char_mara_turnaround_v01.png
+    kind: turnaround
+    status: review
+    version: 1
+    notes: "Full-body 5-view turnaround in travel outfit."
+
+notes: "Never show Mara smiling with teeth before SC_008."

@@ -1,0 +1,70 @@
+---
+name: location-design
+description: Define each location's architecture, dressing, lighting logic, and time-of-day states.
+origin: everything-ai-filmmaking
+category: visual
+---
+
+# Location Design
+
+## Purpose
+Give every location a canonical physical identity — architecture, materials,
+set dressing, light sources, and time-of-day states — so the same place reads
+as the same place in every shot that visits it.
+
+## Use When
+- Building the location bible from the script's location registry.
+- A location appears in generated shots with inconsistent architecture or dressing.
+- A scene requires a new time-of-day or weather state for an existing location.
+
+## Inputs
+- Location entries and quoted script description from `script-analysis`.
+- Style bible palette and lighting language (`LOOK_*` refs).
+- `production/locations/<LOC_ID>/location.yaml` if revising.
+
+## Process
+1. Assign the ID (`LOC_<NAME>`) and define parent/sub-location structure —
+   the station and its platform are one location with zones, not two.
+2. Write the architecture block: scale, era, materials, layout landmarks
+   (the clock, the stairs, the kiosk) that anchor recognition across angles.
+3. Fix set dressing with narrative weight and its default placement; dressing
+   that moves is a prop and belongs to the prop bible.
+4. Define practical light sources and their logic: what is lit, from where,
+   warm or cool, and what motivates it diegetically.
+5. Enumerate required states from the scene list: time of day, weather,
+   crowd level; each state gets a name (`DAY_BUSY`, `NIGHT_EMPTY`) and a
+   lighting description derived from the sources in step 4.
+6. Lock descriptor phrasing exactly as with characters — one wording per
+   feature, reused verbatim in prompts.
+7. Note spatial adjacencies (what is visible through windows and doorways)
+   so backgrounds stay consistent; hand geometry to `location-mapping`.
+8. Version changes `_V##`; approved location refs are immutable.
+
+## Outputs
+- `production/locations/<LOC_ID>/location.yaml` (`location.schema.json`).
+- State list and landmark inventory consumed by `location-mapping` and
+  `reference-selection`.
+
+## Quality Bar
+- Every scripted scene resolves to a defined location and state.
+- Landmarks are stable and named; any two angles can be verified against them.
+- Lighting is motivated by declared sources, not restated ad hoc per shot.
+- Descriptor phrasing is canonical and reused verbatim.
+
+## Common Failure Modes
+- Splitting one location into per-scene variants that drift apart.
+- Describing mood ("gloomy") instead of physical causes (single sodium lamp).
+- Leaving window/door views undefined, so backgrounds contradict geography.
+- Adding dressing per shot that no state defines, breaking continuity.
+
+## Related Agents
+- production-designer
+- visual-director
+
+## Related Commands
+- /location-bible
+- /visual-development
+
+## Notes
+Design describes what the place is; `location-mapping` describes where the
+camera can stand in it. Keep the two files in lockstep when landmarks change.

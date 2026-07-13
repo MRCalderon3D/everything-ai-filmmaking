@@ -1,0 +1,12 @@
+# axis + direction change is legal after the neutral shot
+id: SH_020_003
+scene: SC_020
+order: 3
+blocking:
+  character_positions:
+    mara: bench_seated
+continuity:
+  enters_from: SH_020_002
+  exits_to: null
+  screen_direction: right_to_left
+  axis_id: AXIS_SC020_B

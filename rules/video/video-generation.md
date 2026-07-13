@@ -1,0 +1,72 @@
+# Video Generation
+
+## Purpose
+
+Make clip generation predictable and continuous: clips are the most expensive
+and least controllable artifacts in the pipeline, so everything controllable
+is locked before the call.
+
+## Scope
+
+Video layer (visual and image layer rules also apply). Governs every video
+provider call — veo, kling, runway, seedance, fal — and the prompt packages,
+frames, and records around clips.
+
+## Core Principles
+
+- A clip is generated from a plan, not toward one: reference plan, prompt
+  package, and boundary frames exist and are validated first.
+- Respect provider physics: duration caps, reference limits, and frame
+  conditioning support are hard constraints, not suggestions.
+- Continuity across clips is engineered with start/end frames, never hoped
+  for.
+
+## Prerequisites Per Clip
+
+- An approved reference plan for the shot (identity, wardrobe, set, props,
+  look masters), per `image/image-generation.md` priorities.
+- A schema-valid prompt package (`prompt-package.schema.json`) compiled per
+  provider by `scripts/compile-prompts.js`, binding shot ID, motion
+  description (see `video/motion-language.md`), duration, aspect ratio, and
+  references. Hand-edited packages are forbidden.
+- The shot file with declared axis, screen direction, and neighbors
+  (`visual/spatial-continuity.md`) — clips inherit these obligations.
+
+## Provider Capability Limits
+
+- Requested duration MUST NOT exceed the provider's `maxDurationSeconds`;
+  longer shots are split per `video/clip-boundaries.md`, never requested
+  oversize.
+- Reference image count MUST NOT exceed `referenceImages`; aspect ratio MUST
+  be in `aspectRatios`. `compile` MUST fail loudly on any violation.
+- Providers without `startEndFrames` MUST NOT be assigned clips that join
+  other clips on matched frames; route those to a capable provider or
+  re-plan the boundary.
+- Audio-generating providers have audio disabled unless the shot explicitly
+  plans generated audio (see `audio/` rules).
+
+## Start/End Frames and Reproducibility
+
+- Clips that join neighbors use approved keyframes as conditioning: the end
+  frame of clip N is the start frame of clip N+1 (same file, not a
+  lookalike). Keyframes MUST be approved before the clip is generated.
+- Seeds, model version, and all parameters go into the generation record
+  (`GEN_<shot>_<attempt##>`); dry-run default and `--live` gating per
+  `common/cost-control.md`; reroll budgets apply per shot.
+- Accepting a clip means checking: identity vs masters, spatial declarations
+  (axis side, screen direction, enters/exits), motion as specified, and
+  boundary-frame match. Any failure is a reroll or re-plan, regardless of
+  overall quality.
+
+## Validation
+
+- `scripts/validate.js` checks packages against
+  `manifests/video-providers.json` capabilities, verifies boundary-frame
+  references resolve to approved keyframes, and rejects clips lacking an
+  approved reference plan.
+- `scripts/check-continuity.js` verifies shared frames across clip joins and
+  declared spatial continuity across the scene.
+- `hooks/require-cost-confirmation.js` gates live batches;
+  `hooks/detect-continuity-drift.js` flags clips built on superseded masters.
+- Motion quality and boundary-match fidelity are human review before
+  approval.

@@ -1,0 +1,60 @@
+# Location Consistency
+
+## Purpose
+
+Make every location a stable, navigable place: same geometry, same dressing,
+same light logic in every shot, so cuts within a scene feel like one space.
+
+## Scope
+
+Visual layer. Applies to location design, camera-angle maps, reference plans,
+and every generation depicting a `LOC_*` entity.
+
+## Core Principles
+
+- A location is geometry first, pictures second. The map defines the space;
+  images depict it from declared angles.
+- Every generation anchors to approved location masters — never to prose
+  descriptions alone, never to a previous generation alone.
+- Light states are part of the location's identity and are tracked, not
+  improvised.
+
+## Masters and Camera-Angle Maps
+
+- Every location MUST have, before generation: an approved establishing
+  master (`LOC_<NAME>_MASTER_V##`), a `map.yaml` (floor plan: walls,
+  entrances, key furniture, cardinal orientation), and a set of named camera
+  angles `LOC_<NAME>_C#` — each angle defining position on the map, facing
+  direction, approximate lens, and what is visible in the background.
+- Every shot at a location MUST declare which `_C#` angle it uses (or derive
+  a new one, added to `map.yaml` before generation). The reference plan MUST
+  include the master or angle reference matching that `_C#`.
+- New angles MUST be geometrically consistent with the map: backgrounds that
+  contradict what the map says lies behind camera at that position are
+  defects.
+- Set dressing (furniture, signage, clutter) is fixed per scene in
+  `continuity/`; items NEVER teleport, appear, or vanish between shots
+  unless a beat moves them.
+
+## Lighting Continuity
+
+- Each location defines its light states in `location.yaml` (e.g. day,
+  night-practical, dawn) with sources, direction, and color temperature.
+- Every scene at the location declares one light state, consistent with the
+  story timeline's time of day; all shots in the scene use it. Shadow
+  direction and window light MUST agree across angles of the same scene.
+- Weather and atmosphere (rain, fog, haze) are scene-level state and appear
+  in every shot of the scene or none.
+
+## Validation
+
+- `scripts/validate.js` verifies each location has `map.yaml` with at least
+  one `_C#` angle before its shots exist, and that every shot's declared
+  angle exists in the map.
+- `scripts/check-continuity.js` flags light-state mismatches within a scene,
+  dressing changes with no beat justification, and shots citing superseded
+  location masters.
+- `hooks/detect-continuity-drift.js` alerts when a generation omits the
+  location reference for its declared angle.
+- Geometric plausibility of new angles and dressing judgment calls are human
+  review by the production-designer and continuity-supervisor.

@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://everything-ai-filmmaking.dev/schemas/character.schema.json",
+  "title": "Character",
+  "description": "Character bible (production/characters/<CHAR_ID>/character.yaml): identity, canonical physical description, and the registry of reference assets used for identity-consistent generation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "name", "description", "references"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^CHAR_[A-Z][A-Z0-9_]*$",
+      "description": "Base character ID without version suffix (e.g. CHAR_MARA)."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Character's full name as used in the script."
+    },
+    "role": {
+      "enum": ["protagonist", "antagonist", "deuteragonist", "supporting", "minor", "background"],
+      "description": "Narrative function; drives how much reference coverage the character needs."
+    },
+    "description": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["summary"],
+      "description": "Canonical physical description. Prompts are compiled from these fields; never contradict them.",
+      "properties": {
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "description": "One-paragraph canonical appearance, written as a generation-ready description."
+        },
+        "age": { "type": "string", "description": "Apparent age (e.g. \"34\" or \"mid-30s\")." },
+        "height_cm": { "type": "number", "exclusiveMinimum": 0 },
+        "build": { "type": "string" },
+        "hair": { "type": "string" },
+        "eyes": { "type": "string" },
+        "skin": { "type": "string" },
+        "distinguishing_features": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Scars, marks, jewelry — features that must survive every generation."
+        }
+      }
+    },
+    "personality": {
+      "type": "string",
+      "description": "Temperament and behavior; informs blocking and performance direction."
+    },
+    "voice": {
+      "type": "string",
+      "description": "Speech quality and cadence; used by dialogue/audio generation."
+    },
+    "arc": {
+      "type": "string",
+      "description": "How the character changes across the story."
+    },
+    "first_appearance": {
+      "type": "string",
+      "pattern": "^SC_\\d{3}$",
+      "description": "Scene where the character first appears."
+    },
+    "wardrobe_file": {
+      "type": "string",
+      "description": "Relative path to this character's wardrobe.yaml (wardrobe.schema.json)."
+    },
+    "references": {
+      "type": "array",
+      "description": "Registry of reference assets for this character. Approved masters are immutable; supersede with a new _V## version.",
+      "items": { "$ref": "#/$defs/referenceAsset" }
+    },
+    "notes": { "type": "string" }
+  },
+  "$defs": {
+    "referenceAsset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["asset_id", "path", "kind", "status", "version"],
+      "properties": {
+        "asset_id": {
+          "type": "string",
+          "pattern": "^CHAR_[A-Z][A-Z0-9_]*(_V\\d{2})?$",
+          "description": "Versioned asset ID (e.g. CHAR_MARA_FACE_MASTER_V03)."
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Path to the image, relative to this character's directory."
+        },
+        "kind": {
+          "enum": ["face", "body", "turnaround", "expression", "pose", "detail"],
+          "description": "What the reference establishes."
+        },
+        "status": {
+          "enum": ["draft", "review", "approved"],
+          "description": "Approval gate. Only approved assets may be cited as required references."
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Version number matching the _V## suffix."
+        },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}

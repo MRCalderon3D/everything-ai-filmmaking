@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://everything-ai-filmmaking.dev/schemas/location.schema.json",
+  "title": "Location",
+  "description": "Location bible (production/locations/<LOC_ID>/location.yaml): identity, canonical description, and registry of reference assets for set-consistent generation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "name", "type", "description", "references"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^LOC_[A-Z][A-Z0-9_]*$",
+      "description": "Base location ID without version suffix (e.g. LOC_STATION)."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human-readable location name."
+    },
+    "type": {
+      "enum": ["interior", "exterior", "mixed"],
+      "description": "Set type; mixed covers locations with both (e.g. covered platform)."
+    },
+    "description": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["summary"],
+      "description": "Canonical description; prompts are compiled from these fields.",
+      "properties": {
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "description": "One-paragraph generation-ready description of the space."
+        },
+        "era": { "type": "string", "description": "Period the location reads as (e.g. 1950s)." },
+        "architecture": { "type": "string" },
+        "palette": { "type": "string", "description": "Dominant colors and materials." },
+        "key_features": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Landmarks that must appear consistently (benches, clock, signage)."
+        },
+        "atmosphere": { "type": "string", "description": "Weather, haze, crowd density, mood." },
+        "sounds": { "type": "string", "description": "Ambient sound bed; used by sound design." }
+      }
+    },
+    "lighting_notes": {
+      "type": "string",
+      "description": "How the location is lit across times of day; the style bible refines this."
+    },
+    "map_file": {
+      "type": "string",
+      "description": "Relative path to this location's map.yaml (location-map.schema.json)."
+    },
+    "references": {
+      "type": "array",
+      "description": "Registry of location reference assets. Approved masters are immutable; supersede with a new _V## version.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["asset_id", "path", "kind", "status", "version"],
+        "properties": {
+          "asset_id": {
+            "type": "string",
+            "pattern": "^LOC_[A-Z][A-Z0-9_]*(_V\\d{2})?$",
+            "description": "Versioned asset ID (e.g. LOC_STATION_PLATFORM_MASTER_V02)."
+          },
+          "path": { "type": "string", "minLength": 1 },
+          "kind": {
+            "enum": ["establishing", "wide", "detail", "aerial", "texture", "lighting"],
+            "description": "What the reference establishes about the space."
+          },
+          "status": { "enum": ["draft", "review", "approved"] },
+          "version": { "type": "integer", "minimum": 1 },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "notes": { "type": "string" }
+  }
+}

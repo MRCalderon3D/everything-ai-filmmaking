@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://everything-ai-filmmaking.dev/schemas/reference-plan.schema.json",
+  "title": "Reference Plan",
+  "description": "Per-shot, per-provider reference selection (production/scenes/<SC_ID>/references/): exactly which approved assets condition generation, why, at what priority and weight, and what breaks if each is omitted. Written before any prompt is compiled.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["shot", "provider", "required"],
+  "properties": {
+    "shot": {
+      "type": "string",
+      "pattern": "^SH_\\d{3}_\\d{3}$",
+      "description": "Shot this plan serves."
+    },
+    "provider": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "description": "Provider ID the plan is budgeted for (its capabilities.referenceImages limit applies)."
+    },
+    "required": {
+      "type": "array",
+      "description": "References that must be included; if the provider's budget cannot fit them all, escalate instead of silently dropping.",
+      "items": { "$ref": "#/$defs/referenceEntry" }
+    },
+    "optional": {
+      "type": "array",
+      "description": "References to include if budget remains after all required entries, in priority order.",
+      "items": { "$ref": "#/$defs/referenceEntry" }
+    },
+    "exclude": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/assetId" },
+      "description": "Assets that must NOT be used for this shot (e.g. a wrong-state wardrobe version)."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "notes": { "type": "string" }
+  },
+  "$defs": {
+    "assetId": {
+      "type": "string",
+      "pattern": "^(CHAR|LOC|PROP|LOOK)_[A-Z][A-Z0-9_]*(_V\\d{2})?$"
+    },
+    "referenceEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["asset_id", "entity", "purpose", "priority", "reason"],
+      "properties": {
+        "asset_id": {
+          "$ref": "#/$defs/assetId",
+          "description": "Versioned asset ID from a bible's reference registry (e.g. CHAR_MARA_FACE_MASTER_V03)."
+        },
+        "entity": {
+          "type": "string",
+          "pattern": "^(CHAR|LOC|PROP|LOOK)_[A-Z][A-Z0-9_]*$",
+          "description": "Base entity the asset represents (e.g. CHAR_MARA)."
+        },
+        "purpose": {
+          "enum": ["facial_identity", "wardrobe", "spatial_geometry", "prop_consistency", "style", "lighting", "composition"],
+          "description": "What the reference conditions in the output."
+        },
+        "priority": {
+          "enum": ["critical", "high", "medium", "low"],
+          "description": "Drop order when the provider's reference budget is exceeded (low drops first; critical never drops)."
+        },
+        "crop": {
+          "type": "string",
+          "description": "Crop to apply before submission (e.g. face_only, upper_body, full_frame)."
+        },
+        "weight": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Conditioning strength for providers that support weighted references."
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Why this asset is in the plan for this specific shot."
+        },
+        "omission_risk": {
+          "type": "string",
+          "description": "What visibly breaks if this reference is dropped (identity drift, wrong geometry, ...)."
+        }
+      }
+    }
+  }
+}

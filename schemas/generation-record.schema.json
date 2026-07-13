@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://everything-ai-filmmaking.dev/schemas/generation-record.schema.json",
+  "title": "Generation Record",
+  "description": "Provenance record for one generation attempt (production/generations/): provider, model, prompt package, cost, and outcome. Every generated file must have one — no orphan media.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "shot", "provider", "model", "kind", "prompt_package", "cost", "status", "created_at"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^GEN_SH_\\d{3}_\\d{3}_\\d{2}$",
+      "description": "Record ID: GEN_<shot>_<attempt##> (e.g. GEN_SH_004_002_01)."
+    },
+    "shot": {
+      "type": "string",
+      "pattern": "^SH_\\d{3}_\\d{3}$",
+      "description": "Shot this attempt was generated for."
+    },
+    "provider": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "description": "Provider ID that handled the request."
+    },
+    "model": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Exact model identifier used."
+    },
+    "kind": {
+      "enum": ["image", "video", "audio"],
+      "description": "Kind of media generated."
+    },
+    "prompt_package": {
+      "type": "string",
+      "pattern": "^PP_SH_\\d{3}_\\d{3}_[A-Z0-9][A-Z0-9_-]*$",
+      "description": "Prompt package this attempt was generated from."
+    },
+    "request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["summary"],
+      "description": "What was sent, summarized. Never store API keys here.",
+      "properties": {
+        "summary": { "type": "string", "minLength": 1 },
+        "endpoint": { "type": "string", "description": "Provider endpoint or queue name." },
+        "payload_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{8,64}$",
+          "description": "Hash of the full request payload for exact reproduction."
+        }
+      }
+    },
+    "response": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["summary"],
+      "description": "What came back, summarized.",
+      "properties": {
+        "summary": { "type": "string", "minLength": 1 },
+        "provider_job_id": { "type": "string", "description": "Provider-side job/task ID for async polling." },
+        "error": {
+          "type": ["string", "null"],
+          "description": "Provider error message when status is failed; null otherwise."
+        }
+      }
+    },
+    "media_files": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "description": "Paths to produced media, relative to the record's directory. Empty until the attempt succeeds."
+    },
+    "cost": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["currency", "amount", "estimated"],
+      "description": "What the attempt cost (or is expected to cost). Cost control depends on this being filled honestly.",
+      "properties": {
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$",
+          "description": "ISO 4217 code (e.g. USD)."
+        },
+        "amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "estimated": {
+          "type": "boolean",
+          "description": "True for pre-flight estimates and dry runs; false once the provider bills."
+        }
+      }
+    },
+    "seed": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Seed actually used, when the provider reports one."
+    },
+    "status": {
+      "enum": ["pending", "dry_run", "submitted", "succeeded", "failed", "rejected", "approved"],
+      "description": "Lifecycle: dry_run writes the spec without network; rejected/approved are human review verdicts on succeeded output."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the record was created."
+    },
+    "notes": { "type": "string" }
+  }
+}

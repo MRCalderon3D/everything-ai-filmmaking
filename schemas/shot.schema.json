@@ -1,0 +1,242 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://everything-ai-filmmaking.dev/schemas/shot.schema.json",
+  "title": "Shot",
+  "description": "Single shot (production/scenes/<SC_ID>/shots/<SH_ID>.yaml): narrative purpose, timing with handles, full camera spec, blocking with eyelines, continuity declarations, required references, and generation flags. The unit /smart-shot produces and every generation pipeline consumes.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "scene", "order", "narrative", "timing", "camera", "blocking", "continuity", "references", "generation"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^SH_\\d{3}_\\d{3}$",
+      "description": "Shot ID: SH_<scene-number>_<shot-number> (e.g. SH_004_002)."
+    },
+    "scene": {
+      "type": "string",
+      "pattern": "^SC_\\d{3}$",
+      "description": "Scene this shot belongs to; must match the ID's scene number."
+    },
+    "order": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Position within the scene's cut order, 1-based."
+    },
+    "narrative": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["purpose"],
+      "description": "Why this shot exists. A shot without a purpose is coverage waste.",
+      "properties": {
+        "purpose": {
+          "type": "string",
+          "minLength": 1,
+          "description": "What the audience must learn or feel from this shot."
+        },
+        "beat": {
+          "type": "string",
+          "description": "Beat label or beat ID this shot lands (e.g. discovery, BT_SC004_02)."
+        },
+        "emotion": {
+          "type": "string",
+          "description": "Target emotional register of the shot."
+        }
+      }
+    },
+    "timing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["duration_seconds", "handles_before", "handles_after"],
+      "description": "On-screen duration plus edit handles; generated clips must cover duration + both handles.",
+      "properties": {
+        "duration_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Intended on-screen duration in the cut."
+        },
+        "handles_before": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Extra seconds generated before the in-point for the editor."
+        },
+        "handles_after": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Extra seconds generated after the out-point for the editor."
+        }
+      }
+    },
+    "camera": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["shot_size", "movement"],
+      "description": "Full camera specification; compiled directly into prompt language.",
+      "properties": {
+        "shot_size": {
+          "enum": ["extreme_wide", "wide", "full", "medium_wide", "medium", "medium_close_up", "close_up", "extreme_close_up", "insert", "over_the_shoulder"]
+        },
+        "angle": {
+          "enum": ["front", "three_quarter", "profile", "three_quarter_back", "back", "high_angle", "low_angle", "overhead", "dutch"],
+          "description": "Camera position relative to the subject."
+        },
+        "height_m": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Lens height above the floor in meters (eye level ~1.55)."
+        },
+        "lens_mm": {
+          "type": "number",
+          "minimum": 8,
+          "maximum": 1200,
+          "description": "Focal length in full-frame-equivalent millimeters."
+        },
+        "station": {
+          "type": "string",
+          "pattern": "^LOC_[A-Z][A-Z0-9_]*_C\\d+$",
+          "description": "Optional camera station from the location map this shot is taken from."
+        },
+        "movement": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type"],
+          "properties": {
+            "type": {
+              "enum": ["static", "pan", "tilt", "dolly_in", "dolly_out", "truck", "crane", "handheld", "steadicam", "zoom", "arc"]
+            },
+            "distance_m": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Travel distance in meters for dolly/truck/crane/arc moves."
+            },
+            "degrees": {
+              "type": "number",
+              "description": "Sweep in degrees for pan/tilt/arc moves."
+            },
+            "speed": {
+              "enum": ["slow", "medium", "fast"]
+            },
+            "description": { "type": "string" }
+          }
+        }
+      }
+    },
+    "blocking": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Where subjects are, what they do, and where they look. Keys are lowercase character handles (e.g. mara for CHAR_MARA).",
+      "properties": {
+        "character_positions": {
+          "type": "object",
+          "additionalProperties": false,
+          "patternProperties": {
+            "^[a-z][a-z0-9_]*$": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Mark or landmark the character occupies (e.g. beside_bench)."
+            }
+          }
+        },
+        "actions": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "description": "Ordered physical actions performed during the shot."
+        },
+        "eyelines": {
+          "type": "object",
+          "additionalProperties": false,
+          "patternProperties": {
+            "^[a-z][a-z0-9_]*$": {
+              "type": "string",
+              "minLength": 1,
+              "description": "What the character is looking at (subject, landmark, or handle)."
+            }
+          }
+        }
+      }
+    },
+    "continuity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["enters_from", "exits_to", "screen_direction", "axis_id"],
+      "description": "Every shot declares its neighbors, screen direction, and axis; check-continuity.js validates these across cuts.",
+      "properties": {
+        "enters_from": {
+          "type": ["string", "null"],
+          "pattern": "^SH_\\d{3}_\\d{3}$",
+          "description": "Previous shot in the cut; null for the first shot of the scene."
+        },
+        "exits_to": {
+          "type": ["string", "null"],
+          "pattern": "^SH_\\d{3}_\\d{3}$",
+          "description": "Next shot in the cut; null for the last shot of the scene."
+        },
+        "screen_direction": {
+          "enum": ["left_to_right", "right_to_left", "neutral", "toward_camera", "away_from_camera"],
+          "description": "Dominant subject movement/facing direction on screen."
+        },
+        "axis_id": {
+          "type": "string",
+          "pattern": "^AXIS_SC\\d{3}_[A-Z]$",
+          "description": "180-degree line this shot respects (declared in the scene's continuity-state)."
+        }
+      }
+    },
+    "references": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required"],
+      "description": "Reference assets this shot needs; refined per provider by the reference plan.",
+      "properties": {
+        "required": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/assetId" },
+          "description": "Assets that must condition generation (identity, set, hero props)."
+        },
+        "optional": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/assetId" },
+          "description": "Assets to include if the provider's reference budget allows (style, lighting)."
+        }
+      }
+    },
+    "generation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start_frame_required", "end_frame_required", "audio_generation"],
+      "description": "Flags telling /generate-keyframes and /generate-clips what to produce.",
+      "properties": {
+        "start_frame_required": {
+          "type": "boolean",
+          "description": "Generate a start keyframe before the video pass."
+        },
+        "end_frame_required": {
+          "type": "boolean",
+          "description": "Generate an end keyframe (for providers with start/end conditioning)."
+        },
+        "audio_generation": {
+          "type": "boolean",
+          "description": "Whether this shot also needs generated audio."
+        },
+        "provider": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "description": "Override of the project's default provider for this shot."
+        },
+        "notes": { "type": "string" }
+      }
+    },
+    "dialogue": {
+      "type": "string",
+      "description": "Verbatim dialogue spoken during the shot, if any."
+    },
+    "notes": { "type": "string" }
+  },
+  "$defs": {
+    "assetId": {
+      "type": "string",
+      "pattern": "^(CHAR|LOC|PROP|LOOK)_[A-Z][A-Z0-9_]*(_V\\d{2})?$",
+      "description": "Versioned reference asset ID (e.g. CHAR_MARA_FACE_MASTER_V03)."
+    }
+  }
+}

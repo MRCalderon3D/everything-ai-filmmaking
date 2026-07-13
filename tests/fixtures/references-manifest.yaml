@@ -1,0 +1,77 @@
+# Fixture production/references/manifest.yaml
+assets:
+  - id: CHAR_MARA_FACE_MASTER_V01
+    type: character-identity
+    character: CHAR_MARA
+    status: approved
+    path: references/CHAR_MARA_FACE_MASTER_V01.png
+  - id: CHAR_MARA_FACE_MASTER_V03
+    type: character-identity
+    character: CHAR_MARA
+    status: approved
+    path: references/CHAR_MARA_FACE_MASTER_V03.png
+  - id: CHAR_MARA_WARD_01_V02
+    type: wardrobe
+    character: CHAR_MARA
+    wardrobe: WARD_MARA_01
+    status: approved
+    path: references/CHAR_MARA_WARD_01_V02.png
+  - id: CHAR_DET_FULL_MASTER_V02
+    type: character-identity
+    character: CHAR_DET
+    covers_wardrobe: true          # full-body master: wardrobe is visible in the identity ref
+    status: approved
+    path: references/CHAR_DET_FULL_MASTER_V02.png
+  - id: CHAR_DET_WARD_COAT_V01
+    type: wardrobe
+    character: CHAR_DET
+    status: approved
+    path: references/CHAR_DET_WARD_COAT_V01.png
+  - id: CHAR_DET_FACE_DRAFT_V04
+    type: character-identity
+    character: CHAR_DET
+    status: draft
+    path: references/CHAR_DET_FACE_DRAFT_V04.png
+  - id: LOC_DINER_ANGLE_000_V01
+    type: location-angle
+    location: LOC_DINER
+    angle_degrees: 0
+    status: approved
+    path: references/LOC_DINER_ANGLE_000_V01.png
+  - id: LOC_DINER_ANGLE_045_V01
+    type: location-angle
+    location: LOC_DINER
+    angle_degrees: 45
+    status: approved
+    path: references/LOC_DINER_ANGLE_045_V01.png
+  - id: LOC_DINER_ANGLE_180_V01
+    type: location-angle
+    location: LOC_DINER
+    angle_degrees: 180
+    status: approved
+    path: references/LOC_DINER_ANGLE_180_V01.png
+  - id: PROP_LOCKET_MASTER_V01
+    type: prop
+    prop: PROP_LOCKET
+    status: approved
+    path: references/PROP_LOCKET_MASTER_V01.png
+  - id: PROP_COFFEE_CUP_V01
+    type: prop
+    prop: PROP_COFFEE_CUP
+    status: approved
+    path: references/PROP_COFFEE_CUP_V01.png
+  - id: LOOK_NEON_NOIR_MASTER_V02
+    type: style
+    status: approved
+    path: references/LOOK_NEON_NOIR_MASTER_V02.png
+  - id: CHAR_MARA_OLD_HAIRCUT_V01
+    type: character-identity
+    character: CHAR_MARA
+    status: approved
+    path: references/CHAR_MARA_OLD_HAIRCUT_V01.png
+    exclusions:
+      - SC_004
+exclusions:
+  - asset: LOC_DINER_ANGLE_180_V01
+    shot: SH_004_002
+    reason: reverse angle reveals the unbuilt kitchen wall

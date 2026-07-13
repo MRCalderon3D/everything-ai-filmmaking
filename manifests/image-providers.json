@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "providers": [
+    {
+      "id": "fal",
+      "file": "providers/image/fal.js",
+      "label": "fal.ai (FLUX)",
+      "env": ["FAL_KEY"],
+      "capabilities": {
+        "referenceImages": 4,
+        "aspectRatios": ["1:1", "16:9", "9:16", "4:3", "3:4", "21:9"]
+      }
+    },
+    {
+      "id": "replicate",
+      "file": "providers/image/replicate.js",
+      "label": "Replicate (FLUX)",
+      "env": ["REPLICATE_API_TOKEN"],
+      "capabilities": {
+        "referenceImages": 1,
+        "aspectRatios": ["1:1", "16:9", "9:16", "4:3", "3:4", "21:9"]
+      }
+    },
+    {
+      "id": "comfyui",
+      "file": "providers/image/comfyui.js",
+      "label": "ComfyUI (self-hosted)",
+      "env": ["COMFYUI_HOST"],
+      "capabilities": {
+        "referenceImages": 8,
+        "aspectRatios": ["1:1", "16:9", "9:16", "4:3", "3:4", "21:9"]
+      }
+    },
+    {
+      "id": "harness-native",
+      "file": "providers/image/harness-native.js",
+      "label": "Harness-native image generation",
+      "env": [],
+      "capabilities": {
+        "referenceImages": 0,
+        "aspectRatios": ["1:1", "16:9", "9:16"]
+      }
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://everything-ai-filmmaking.dev/schemas/project.schema.json",
+  "title": "Project",
+  "description": "Root configuration of a production/ workspace (production/project.yaml). Global format, style, and provider defaults every command inherits.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["title", "format", "aspect_ratio", "fps", "default_providers"],
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Working title of the production."
+    },
+    "format": {
+      "enum": ["short", "feature", "series"],
+      "description": "Delivery format; drives pacing and coverage defaults."
+    },
+    "logline": {
+      "type": "string",
+      "description": "One-sentence summary. Canonical version lives in the story bible."
+    },
+    "genre": {
+      "type": "string",
+      "description": "Primary genre label (e.g. noir, drama, sci-fi)."
+    },
+    "aspect_ratio": {
+      "type": "string",
+      "pattern": "^\\d+:\\d+$",
+      "description": "Frame aspect ratio, width:height (e.g. 16:9, 2:1, 9:16)."
+    },
+    "fps": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Target frames per second (e.g. 24, 25, 30)."
+    },
+    "resolution": {
+      "type": "string",
+      "pattern": "^\\d+x\\d+$",
+      "description": "Target delivery resolution, WIDTHxHEIGHT (e.g. 1920x1080)."
+    },
+    "style": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Global visual-language anchors. Detail lives in the style bible.",
+      "properties": {
+        "look_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^LOOK_[A-Z][A-Z0-9_]*(_V\\d{2})?$"
+          },
+          "description": "Approved LOOK_* style reference asset IDs."
+        },
+        "influences": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Films, photographers, or art movements that anchor the look."
+        },
+        "notes": {
+          "type": "string",
+          "description": "Free-form style guidance."
+        }
+      }
+    },
+    "default_providers": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Default generation backends per kind; commands may override per run.",
+      "properties": {
+        "image": { "enum": ["fal", "replicate", "comfyui", "harness-native"] },
+        "video": { "enum": ["veo", "kling", "runway", "seedance", "fal"] },
+        "audio": { "enum": ["elevenlabs", "fal", "local"] }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the workspace was created."
+    },
+    "version": {
+      "type": "string",
+      "description": "Workspace metadata version (semver string)."
+    }
+  }
+}

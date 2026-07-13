@@ -1,0 +1,90 @@
+---
+name: reference-selection
+description: Choose exactly which approved reference images each shot needs, and why, within provider limits.
+origin: everything-ai-filmmaking
+category: production
+---
+
+# Reference Selection
+
+## Purpose
+Decide, per shot, the minimal set of approved references that locks identity,
+wardrobe, set geometry, props, and look — prioritized against the provider's cap, every inclusion justified, every risky omission named.
+
+## Use When
+- A shot is fully specified and prompts are about to be compiled.
+- `/reference-plan` or `/generate-keyframes` finds shots without plans.
+- A provider change alters the reference cap and plans must be re-prioritized.
+
+## Inputs
+- `production/scenes/<SC_ID>/shots/SH_*.yaml` (entities, camera, wardrobe state).
+- `production/references/manifest.yaml` (approved masters only) and
+  `continuity-state.yaml` for wardrobe/prop state at this scene time.
+- Provider capabilities (`referenceImages`) from `manifests/*-providers.json`.
+
+## Process
+1. Read the shot: framing, camera position, every entity visible in frame.
+2. Resolve each visible entity to its bible ID and its state at scene time.
+3. Consult approved masters only; a draft asset in a plan is a defect.
+4. Select one primary identity reference per on-screen character — the face
+   master, cropped to what the shot size shows.
+5. Add a wardrobe reference only when the primary does not cover the visible state.
+6. Pick the location plate from the mapped angle nearest the shot's camera.
+7. Add narratively relevant props in frame; skip incidental dressing.
+8. Add a style reference only if the provider's cap still has room.
+9. Rank by priority, mark overflow beyond the cap as text-carried, and never
+   include references that contradict each other or scene state.
+10. Emit `reference-plan.yaml` with an explicit exclusion list.
+
+## Outputs
+`production/scenes/<SC_ID>/references/reference-plan.yaml`
+(`reference-plan.schema.json`). Per reference: asset_id, entity, purpose, priority,
+recommended crop and weight, provider compatibility, reason, omission risk. Example:
+
+```yaml
+shot: SH_004_002
+provider: veo            # reference cap: 3
+references:
+  - { asset_id: CHAR_MARA_FACE_MASTER_V03, entity: CHAR_MARA, purpose: identity,
+      priority: 1, crop: face-and-shoulders, weight: 0.85, provider_compatible: true,
+      reason: "MCU on Mara; identity must lock to the approved master",
+      omission_risk: "high; face drift breaks recognition across the scene" }
+  - { asset_id: CHAR_MARA_WARDROBE_01_FULL, entity: CHAR_MARA, purpose: wardrobe,
+      priority: 2, crop: waist-up, weight: 0.60, provider_compatible: true,
+      reason: "coat and scarf not visible in face master; SC_004 state is WARDROBE_01",
+      omission_risk: "medium; wardrobe gets reinvented and breaks scene match" }
+  - { asset_id: LOC_STATION_C2_V02, entity: LOC_STATION, purpose: set-geometry,
+      priority: 3, crop: full-frame, weight: 0.50, provider_compatible: true,
+      reason: "angle C2 is the approved plate nearest this camera position",
+      omission_risk: "medium; platform geography and axis anchors drift" }
+  - { asset_id: PROP_SUITCASE_MASTER_V02, entity: PROP_SUITCASE, purpose: prop-identity,
+      priority: 4, crop: object-tight, weight: 0.40, provider_compatible: false,
+      reason: "narrative object in Mara's hand; over veo's 3-slot cap, carry in prompt text",
+      omission_risk: "low; describe exactly in text and verify in QC" }
+excluded:
+  - { asset_id: CHAR_MARA_WARDROBE_02_FULL, reason: "state 02 starts SC_006; contradicts SC_004" }
+  - { asset_id: LOOK_NIGHT_RAIN_V01, reason: "cap reached; style carried by compiled prompt text" }
+```
+
+## Quality Bar
+- Every on-screen entity is referenced, text-carried with a stated risk, or excluded with a reason.
+- Only approved masters cited; versions match the manifest.
+- Plan fits the provider cap after priority ordering, with no contradictions.
+
+## Common Failure Modes
+- Padding every slot "to be safe," diluting identity weight with noise.
+- Citing a wardrobe state or location plate from a different scene time.
+- Silently dropping a reference (or the plate on tight shots) without recording the risk.
+
+## Related Agents
+- prompt-director
+- continuity-supervisor
+- image-generation-specialist
+
+## Related Commands
+- /reference-plan
+- /smart-shot
+- /generate-keyframes
+
+## Notes
+The plan bridges bibles and prompts: `prompt-compilation` may only attach images this plan lists, and must carry its overflow in text.

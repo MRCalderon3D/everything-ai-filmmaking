@@ -1,0 +1,68 @@
+---
+name: character-consistency
+description: Lock canonical character identity so every generated appearance matches every other.
+origin: everything-ai-filmmaking
+category: visual
+---
+
+# Character Consistency
+
+## Purpose
+Define and defend a single canonical identity per character — fixed physical
+descriptors, locked phrasing, versioned wardrobe states — so generation across
+shots, scenes, and providers produces the same recognizable person.
+
+## Use When
+- Creating or revising a character bible entry.
+- A character's look drifts between generated shots.
+- Wardrobe or physical state changes mid-story and must be versioned, not improvised.
+
+## Inputs
+- Entity registry and quoted script descriptions from `script-analysis`.
+- `production/characters/<CHAR_ID>/character.yaml` and `wardrobe.yaml` if present.
+- Approved masters in `production/references/` (e.g. `CHAR_MARA_FACE_MASTER_V03`).
+
+## Process
+1. Assign the ID (`CHAR_<NAME>`) and write the identity block: age range, build,
+   skin tone, hair (color, length, texture), eyes, distinguishing marks.
+2. Freeze the descriptor phrasing — one exact wording per trait, reused verbatim
+   in every prompt; synonyms are drift vectors.
+3. Order descriptors by identity weight: face geometry and hair first, wardrobe
+   last; providers weight early tokens more.
+4. Define wardrobe states as `WARDROBE_##` with the scene span each covers,
+   including damage/dirt progression (clean → scuffed → torn is three states).
+5. Map every scene the character appears in to exactly one wardrobe state.
+6. Declare which traits are invariant (never restyled by a look) versus
+   flexible (lighting may recolor, style may stylize).
+7. When identity must change (injury, aging, disguise), create a new version
+   `_V##` — never edit an approved identity in place.
+8. Cross-check character.yaml, wardrobe.yaml, and prompt phrasing after every
+   change; a mismatch anywhere is a defect.
+
+## Outputs
+- `production/characters/<CHAR_ID>/character.yaml` (`character.schema.json`).
+- `production/characters/<CHAR_ID>/wardrobe.yaml` (`wardrobe.schema.json`).
+
+## Quality Bar
+- One canonical phrasing per trait, byte-identical wherever it appears.
+- Every scene appearance resolves to exactly one wardrobe state.
+- Approved identity masters are referenced, never contradicted by text.
+- Changes are versioned; no in-place edits to approved identity blocks.
+
+## Common Failure Modes
+- Paraphrasing descriptors per prompt ("auburn" one shot, "reddish-brown" the next).
+- Wardrobe described in prose but never versioned, so state can't be tracked.
+- Letting a style bible silently recolor invariant traits.
+- Two characters sharing near-identical descriptors, causing identity bleed.
+
+## Related Agents
+- character-designer
+- screenwriter
+- continuity-supervisor
+
+## Related Commands
+- /character-bible
+
+## Notes
+This skill defines the contract; `character-sheet-generation` renders it and
+`reference-selection` enforces it per shot. Text never outranks an approved master.

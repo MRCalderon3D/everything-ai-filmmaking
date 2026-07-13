@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "harnesses": [
+    {
+      "id": "claude",
+      "label": "Claude Code",
+      "targetDir": ".claude",
+      "commands": { "dir": "commands", "extension": ".md", "frontmatter": "keep" },
+      "agents": { "dir": "agents", "extension": ".md", "frontmatter": "keep" },
+      "skills": { "dir": "skills", "layout": "dir-per-skill", "frontmatter": "keep" },
+      "settings": { "file": "settings.json", "hooksSource": "hooks/hooks.json" }
+    },
+    {
+      "id": "codex",
+      "label": "OpenAI Codex CLI",
+      "targetDir": ".codex",
+      "commands": { "dir": "prompts", "extension": ".md", "frontmatter": "strip" },
+      "pointer": { "file": "AGENTS.md" }
+    },
+    {
+      "id": "cursor",
+      "label": "Cursor",
+      "targetDir": ".cursor",
+      "commands": { "dir": "commands", "extension": ".md", "frontmatter": "strip" },
+      "rules": { "dir": "rules", "extension": ".mdc", "alwaysApplyLayers": ["common"] }
+    },
+    {
+      "id": "opencode",
+      "label": "OpenCode",
+      "targetDir": ".opencode",
+      "commands": { "dir": "commands", "extension": ".md", "frontmatter": "keep" },
+      "agents": { "dir": "agents", "extension": ".md", "frontmatter": "keep" }
+    },
+    {
+      "id": "agents",
+      "label": "Generic agent harness (skills only)",
+      "targetDir": ".agents",
+      "skills": { "dir": "skills", "layout": "dir-per-skill", "frontmatter": "keep" }
+    }
+  ]
+}

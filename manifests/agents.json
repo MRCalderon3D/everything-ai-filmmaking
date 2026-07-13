@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "version": 1,
+  "agents": [
+    {
+      "name": "showrunner",
+      "file": "agents/showrunner.md",
+      "description": "Owns the overall production: story vision, phase sequencing, and cross-department arbitration."
+    },
+    {
+      "name": "screenwriter",
+      "file": "agents/screenwriter.md",
+      "description": "Writes and revises the screenplay, treatment, and story bible in proper screenplay format."
+    },
+    {
+      "name": "script-editor",
+      "file": "agents/script-editor.md",
+      "description": "Analyzes and critiques scripts for structure, pacing, dialogue, and narrative continuity."
+    },
+    {
+      "name": "visual-director",
+      "file": "agents/visual-director.md",
+      "description": "Defines and guards the project's visual language: style bible, palettes, and look consistency."
+    },
+    {
+      "name": "character-designer",
+      "file": "agents/character-designer.md",
+      "description": "Designs characters and wardrobe, maintaining identity consistency across every asset."
+    },
+    {
+      "name": "production-designer",
+      "file": "agents/production-designer.md",
+      "description": "Designs locations and props, including spatial maps and set dressing continuity."
+    },
+    {
+      "name": "storyboard-artist",
+      "file": "agents/storyboard-artist.md",
+      "description": "Translates shot lists into storyboard frames with composition and staging notes."
+    },
+    {
+      "name": "cinematographer",
+      "file": "agents/cinematographer.md",
+      "description": "Chooses lensing, camera movement, coverage, and lighting strategy for every scene."
+    },
+    {
+      "name": "shot-planner",
+      "file": "agents/shot-planner.md",
+      "description": "Breaks scenes into ordered, schema-valid shots with axes, blocking, and clip boundaries."
+    },
+    {
+      "name": "continuity-supervisor",
+      "file": "agents/continuity-supervisor.md",
+      "description": "Tracks axes, screen direction, wardrobe, and prop state; flags continuity violations."
+    },
+    {
+      "name": "prompt-director",
+      "file": "agents/prompt-director.md",
+      "description": "Selects references and compiles provider-ready prompt packages from bibles and shots."
+    },
+    {
+      "name": "image-generation-specialist",
+      "file": "agents/image-generation-specialist.md",
+      "description": "Runs image providers to produce keyframes and reference assets with provenance records."
+    },
+    {
+      "name": "video-generation-specialist",
+      "file": "agents/video-generation-specialist.md",
+      "description": "Runs video providers to produce clips from prompt packages, keyframes, and references."
+    },
+    {
+      "name": "editor",
+      "file": "agents/editor.md",
+      "description": "Assembles the edit plan: clip order, transitions, pacing, and timeline notes."
+    },
+    {
+      "name": "sound-designer",
+      "file": "agents/sound-designer.md",
+      "description": "Plans dialogue, music, and sound effects, including audio generation briefs."
+    },
+    {
+      "name": "colorist",
+      "file": "agents/colorist.md",
+      "description": "Defines color pipeline and grade intent; keeps looks consistent across shots."
+    },
+    {
+      "name": "production-qa",
+      "file": "agents/production-qa.md",
+      "description": "Validates artifacts against schemas and rules; gates approvals and audits provenance."
+    }
+  ]
+}

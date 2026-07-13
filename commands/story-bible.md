@@ -1,0 +1,71 @@
+---
+description: Compile the canonical narrative reference — world rules, timeline, arcs, and tone.
+---
+
+# /story-bible
+
+## Purpose
+
+Produce the single narrative source of truth for the project: premise, theme,
+world rules, chronology, character arcs at the story level, and tonal
+guardrails. Once approved, the story bible outranks the script's ambiguities —
+when a prompt, a shot description, and the bible disagree, the bible wins.
+
+## Use When
+
+- `/script-analyze` has run and its open story questions need canonical
+  answers.
+- Multiple sessions or collaborators are drifting on facts — ages, timeline,
+  geography, who knows what when.
+- Before any visual bible work; `/character-bible` and `/location-bible` cite
+  this document for backstory and world logic.
+
+## Inputs
+
+- `analysis` (path, optional, default `production/story/script-analysis.md`):
+  the structural analysis to build from.
+- `treatment` (path, optional, default `production/story/treatment.md`): prose
+  treatment, if one exists.
+
+## Invokes Agents
+
+- showrunner
+- screenwriter
+
+## Required Skills
+
+- narrative-structure
+- script-analysis
+
+## Process
+
+1. Read the script, analysis, and treatment; collect every stated fact and
+   every ambiguity the analysis flagged.
+2. showrunner rules on ambiguities — one decisive answer each, recorded with
+   rationale, never "either could work."
+3. screenwriter drafts the bible sections: premise and theme; world rules
+   (what is possible, what is forbidden, what it costs); story chronology with
+   dates or day-numbers for every scene; character arcs (want, need, flaw,
+   turn) for each principal; tone references and what the film is *not*.
+4. Cross-check the chronology against scene order — flag flashbacks,
+   parallel timelines, and any scene whose time-of-day contradicts travel
+   logic.
+5. Validate the structured bible file; mark it `review` and list the specific
+   decisions awaiting the user's approval.
+
+## Outputs
+
+- `production/story/story-bible.yaml` — validates against
+  `schemas/story-bible.schema.json`.
+- Updated `production/scenes/SC_###/scene.yaml` chronology fields where the
+  bible resolved timing (validates against `schemas/scene.schema.json`).
+
+## Notes
+
+- Approval gate: downstream visual bibles should not start until the story
+  bible leaves `draft` — visual decisions built on unapproved story facts get
+  regenerated, which costs money at the generation stage.
+- Contradictions found later go here first; fix the bible, then propagate,
+  never patch a shot to disagree with canon.
+- Related: `/script-analyze` (prerequisite), `/character-bible`,
+  `/location-bible`, `/style-bible` (consumers).

@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://everything-ai-filmmaking.dev/schemas/prop.schema.json",
+  "title": "Prop",
+  "description": "Prop bible (production/props/<PROP_ID>/prop.yaml): identity, canonical description, and registry of reference assets for prop-consistent generation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "name", "description", "references"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^PROP_[A-Z][A-Z0-9_]*$",
+      "description": "Base prop ID without version suffix (e.g. PROP_RED_SUITCASE)."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human-readable prop name."
+    },
+    "hero": {
+      "type": "boolean",
+      "description": "True for story-critical props that must be identical in every shot; hero props require an approved master reference before generation."
+    },
+    "description": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["summary"],
+      "description": "Canonical description; prompts are compiled from these fields.",
+      "properties": {
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "description": "One-paragraph generation-ready description of the prop."
+        },
+        "size": { "type": "string", "description": "Dimensions or scale relative to a person." },
+        "materials": { "type": "array", "items": { "type": "string" } },
+        "color": { "type": "string" },
+        "condition": { "type": "string", "description": "Baseline wear (new, scuffed, aged)." },
+        "distinguishing_features": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Stickers, scratches, hardware — details that must survive every generation."
+        }
+      }
+    },
+    "default_location": {
+      "type": "string",
+      "pattern": "^LOC_[A-Z][A-Z0-9_]*$",
+      "description": "Location where the prop starts the story, if fixed."
+    },
+    "default_holder": {
+      "type": "string",
+      "pattern": "^CHAR_[A-Z][A-Z0-9_]*$",
+      "description": "Character who carries the prop by default, if any."
+    },
+    "first_appearance": {
+      "type": "string",
+      "pattern": "^SC_\\d{3}$",
+      "description": "Scene where the prop first appears."
+    },
+    "references": {
+      "type": "array",
+      "description": "Registry of prop reference assets. Approved masters are immutable; supersede with a new _V## version.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["asset_id", "path", "kind", "status", "version"],
+        "properties": {
+          "asset_id": {
+            "type": "string",
+            "pattern": "^PROP_[A-Z][A-Z0-9_]*(_V\\d{2})?$",
+            "description": "Versioned asset ID (e.g. PROP_RED_SUITCASE_MASTER_V01)."
+          },
+          "path": { "type": "string", "minLength": 1 },
+          "kind": {
+            "enum": ["hero", "detail", "scale", "in_context"],
+            "description": "hero = clean full view; scale = next to a person; in_context = staged in its location."
+          },
+          "status": { "enum": ["draft", "review", "approved"] },
+          "version": { "type": "integer", "minimum": 1 },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "notes": { "type": "string" }
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://everything-ai-filmmaking.dev/schemas/wardrobe.schema.json",
+  "title": "Wardrobe",
+  "description": "Per-character wardrobe bible (production/characters/<CHAR_ID>/wardrobe.yaml): outfits assigned to scene ranges, per-scene condition states, and outfit reference assets.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["character", "outfits"],
+  "properties": {
+    "character": {
+      "type": "string",
+      "pattern": "^CHAR_[A-Z][A-Z0-9_]*$",
+      "description": "Character this wardrobe belongs to."
+    },
+    "outfits": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/outfit" }
+    },
+    "notes": { "type": "string" }
+  },
+  "$defs": {
+    "wardrobeState": {
+      "enum": ["clean", "dirty", "wet", "torn", "bloodied", "burned", "wrinkled", "repaired"],
+      "description": "Physical condition of the outfit at a point in story time."
+    },
+    "outfit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "description", "scene_range"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^LOOK_[A-Z][A-Z0-9_]*(_V\\d{2})?$",
+          "description": "Outfit asset ID (e.g. LOOK_MARA_TRAVEL_V01)."
+        },
+        "name": { "type": "string", "minLength": 1 },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Canonical generation-ready description of the full outfit."
+        },
+        "pieces": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Individual garments and accessories that make up the outfit."
+        },
+        "scene_range": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["from", "to"],
+          "description": "Inclusive scene range in which this outfit is worn.",
+          "properties": {
+            "from": { "type": "string", "pattern": "^SC_\\d{3}$" },
+            "to": { "type": "string", "pattern": "^SC_\\d{3}$" }
+          }
+        },
+        "default_state": { "$ref": "#/$defs/wardrobeState" },
+        "states": {
+          "type": "array",
+          "description": "Per-scene condition overrides; continuity-checking compares shots against these.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["scene", "state"],
+            "properties": {
+              "scene": { "type": "string", "pattern": "^SC_\\d{3}$" },
+              "state": { "$ref": "#/$defs/wardrobeState" },
+              "note": { "type": "string", "description": "Why the state changes (story cause)." }
+            }
+          }
+        },
+        "references": {
+          "type": "array",
+          "description": "Registry of outfit reference assets.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["asset_id", "path", "kind", "status", "version"],
+            "properties": {
+              "asset_id": {
+                "type": "string",
+                "pattern": "^LOOK_[A-Z][A-Z0-9_]*(_V\\d{2})?$"
+              },
+              "path": { "type": "string", "minLength": 1 },
+              "kind": {
+                "enum": ["outfit", "detail", "fabric", "worn"],
+                "description": "outfit = full look on the character; worn = in-scene state reference."
+              },
+              "status": { "enum": ["draft", "review", "approved"] },
+              "version": { "type": "integer", "minimum": 1 },
+              "notes": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

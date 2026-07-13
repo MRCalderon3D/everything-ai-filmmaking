@@ -1,0 +1,40 @@
+{
+  "name": "everything-ai-filmmaking",
+  "version": "0.1.0",
+  "description": "Open-source workflow scaffold for AI-assisted filmmaking: rules, agents, commands, skills, schemas, and providers for Claude Code, Codex, Cursor, and OpenCode.",
+  "license": "MIT",
+  "author": "Marcos Calderon (MRCalderon3D)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MRCalderon3D/everything-ai-filmmaking"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node tests/run-all.js",
+    "validate": "node scripts/validate.js",
+    "doctor": "node scripts/doctor.js",
+    "sync:harnesses": "node scripts/sync-harnesses.js",
+    "create:project": "node scripts/create-project.js",
+    "compile:prompts": "node scripts/compile-prompts.js",
+    "build:reference-plan": "node scripts/build-reference-plan.js",
+    "generate:assets": "node scripts/generate-assets.js",
+    "check:continuity": "node scripts/check-continuity.js"
+  },
+  "keywords": [
+    "ai-filmmaking",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "storyboard",
+    "shot-list",
+    "continuity",
+    "video-generation",
+    "veo",
+    "kling",
+    "runway",
+    "fal"
+  ]
+}

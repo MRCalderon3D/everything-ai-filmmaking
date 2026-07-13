@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "providers": [
+    {
+      "id": "elevenlabs",
+      "file": "providers/audio/elevenlabs.js",
+      "label": "ElevenLabs",
+      "env": ["ELEVENLABS_API_KEY"],
+      "capabilities": {
+        "maxDurationSeconds": 600,
+        "voiceCloning": true,
+        "formats": ["mp3", "wav", "pcm"]
+      }
+    },
+    {
+      "id": "fal",
+      "file": "providers/audio/fal.js",
+      "label": "fal.ai audio (model-dependent)",
+      "env": ["FAL_KEY"],
+      "capabilities": {
+        "maxDurationSeconds": 300,
+        "voiceCloning": false,
+        "formats": ["mp3", "wav"],
+        "modelDependent": true
+      }
+    },
+    {
+      "id": "local",
+      "file": "providers/audio/local.js",
+      "label": "Local / manual audio",
+      "env": [],
+      "capabilities": {
+        "maxDurationSeconds": 0,
+        "voiceCloning": false,
+        "formats": ["wav", "mp3"]
+      }
+    }
+  ]
+}

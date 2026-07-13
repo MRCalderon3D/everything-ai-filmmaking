@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "profiles": {
+    "full": {
+      "description": "Everything: story development through generation and edit planning.",
+      "commands": [
+        "project-init", "script-analyze", "story-bible", "character-bible",
+        "location-bible", "prop-bible", "style-bible", "visual-development",
+        "scene-breakdown", "shot-list", "smart-shot", "storyboard",
+        "reference-plan", "generate-keyframes", "generate-clips",
+        "continuity-review", "edit-plan", "full-production"
+      ],
+      "agents": [
+        "showrunner", "screenwriter", "script-editor", "visual-director",
+        "character-designer", "production-designer", "storyboard-artist",
+        "cinematographer", "shot-planner", "continuity-supervisor",
+        "prompt-director", "image-generation-specialist",
+        "video-generation-specialist", "editor", "sound-designer",
+        "colorist", "production-qa"
+      ],
+      "skills": [
+        "script-analysis", "narrative-structure", "character-consistency",
+        "character-sheet-generation", "location-design", "location-mapping",
+        "visual-style-development", "scene-blocking", "cinematography",
+        "shot-sequencing", "storyboard-generation", "reference-selection",
+        "prompt-compilation", "image-generation", "video-generation",
+        "continuity-checking", "edit-planning", "production-orchestration"
+      ]
+    },
+    "writing-room": {
+      "description": "Story development only: script analysis, story and character bibles.",
+      "commands": [
+        "project-init", "script-analyze", "story-bible", "character-bible"
+      ],
+      "agents": [
+        "showrunner", "screenwriter", "script-editor", "character-designer",
+        "production-qa"
+      ],
+      "skills": [
+        "script-analysis", "narrative-structure", "character-consistency",
+        "character-sheet-generation", "production-orchestration"
+      ]
+    },
+    "previs": {
+      "description": "Story through visual development, storyboards, and shot planning. No generation.",
+      "commands": [
+        "project-init", "script-analyze", "story-bible", "character-bible",
+        "location-bible", "prop-bible", "style-bible", "visual-development",
+        "scene-breakdown", "shot-list", "smart-shot", "storyboard"
+      ],
+      "agents": [
+        "showrunner", "screenwriter", "script-editor", "visual-director",
+        "character-designer", "production-designer", "storyboard-artist",
+        "cinematographer", "shot-planner", "continuity-supervisor",
+        "prompt-director", "colorist", "production-qa"
+      ],
+      "skills": [
+        "script-analysis", "narrative-structure", "character-consistency",
+        "character-sheet-generation", "location-design", "location-mapping",
+        "visual-style-development", "scene-blocking", "cinematography",
+        "shot-sequencing", "storyboard-generation", "reference-selection",
+        "prompt-compilation", "continuity-checking", "production-orchestration"
+      ]
+    },
+    "generation": {
+      "description": "Generation phase only: reference plans through clips, plus continuity review.",
+      "commands": [
+        "reference-plan", "generate-keyframes", "generate-clips",
+        "continuity-review"
+      ],
+      "agents": [
+        "prompt-director", "continuity-supervisor",
+        "image-generation-specialist", "video-generation-specialist",
+        "production-qa"
+      ],
+      "skills": [
+        "reference-selection", "prompt-compilation", "image-generation",
+        "video-generation", "continuity-checking"
+      ]
+    }
+  }
+}

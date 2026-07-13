@@ -1,0 +1,39 @@
+# production/scenes/SC_004/continuity/scene-state.yaml — continuity ledger
+# Schema: schemas/continuity-state.schema.json
+# Updated after every scene pass; check-continuity.js validates shots against it.
+
+scene: SC_004
+
+axes:                              # 180-degree lines; every shot's axis_id must resolve here
+  - id: AXIS_SC004_A               # AXIS_<scene>_<letter>
+    established_in: SH_004_001     # first shot that establishes the line
+    subjects:                      # entities the line runs between
+      - CHAR_MARA
+      - PROP_RED_SUITCASE
+    notes: "All coverage stays on the track side of the bench; crossing requires a neutral shot."
+
+character_states:                  # keyed by character ID — state at scene time
+  CHAR_MARA:
+    wardrobe: LOOK_MARA_TRAVEL_V01 # outfit from wardrobe.yaml
+    wardrobe_state: wet            # clean|dirty|wet|torn|bloodied|burned|wrinkled|repaired
+    props_held: []                 # hands free; the suitcase is NOT picked up in this scene
+    position: beside_bench         # mark or landmark at scene time
+    last_seen_in: SH_004_002       # most recent shot showing the character
+
+prop_states:                       # keyed by prop ID — state at scene time
+  PROP_RED_SUITCASE:
+    location: "left end of the platform bench"
+    state: "upright, rain-beaded, brass clasp broken on the left side"
+    holder: null                   # no one is holding it
+    last_seen_in: SH_004_002
+
+lighting: "sodium-vapor platform lamps only; wet-stone reflections; rain visible beyond the canopy"
+time_of_day: night                 # must agree with scene.yaml
+
+open_issues:                       # unresolved continuity problems from review
+  - severity: minor                # critical | major | minor | note
+    shot: SH_004_002
+    description: "Verify the eyebrow scar survives the dolly-in end frame; it drifted in attempt GEN_SH_004_002_01."
+
+last_validated: "2026-07-13T00:00:00Z"  # timestamp of the last continuity check
+notes: "Suitcase remains unclaimed until SC_005; nobody touches it in SC_004."

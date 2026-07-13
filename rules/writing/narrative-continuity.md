@@ -1,0 +1,66 @@
+# Narrative Continuity
+
+## Purpose
+
+Keep story facts consistent across scenes and drafts: who knows what, when
+things happen, what state the world is in. Visual continuity cannot be right
+if the narrative record underneath it is wrong.
+
+## Scope
+
+Writing layer. Governs the screenplay, `story/story-bible.yaml`, treatment,
+beats, and every scene synopsis in `scenes/*/scene.yaml`.
+
+## Core Principles
+
+- The story bible is the ledger of narrative fact; the screenplay dramatizes
+  it. Facts established on the page MUST be recorded in the bible before the
+  next writing pass (see `common/source-of-truth.md`).
+- Story time is explicit. Every scene declares where it sits in chronology,
+  even in nonlinear scripts — presentation order and story order are tracked
+  separately.
+- Knowledge is state: a character can only act on information a prior scene
+  gave them.
+
+## Story Facts
+
+- Established facts (names, ages, relationships, dates, injuries, deaths,
+  object ownership) are canon after the scene establishing them is approved.
+  Contradicting one requires a deliberate bible revision, never an
+  accidental rewrite.
+- Each scene's `scene.yaml` MUST list the facts it establishes and the facts
+  it depends on, by reference to bible entries.
+- Setups and payoffs are paired in the bible; a payoff whose setup was cut is
+  a defect, and vice versa.
+
+## Timeline and Causality
+
+- The story bible carries a timeline: every `SC_###` gets a story-time slot
+  (absolute or relative, e.g. "night 2, after SC_007"). Elapsed time across
+  cuts MUST be plausible for travel, healing, and wardrobe changes —
+  downstream wardrobe state (`visual/character-consistency.md`) derives from
+  this timeline.
+- Cause precedes effect in story time. Flashbacks and flash-forwards are
+  marked in both the slugline and the timeline.
+- Day/night and season in sluglines MUST agree with the timeline.
+
+## Character Knowledge and Arcs
+
+- Track per character: what they know, when they learned it, and from whom.
+  A scene where a character uses unlearned knowledge fails review.
+- Each principal character's arc is stated in the bible as beats
+  (`BT_<scene>_##` references); scene work that moves a character off-arc
+  MUST flag the deviation for showrunner review rather than quietly bend
+  the arc.
+- Motivation continuity: a character's goal in a scene follows from their
+  last on-screen state, not from where the plot needs them to be.
+
+## Validation
+
+- `scripts/validate.js` checks that scene fact-dependencies reference
+  existing bible entries and that every scene has a timeline slot.
+- `scripts/check-continuity.js` orders scenes by story time and flags
+  knowledge-before-learning, day/night mismatches, and dangling
+  setups/payoffs it can detect structurally.
+- Contradiction subtleties, arc drift, and motivation judgments are human
+  review by script-editor and showrunner at the development exit gate.

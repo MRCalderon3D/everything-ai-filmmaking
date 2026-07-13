@@ -1,0 +1,50 @@
+# production/locations/LOC_STATION/map.yaml — spatial map and camera stations
+# Schema: schemas/location-map.schema.json
+# Stations are reusable camera positions: shots taken from the same station keep
+# the same background geometry, which is what makes generated coverage cut together.
+
+location: LOC_STATION
+units: meters                      # coordinates are meters
+origin: "center of the platform bench; +y toward the tracks, +x toward the station hall"
+
+landmarks:                         # named fixed features blocking and sightlines refer to
+  - name: platform_bench
+    position: { x: 0.0, y: 0.0 }
+    description: "Slatted wooden bench, mid-platform; the suitcase sits at its left end."
+  - name: column_row
+    position: { x: 0.0, y: -3.0 }
+    description: "Nearest cast-iron column; row repeats every 8 m along x."
+  - name: track_edge
+    position: { x: 0.0, y: 4.0 }
+    description: "Platform edge; white warning line 0.5 m before it."
+  - name: hanging_clock
+    position: { x: -6.0, y: -2.0, z: 4.5 }
+    description: "Double-faced clock frozen-looking at 23:47."
+
+camera_stations:                   # LOC_*_C# — reusable, geometry-true viewpoints
+  - id: LOC_STATION_C1
+    position: { x: -3.5, y: 2.0, z: 1.55, description: "on the platform, track side, eye level" }
+    orientation:
+      heading_deg: 120             # 0 = +y (toward tracks), clockwise
+      tilt_deg: 0
+      description: "looking down-platform toward the bench, columns receding behind it"
+    sees:                          # what is visible from here
+      - "platform_bench with suitcase at its left end"
+      - "column_row receding down-platform"
+      - "rain beyond the canopy edge in the background"
+    suggested_shot_sizes: [medium, medium_close_up, close_up]
+    notes: "Primary coverage station for bench scenes; SH_004_002 dollies in from here."
+  - id: LOC_STATION_C2
+    position: { x: 6.0, y: -1.5, z: 2.2, description: "raised on the hall steps, station side" }
+    orientation:
+      heading_deg: 285
+      tilt_deg: -8
+      description: "high wide back down the empty platform"
+    sees:
+      - "full platform length with bench small at center"
+      - "hanging_clock in upper frame"
+      - "track_edge and wet reflections"
+    suggested_shot_sizes: [extreme_wide, wide]
+    notes: "Establishing station; opens the scene."
+
+notes: "Keep all SC_004 coverage on the track side of the bench — see AXIS_SC004_A."

@@ -1,0 +1,77 @@
+# Motion Language
+
+## Purpose
+
+Give every clip a deliberate, nameable motion design. Video models will
+happily move the camera for no reason; this rule makes motion a story choice
+and keeps prompts inside what models can actually execute.
+
+## Scope
+
+Video layer. Applies to shot planning, storyboards' motion notes, prompt
+package motion descriptions, and clip review.
+
+## Core Principles
+
+- Every camera move is motivated by story or subject; "add some movement" is
+  never a motivation. A static frame is the default, not a failure.
+- Separate subject motion from camera motion in every description — models
+  conflate them unless told explicitly.
+- Plan within model competence: design motion the model can do well rather
+  than prompting for what it will fake badly.
+
+## Camera-Move Vocabulary
+
+Shot files and prompt packages use only this vocabulary, one primary move
+per clip: `static`, `pan` (L/R), `tilt` (U/D), `push-in`, `pull-out`,
+`dolly` (L/R), `track` (with subject), `crane` (U/D), `handheld` (energy
+level noted), `orbit` (partial, direction noted), `zoom` (only as a marked
+stylistic choice — distinguish from dolly).
+
+- Each move carries a stated motivation in the shot file: reveal, follow,
+  emphasize, disorient, detach. No motivation, no move.
+- Compound moves (push-in + tilt) are allowed only when one is clearly
+  primary; three simultaneous move types NEVER.
+- Move speed is declared (`slow`, `medium`, `fast`) and SHOULD stay slow to
+  medium; speed ramps within a clip MUST be explicitly described (start
+  speed, ramp point, end speed) and treated as high-risk.
+
+## Subject vs Camera Motion
+
+- Prompt motion text describes them in separate sentences: first what the
+  subject does, then what the camera does. Ambiguous phrasing ("the scene
+  moves closer") is forbidden.
+- Subject motion states the start pose, the action, and the end pose, so the
+  clip's boundary frames are predictable (see `video/clip-boundaries.md`).
+- Screen direction of subject motion MUST match the shot's declared
+  `enters-from`/`exits-to` and axis side (`visual/spatial-continuity.md`).
+
+## Model Weaknesses — Plan Around, Not Through
+
+Current video models do these badly; do not prompt for them:
+
+- **Fast whip pans and fast camera rotation** — smear and geometry collapse.
+  Use a cut or a neutral shot instead.
+- **Complex hand interactions** (typing, tying, pouring, instrument playing)
+  — keep hands out of close framing, cut around the action, or show result
+  not process.
+- **Legible on-screen text**, mirrors, and reflections holding identity.
+- **Fast or many-limbed action** (fights, sports) — decompose into short
+  clips at action seams with simple motion each.
+- **Long choreography** — anything requiring more than one beat of precise
+  timing per clip gets split.
+
+When a shot's intent collides with this list, the shot-planner MUST redesign
+coverage (more cuts, closer inserts, static frames) rather than gamble
+attempts on it.
+
+## Validation
+
+- `scripts/validate.js` checks shot files use only the pinned move
+  vocabulary, one primary move, with motivation and speed fields present.
+- `scripts/compile-prompts.js` refuses packages whose motion text omits the
+  subject/camera separation.
+- `scripts/check-continuity.js` cross-checks motion screen direction against
+  declared spatial continuity.
+- Whether a generated clip executes the declared motion is human review at
+  clip acceptance.

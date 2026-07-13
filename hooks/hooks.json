@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "description": "Harness-agnostic hook wiring: event -> handler script. Handlers read a JSON event on stdin, write messages to stderr, and exit 0 (allow) or 2 (block). sync-harnesses.js translates this file into each harness's native hook configuration.",
+  "hooks": [
+    {
+      "id": "protect-approved-assets",
+      "event": "before-file-write",
+      "match": "production/references/**",
+      "script": "hooks/protect-approved-assets.js",
+      "blocking": true,
+      "description": "Block writes to approved reference assets (immutable; supersede with a new version)."
+    },
+    {
+      "id": "validate-after-write",
+      "event": "after-file-write",
+      "match": "production/**",
+      "script": "hooks/validate-after-write.js",
+      "blocking": true,
+      "description": "Validate schema-known production/ artifacts after every write."
+    },
+    {
+      "id": "detect-continuity-drift",
+      "event": "after-file-write",
+      "match": "production/scenes/**/shots/**",
+      "script": "hooks/detect-continuity-drift.js",
+      "blocking": false,
+      "description": "Warn when a shot's axis/screen direction/wardrobe drifts from scene-state."
+    },
+    {
+      "id": "require-cost-confirmation",
+      "event": "before-shell-command",
+      "match": "generate-assets",
+      "script": "hooks/require-cost-confirmation.js",
+      "blocking": true,
+      "description": "Block generate-assets --live without an explicit --yes confirmation."
+    }
+  ]
+}

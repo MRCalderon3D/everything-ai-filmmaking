@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "providers": [
+    {
+      "id": "veo",
+      "file": "providers/video/veo.js",
+      "label": "Google Veo",
+      "env": ["GOOGLE_API_KEY"],
+      "capabilities": {
+        "maxDurationSeconds": 8,
+        "referenceImages": 3,
+        "startEndFrames": true,
+        "aspectRatios": ["16:9", "9:16"],
+        "audio": true
+      }
+    },
+    {
+      "id": "kling",
+      "file": "providers/video/kling.js",
+      "label": "Kling",
+      "env": ["KLING_ACCESS_KEY", "KLING_SECRET_KEY"],
+      "capabilities": {
+        "maxDurationSeconds": 10,
+        "referenceImages": 4,
+        "startEndFrames": true,
+        "aspectRatios": ["16:9", "9:16", "1:1"],
+        "audio": false
+      }
+    },
+    {
+      "id": "runway",
+      "file": "providers/video/runway.js",
+      "label": "Runway",
+      "env": ["RUNWAY_API_KEY"],
+      "capabilities": {
+        "maxDurationSeconds": 10,
+        "referenceImages": 3,
+        "startEndFrames": false,
+        "aspectRatios": ["16:9", "9:16", "1:1", "4:3", "3:4", "21:9"],
+        "audio": false
+      }
+    },
+    {
+      "id": "seedance",
+      "file": "providers/video/seedance.js",
+      "label": "Seedance (BytePlus Ark)",
+      "env": ["ARK_API_KEY"],
+      "capabilities": {
+        "maxDurationSeconds": 10,
+        "referenceImages": 2,
+        "startEndFrames": true,
+        "aspectRatios": ["16:9", "9:16", "1:1", "4:3", "3:4", "21:9"],
+        "audio": false
+      }
+    },
+    {
+      "id": "fal",
+      "file": "providers/video/fal.js",
+      "label": "fal.ai video (model-dependent)",
+      "env": ["FAL_KEY"],
+      "capabilities": {
+        "maxDurationSeconds": 10,
+        "referenceImages": 1,
+        "startEndFrames": true,
+        "aspectRatios": ["16:9", "9:16", "1:1"],
+        "audio": false,
+        "modelDependent": true
+      }
+    }
+  ]
+}

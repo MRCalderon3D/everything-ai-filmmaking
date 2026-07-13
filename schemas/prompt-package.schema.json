@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://everything-ai-filmmaking.dev/schemas/prompt-package.schema.json",
+  "title": "Prompt Package",
+  "description": "Provider-ready prompt for one shot (production/prompts/ or production/scenes/<SC_ID>/prompts/<provider>/). Compiled from the shot, the bibles, and the reference plan — never freehanded. Providers' compile() consumes this shape.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "shot", "provider", "model", "prompt", "parameters", "status"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^PP_SH_\\d{3}_\\d{3}_[A-Z0-9][A-Z0-9_-]*$",
+      "description": "Package ID: PP_<shot>_<PROVIDER-TAG> (e.g. PP_SH_004_002_VEO)."
+    },
+    "shot": {
+      "type": "string",
+      "pattern": "^SH_\\d{3}_\\d{3}$",
+      "description": "Shot this package generates."
+    },
+    "provider": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$",
+      "description": "Target provider ID (must exist in the provider manifests)."
+    },
+    "model": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Provider model identifier (e.g. veo-3.1, kling-v2-master)."
+    },
+    "prompt": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Full prompt text, compiled in the provider's preferred phrasing."
+    },
+    "negative_prompt": {
+      "type": "string",
+      "description": "Negative prompt for providers that support one."
+    },
+    "parameters": {
+      "type": "object",
+      "description": "Generation parameters. Provider-specific extras are allowed; validate.js checks the typed fields against the provider's capabilities.",
+      "properties": {
+        "aspect_ratio": {
+          "type": "string",
+          "pattern": "^\\d+:\\d+$"
+        },
+        "duration_seconds": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Requested clip length; must be within the provider's maxDurationSeconds."
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Fixed seed for reproducibility; omit to let the provider pick."
+        },
+        "resolution": {
+          "type": "string",
+          "description": "Provider resolution label (e.g. 1080p) or WIDTHxHEIGHT."
+        }
+      }
+    },
+    "references": {
+      "type": "array",
+      "description": "Resolved reference images, in submission order, from the reference plan.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["asset_id", "role", "image_path"],
+        "properties": {
+          "asset_id": {
+            "type": "string",
+            "pattern": "^(CHAR|LOC|PROP|LOOK)_[A-Z][A-Z0-9_]*(_V\\d{2})?$"
+          },
+          "role": {
+            "enum": ["facial_identity", "wardrobe", "spatial_geometry", "prop_consistency", "style", "lighting", "composition"],
+            "description": "What the image conditions; mirrors reference-plan purpose."
+          },
+          "image_path": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Path to the actual image file submitted to the provider."
+          },
+          "weight": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        }
+      }
+    },
+    "start_frame": {
+      "type": ["string", "null"],
+      "description": "Path to the start keyframe image, or null if not (yet) generated."
+    },
+    "end_frame": {
+      "type": ["string", "null"],
+      "description": "Path to the end keyframe image, or null if not (yet) generated."
+    },
+    "status": {
+      "enum": ["draft", "compiled", "submitted"],
+      "description": "draft = human-editable; compiled = frozen output of compile-prompts.js; submitted = sent to the provider."
+    },
+    "source_hashes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["shot", "reference_plan"],
+      "description": "Content hashes of the inputs this package was compiled from; a mismatch means the package is stale and must be recompiled.",
+      "properties": {
+        "shot": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{8,64}$"
+        },
+        "reference_plan": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{8,64}$"
+        }
+      }
+    },
+    "notes": { "type": "string" }
+  }
+}
