@@ -3,13 +3,26 @@
 # Every command inherits these defaults; override per run with flags.
 
 title: "The Red Suitcase"          # working title of the production
-format: short                      # short | feature | series — drives pacing and coverage defaults
+production_type: cinema            # cinema | commercial — selects rules/cinema/ or rules/commercial/
+format: short                      # cinema: short | feature | series · commercial: spot | social | branded-content | music-video
 logline: "A woman fleeing her past finds a stranger's red suitcase on a rain-soaked platform — and inside it, proof that her past is fleeing her."
 genre: noir                        # primary genre label
 
 aspect_ratio: "16:9"               # width:height — quote it so YAML keeps it a string
 fps: 24                            # target frames per second
 resolution: "1920x1080"            # delivery resolution, WIDTHxHEIGHT
+
+deliverables:                      # delivery variants — REQUIRED for commercial projects
+  - platform: festival             # theatrical | festival | streaming | tv | web | youtube | youtube-shorts | instagram | tiktok | x | other
+    aspect_ratio: "16:9"
+    resolution: "1920x1080"
+    notes: "Single master deliverable; cinema projects usually list exactly one."
+# For a commercial project, list every platform variant and design them at
+# blocking time — a 9:16 cut is a designed reframe, never a lazy crop:
+#  - platform: instagram
+#    aspect_ratio: "9:16"
+#    duration_seconds_max: 30
+#    notes: "Safe area for UI overlays; must read with sound off."
 
 style:                             # global visual anchors; detail lives in the style bible
   look_refs:                       # approved LOOK_* style reference assets

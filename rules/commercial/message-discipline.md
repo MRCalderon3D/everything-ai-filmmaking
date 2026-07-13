@@ -1,0 +1,80 @@
+# Message Discipline
+
+## Purpose
+
+Keep commercial work saying one thing well: one message per spot,
+restrained coverage, style in service of the idea, truthful imagery.
+
+## Scope
+
+Applies only when `production_type` in `production/project.yaml` is
+`commercial`. Layers on top of `rules/common/` and the domain layers —
+especially `common/asset-provenance.md` — without contradicting them.
+
+## Core Principles
+
+- One idea per spot. A 30-second piece carries ONE message; everything on
+  screen either serves it or gets cut.
+- Simplicity is a choice, not a budget limit. Restraint reads as
+  intentionality; density reads as noise.
+- Generated imagery is still advertising: truthful about the product,
+  clean on rights.
+
+## One Idea Per Spot
+
+- Every spot MUST state its single message in one sentence in the story
+  bible before shot listing; every scene, shot, and super is checked against
+  that sentence, and anything that doesn't serve it is cut.
+- Secondary messages get their own deliverable or their own spot — NEVER
+  folded into an existing cut because there is room.
+
+## Coverage Restraint
+
+- Fewer, better shots beat dense coverage in short runtimes; plan the
+  minimum coverage that tells the story, not a film-style
+  master-plus-coverage set.
+- Each shot SHOULD do more than one job (establish and characterize, show
+  product and emotion); a single-purpose shot is a candidate for cutting.
+
+## Intentionality Over Spectacle
+
+- Surreal and stylized devices MUST serve the message: every impossible
+  image needs a stated link to the idea in its shot file. With AI-generated
+  surrealism flooding feeds, unmotivated weirdness reads as noise.
+- If a spot works staged plainly, prefer plain. Spectacle earns its place
+  only when the literal version cannot carry the idea.
+
+## Product and Brand Truth
+
+- NEVER fabricate product capabilities in generated imagery — no features
+  the product lacks, no performance or results it cannot deliver. The
+  rendered product MUST match approved references in form and behavior.
+- Product appearance is locked as an approved `PROP_*` or `LOOK_*` master
+  before generation; drift in product shots is a continuity failure.
+
+## Ensemble Mosaic Pattern
+
+- For character-driven spots, prefer the mosaic: multiple short vignettes
+  unified by matched framing (same shot size and lens language per
+  vignette), mirrored actions, and transitions that pass emotion between
+  characters — a gesture completed by the next subject, an answered eyeline.
+- Each vignette MUST still serve the single message; the mosaic multiplies
+  who says it, never what is said.
+
+## Brand Safety on Generated Content
+
+- NEVER include real trademarks, logos, brand trade dress, or recognizable
+  celebrity likenesses in generated imagery without documented clearance
+  recorded alongside the generation record (`common/asset-provenance.md`).
+- Negative prompts SHOULD exclude third-party marks in crowded frames
+  (streets, shelves, screens); incidental generated logos force
+  regeneration.
+
+## Validation
+
+- `scripts/validate.js` checks commercial story bibles declare a
+  single-message statement and product shots reference approved masters.
+- `scripts/check-continuity.js` flags generated product frames that drift
+  from the approved master references.
+- Message fit, motivation of stylized devices, and clearance of marks and
+  likenesses are human review at storyboard and edit-plan approval.

@@ -14,6 +14,7 @@ applied to audiovisual production.
 /project-init          # scaffold a production/ workspace
 /script-analyze        # break a screenplay into structure, beats, entities
 /story-bible           # canonical narrative reference
+/music-brief           # music strategy set in development, not in post
 /character-bible       # identity, wardrobe, and reference sheets per character
 /location-bible        # locations, camera-angle maps, spatial geometry
 /style-bible           # visual language, palette, lighting, lensing
@@ -97,12 +98,13 @@ direction, neighbors), required reference assets, and generation flags — see
 ```
 agents/       17 roles: showrunner, screenwriter, visual-director, cinematographer,
               shot-planner, continuity-supervisor, prompt-director, …
-commands/     19 workflow entry points (the slash commands above)
-skills/       19 procedures: scene-blocking, cinematography, reference-selection,
+commands/     20 workflow entry points (the slash commands above)
+skills/       20 procedures: scene-blocking, cinematography, reference-selection,
               prompt-compilation, continuity-checking, …
 rules/        policy layers: common/ writing/ visual/ image/ video/ audio/
+              + one production-type layer: cinema/ OR commercial/
 contexts/     phase framing: development, preproduction, production, post, review
-schemas/      14 JSON Schemas for every artifact in production/
+schemas/      15 JSON Schemas for every artifact in production/
 manifests/    machine-readable index (validation + install profiles)
 templates/    starter files for new workspaces
 scripts/      Node >= 18, zero-dep tooling: install, doctor, validate,

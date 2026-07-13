@@ -1,0 +1,75 @@
+---
+description: Choose the music strategy and write the cue-level music brief before shot planning begins.
+---
+
+# /music-brief
+
+## Purpose
+
+Make music a development decision instead of a postproduction afterthought:
+choose a strategy per piece or per sequence — song-as-concept, counterpoint,
+support, lyric-as-narrative, minimal/solo — define cues with tempo/energy
+maps and licensing status, and hand the result to shot planning and the edit
+as a binding brief.
+
+## Use When
+
+- Development, once a treatment or story bible exists — before
+  `/scene-breakdown` turns scenes into beats.
+- A commercial spot hangs on a single track and the concept must be built
+  around it from the start.
+- Temp music is creeping into planning with no licensing plan attached.
+
+## Inputs
+
+- `story` (path, required): the story bible or treatment
+  (`production/story/story-bible.yaml` or `production/story/treatment.md`).
+- `strategy` (string, optional): override the chosen default strategy.
+- `era` / `genre` (string, optional): audience-targeting constraints.
+- `reference_tracks` (list, optional): tracks to brief against; every one
+  enters the brief with an explicit licensing status.
+
+## Invokes Agents
+
+- showrunner
+- sound-designer
+
+## Required Skills
+
+- music-direction
+
+## Process
+
+1. Read the story bible/treatment and `project.yaml`. `production_type`
+   matters: a commercial spot may hang entirely on one track; cinema wants
+   cue-level briefs per sequence.
+2. Choose a strategy per piece or per sequence; counterpoint and
+   song-as-concept choices are declared here, early enough that stakeholders
+   see the intent at pitch rather than a mistake in the cut.
+3. Define cues: id, scope (whole-piece or scene range), strategy, genre/era,
+   tempo/energy curve, lyric sync points with timestamps relative to the cut,
+   diegetic flag, licensing status, and reference tracks.
+4. Flag every temp or unlicensed reference (`status: temp`,
+   `cleared: false`) before anyone gets attached to it.
+5. Write `production/story/music-brief.yaml`, validating against
+   `schemas/music-brief.schema.json`.
+6. Hand the tempo/energy map downstream: shot timing in `/smart-shot`, cut
+   rhythm in `/edit-plan`.
+
+## Outputs
+
+- `production/story/music-brief.yaml` — default strategy, cues with
+  tempo/energy maps, sync points, and the licensing ledger
+  (`schemas/music-brief.schema.json`).
+
+## Notes
+
+- Run during development, before `/scene-breakdown` — shots are timed
+  against the brief, not the other way around.
+- `/edit-plan` MUST honor the brief or escalate to the showrunner; silently
+  swapping the music invalidates the pacing the shots were planned to.
+- Cost and licensing gate: a temp track that cannot clear is a schedule and
+  budget liability — `rules/audio/music.md` and
+  `rules/common/cost-control.md` apply from the first reference listed.
+- Related: `/scene-breakdown` (runs after this), `/smart-shot` (consumes the
+  tempo map), `/edit-plan` (executes the brief).

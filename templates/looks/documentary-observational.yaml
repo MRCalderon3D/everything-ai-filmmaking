@@ -1,0 +1,41 @@
+# LOOK preset — documentary observational. Copy into your style bible, adapt,
+# then promote per templates/looks/README.md. No schema; validate.js skips it.
+
+id: LOOK_DOC_OBSERVATIONAL_V01
+name: Documentary Observational
+intent: "Unstaged, witnessed realism. Use when credibility is the point — real people, real places, moments that read as caught rather than composed."
+status: draft
+
+prompt_vocabulary:
+  - available natural light only
+  - handheld camera with subtle micro-shake
+  - imperfect framing with slightly clipped edges
+  - real locations with lived-in clutter
+  - un-posed subjects caught mid-action
+  - visible film grain
+  - muted honest color
+  - candid documentary photography style
+  - depth of field from practical distance not styled bokeh
+  - overcast or window light with no fill
+
+negative_vocabulary:
+  - studio lighting
+  - polished symmetrical composition
+  - glamour retouching and flawless skin
+  - vivid saturated commercial color
+  - posed subjects looking at camera
+
+grade_notes: "Keep contrast gentle and color honest; protect skin tones, desaturate slightly overall, and never crush shadows. The grade should feel absent."
+
+pairs_with:
+  production_types:
+    - commercial
+    - cinema
+  registers:
+    - brand credibility and testimonial spots
+    - social vignettes built on real moments
+    - naturalistic drama and hybrid documentary
+  typical_genres:
+    - documentary
+    - social realism
+    - slice-of-life

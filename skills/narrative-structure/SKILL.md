@@ -66,3 +66,11 @@ its structural function.
 ## Notes
 Structure feeds cinematography: tension values and functions drive shot size,
 lens, and cutting rate choices downstream. Keep them honest.
+
+Beyond the single-hero spine, the ensemble mosaic is a recognized structure:
+several short character vignettes carrying one shared idea. It works only
+when the vignettes are unified — matched framing, mirrored actions, and
+transitions that pass emotion from one character to the next — so they read
+as one world rather than competing moments. Declare the shared idea as the
+spine and give each vignette a structural function like any scene; a mosaic
+without a spine is a montage, not a story.

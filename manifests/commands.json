@@ -252,6 +252,18 @@
       "skills": [
         "text-humanization"
       ]
+    },
+    {
+      "name": "music-brief",
+      "file": "commands/music-brief.md",
+      "description": "Set the music strategy in development — cues, tempo map, lyric sync points, licensing — before shot planning.",
+      "agents": [
+        "showrunner",
+        "sound-designer"
+      ],
+      "skills": [
+        "music-direction"
+      ]
     }
   ]
 }

@@ -78,3 +78,11 @@ what the beat means — chosen deliberately, never by default.
 Cinematography decides what each shot is; `shot-sequencing` decides how shots
 follow each other. Size/lens grammar established here is what continuity audits
 treat as intent.
+
+Coverage restraint is a craft position, not a budget concession: a simple,
+well-chosen setup beats a complicated mediocre one, and the audience never
+needs the whole bag of tricks in one scene. Default to the fewest shots that
+serve the beats — `/smart-shot --coverage minimal|standard|dense` makes
+density an argued choice. Under `rules/commercial/message-discipline.md`
+restraint is mandatory for short runtimes; in cinema it is the default that
+dense coverage must argue against.

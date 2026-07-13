@@ -12,9 +12,13 @@
       "minLength": 1,
       "description": "Working title of the production."
     },
+    "production_type": {
+      "enum": ["cinema", "commercial"],
+      "description": "Production mode. Selects which rules layer applies: cinema (rules/cinema/, narrative work: short/feature/series) or commercial (rules/commercial/, advertising and social-platform work: spot/social/branded-content/music-video). Defaults to cinema when omitted."
+    },
     "format": {
-      "enum": ["short", "feature", "series"],
-      "description": "Delivery format; drives pacing and coverage defaults."
+      "enum": ["short", "feature", "series", "spot", "social", "branded-content", "music-video"],
+      "description": "Delivery format; drives pacing and coverage defaults. short/feature/series belong to production_type cinema; spot/social/branded-content/music-video belong to commercial (enforced by rules, not by this schema)."
     },
     "logline": {
       "type": "string",
@@ -71,6 +75,40 @@
         "image": { "enum": ["fal", "replicate", "comfyui", "harness-native"] },
         "video": { "enum": ["veo", "kling", "runway", "seedance", "fal"] },
         "audio": { "enum": ["elevenlabs", "fal", "local"] }
+      }
+    },
+    "deliverables": {
+      "type": "array",
+      "description": "Delivery variants. REQUIRED by rules/commercial/platform-deliverables.md when production_type is commercial; optional single-entry list for cinema. Each shot can carry per-deliverable reframing notes.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["platform", "aspect_ratio"],
+        "properties": {
+          "platform": {
+            "enum": ["theatrical", "festival", "streaming", "tv", "web", "youtube", "youtube-shorts", "instagram", "tiktok", "x", "other"],
+            "description": "Where this variant is delivered."
+          },
+          "aspect_ratio": {
+            "type": "string",
+            "pattern": "^\\d+:\\d+$",
+            "description": "Frame aspect ratio for this variant (e.g. 16:9, 9:16, 1:1, 4:5)."
+          },
+          "duration_seconds_max": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "description": "Hard duration ceiling for this variant (e.g. 15, 30, 60)."
+          },
+          "resolution": {
+            "type": "string",
+            "pattern": "^\\d+x\\d+$",
+            "description": "Delivery resolution for this variant, WIDTHxHEIGHT."
+          },
+          "notes": {
+            "type": "string",
+            "description": "Safe areas, caption policy, sound-off assumptions, platform quirks."
+          }
+        }
       }
     },
     "created_at": {

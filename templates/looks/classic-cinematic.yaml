@@ -1,0 +1,40 @@
+# LOOK preset — classic cinematic. Copy into your style bible, adapt,
+# then promote per templates/looks/README.md. No schema; validate.js skips it.
+
+id: LOOK_CLASSIC_CINEMATIC_V01
+name: Classic Cinematic
+intent: "Controlled, composed film language. The default register for narrative work and premium brand pieces that should feel authored rather than captured."
+status: draft
+
+prompt_vocabulary:
+  - anamorphic lens character with oval bokeh and gentle edge falloff
+  - shallow depth of field isolating the subject
+  - motivated practical lighting sources in frame
+  - controlled restrained color palette
+  - filmic halation blooming around highlights
+  - fine 35mm film grain
+  - deliberate symmetrical composition
+  - rule-of-thirds composition with clean negative space
+  - soft contrast with protected highlight rolloff
+  - cinematic staging with layered foreground and background
+
+negative_vocabulary:
+  - flat even video lighting
+  - oversharpened digital look
+  - snapshot framing
+  - garish oversaturated color
+  - deep-focus clinical sharpness everywhere
+
+grade_notes: "Filmic S-curve with soft highlight rolloff; keep the palette inside the style bible's declared range, add subtle halation and grain last. Consistency across scenes outranks per-shot punch."
+
+pairs_with:
+  production_types:
+    - cinema
+    - commercial
+  registers:
+    - narrative shorts, features, and series
+    - premium brand films and hero spots
+  typical_genres:
+    - drama
+    - noir
+    - prestige advertising

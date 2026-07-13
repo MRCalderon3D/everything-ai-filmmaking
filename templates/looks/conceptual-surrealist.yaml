@@ -1,0 +1,40 @@
+# LOOK preset — conceptual surrealist. Copy into your style bible, adapt,
+# then promote per templates/looks/README.md. No schema; validate.js skips it.
+
+id: LOOK_CONCEPTUAL_SURREALIST_V01
+name: Conceptual Surrealist
+intent: "Staged impossibility in service of an idea. Use when the message needs an image reality cannot supply — and only then; see rules/commercial/message-discipline.md."
+status: draft
+
+prompt_vocabulary:
+  - impossible physics staged deliberately
+  - objects floating in still air
+  - architecture shifting and rearranging itself
+  - dream logic transition between spaces
+  - hyper-real lighting on unreal events
+  - scale distortion between subject and environment
+  - a single surreal element in an otherwise ordinary scene
+  - crisp editorial composition of an impossible moment
+  - seamless matter-of-fact rendering of the unreal
+
+negative_vocabulary:
+  - random psychedelic chaos
+  - melting distorted faces
+  - glitch art noise
+  - fantasy illustration style
+  - cluttered maximalist composition
+
+grade_notes: "Grade it straight — clean neutral contrast and believable color, as if documenting a real event. The realism of the grade is what sells the impossibility."
+
+pairs_with:
+  production_types:
+    - commercial
+    - cinema
+  registers:
+    - concept-led spots where the idea is the image
+    - music videos
+    - dream and memory sequences in narrative work
+  typical_genres:
+    - high-concept advertising
+    - magical realism
+    - art film

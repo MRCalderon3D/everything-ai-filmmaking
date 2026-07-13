@@ -33,6 +33,7 @@ decision so it never gets relitigated.
 - narrative-structure
 - script-analysis
 - scene-blocking
+- music-direction
 
 ## Collaborates With
 

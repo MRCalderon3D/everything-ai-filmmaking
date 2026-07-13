@@ -72,3 +72,12 @@ notes — a plan an editor (human or tool) can execute without guessing.
 ## Notes
 The edit plan is the final arbiter of clip boundaries: if a cut needs a frame
 the clip lacks, the shot goes back to `/generate-clips`, not into slow motion.
+
+Intensity works by contrast, not accumulation: a relentless cut exhausts the
+viewer, so aggressive passages need pockets of stillness — a rapid montage
+dropping into one sustained shot, a wall of sound cut to near silence. Plan
+those dynamics into the assembly, and plan sound with picture from the first
+pass (diegetic hits as percussion, dialogue fragments as texture), never as a
+layer added after the cut. When `production/story/music-brief.yaml` exists,
+the edit honors its strategy and sync points or escalates to the showrunner —
+it does not quietly rescore the film.

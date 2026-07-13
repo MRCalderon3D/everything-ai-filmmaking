@@ -25,6 +25,10 @@ shot planning, and the look constraints compiled into every prompt package.
   consistently, read as authorship. Model-default prettiness is drift.
 - Every deviation from the system is a marked story event, approved in the
   style bible before it is generated.
+- Surreal or reality-breaking imagery MUST serve a stated emotion or story
+  point. Generative models make the impossible cheap and feeds are saturated
+  with unmotivated surrealism; an impossible image without a dramatic
+  argument is noise and MUST NOT pass style review.
 
 ## Style Pillars
 

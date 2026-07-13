@@ -14,7 +14,7 @@ file against its schema; a file that does not validate does not ship.
   vocabularies, and constrains every ID field with a `pattern` from the ID
   scheme in [docs/conventions.md](../docs/conventions.md).
 
-## Roster (14 — exhaustive, mirrors docs/conventions.md)
+## Roster (15 — exhaustive, mirrors docs/conventions.md)
 
 | Schema | Validates | Lives at |
 |---|---|---|
@@ -32,6 +32,7 @@ file against its schema; a file that does not validate does not ship.
 | `prompt-package` | Provider-ready prompt, parameters, resolved references, source hashes | `production/prompts/`, `production/scenes/<SC_ID>/prompts/<provider>/` |
 | `generation-record` | Provenance per generation attempt: provider, model, cost, status | `production/generations/` |
 | `continuity-state` | Axes, character/prop state, lighting, open issues per scene | `production/scenes/<SC_ID>/continuity/scene-state.yaml`, `production/continuity/` |
+| `music-brief` | Music strategy per cue: scope, tempo/energy map, lyric sync points, licensing | `production/story/music-brief.yaml` |
 
 ## ID patterns (single source: docs/conventions.md)
 

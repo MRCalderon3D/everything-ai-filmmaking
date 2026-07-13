@@ -14,6 +14,8 @@ normative: MUST, SHOULD, and NEVER carry their RFC-2119 meanings.
 | `image/` | Keyframe and still generation | image-generation |
 | `video/` | Clip generation and motion design | video-generation, motion-language, clip-boundaries |
 | `audio/` | Dialogue, music, and sound work | dialogue, music, sound-effects |
+| `cinema/` | Only when `production_type: cinema` | long-form-grammar |
+| `commercial/` | Only when `production_type: commercial` | platform-deliverables, message-discipline |
 
 ## Resolution order
 
@@ -29,7 +31,12 @@ normative: MUST, SHOULD, and NEVER carry their RFC-2119 meanings.
    (never loosens it), the domain rule governs within its scope. A domain rule
    MUST NOT contradict `common/`; if one appears to, `common/` wins and the
    conflict is a bug to report.
-5. **Contexts frame, rules govern.** `contexts/` files describe the current
+5. **Exactly one production-type layer.** `cinema/` and `commercial/` are
+   mutually exclusive, selected by `production_type` in
+   `production/project.yaml` (default: cinema). They hold only what is
+   specific to each mode; craft shared by both belongs in the common and
+   domain layers, never duplicated into a production-type layer.
+6. **Contexts frame, rules govern.** `contexts/` files describe the current
    production phase; they select emphasis, never override policy.
 
 ## Rule format
@@ -42,6 +49,6 @@ human review.
 
 ## Roster
 
-The rule roster is exhaustive (20 rules). Do not add, remove, or rename rules
+The rule roster is exhaustive (24 rules). Do not add, remove, or rename rules
 without updating `docs/conventions.md` and the manifests; `npm run validate`
 cross-checks the roster.

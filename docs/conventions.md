@@ -17,7 +17,7 @@ Language: **English**, everywhere. Style: imperative, concise, no marketing pros
 
 | Layer | Purpose | Format |
 |---|---|---|
-| `rules/` | Policy — what good looks like. `common/` first, then domain layers (`writing/`, `visual/`, `image/`, `video/`, `audio/`). | Markdown |
+| `rules/` | Policy — what good looks like. `common/` first, then domain layers (`writing/`, `visual/`, `image/`, `video/`, `audio/`), then exactly ONE production-type layer (`cinema/` or `commercial/`) selected by `production_type` in `production/project.yaml`. | Markdown |
 | `agents/` | Specialized roles — who owns the work. Flat list. | Markdown + frontmatter |
 | `commands/` | Workflow entry points (`/command-name`). Flat list. | Markdown + frontmatter |
 | `skills/` | Reusable procedures — how the work is done. One dir per skill with `SKILL.md`. | Markdown + frontmatter |
@@ -37,31 +37,39 @@ character-designer, production-designer, storyboard-artist, cinematographer,
 shot-planner, continuity-supervisor, prompt-director, image-generation-specialist,
 video-generation-specialist, editor, sound-designer, colorist, production-qa.
 
-**Commands (19):** project-init, script-analyze, story-bible, character-bible,
+**Commands (20):** project-init, script-analyze, story-bible, character-bible,
 location-bible, prop-bible, style-bible, visual-development, scene-breakdown,
 shot-list, smart-shot, storyboard, reference-plan, generate-keyframes,
-generate-clips, continuity-review, edit-plan, full-production, humanize.
+generate-clips, continuity-review, edit-plan, full-production, humanize,
+music-brief.
 
-**Skills (19):** script-analysis, narrative-structure, character-consistency,
+**Skills (20):** script-analysis, narrative-structure, character-consistency,
 character-sheet-generation, location-design, location-mapping,
 visual-style-development, scene-blocking, cinematography, shot-sequencing,
 storyboard-generation, reference-selection, prompt-compilation, image-generation,
 video-generation, continuity-checking, edit-planning, production-orchestration,
-text-humanization.
+text-humanization, music-direction.
 
-**Rules (21):**
+**Rules (24):**
 `common/`: source-of-truth, project-structure, naming-conventions, asset-provenance, cost-control, approval-policy.
 `writing/`: screenplay-format, narrative-continuity, prose-style.
 `visual/`: character-consistency, location-consistency, spatial-continuity, visual-language.
 `image/`: image-generation.
 `video/`: video-generation, motion-language, clip-boundaries.
 `audio/`: dialogue, music, sound-effects.
+`cinema/` (production-type layer): long-form-grammar.
+`commercial/` (production-type layer): platform-deliverables, message-discipline.
+
+Production-type layers are mutually exclusive: a task loads `cinema/` OR
+`commercial/` based on `production_type` in `production/project.yaml`
+(default: cinema). Craft shared by both modes lives in the common and domain
+layers — never duplicated into a production-type layer.
 
 **Contexts (5):** development, preproduction, production, postproduction, review.
 
-**Schemas (14):** project, story-bible, character, wardrobe, location,
+**Schemas (15):** project, story-bible, character, wardrobe, location,
 location-map, prop, scene, beat, shot, reference-plan, prompt-package,
-continuity-state, generation-record. Files are `schemas/<name>.schema.json`,
+continuity-state, generation-record, music-brief. Files are `schemas/<name>.schema.json`,
 `$id` is `https://everything-ai-filmmaking.dev/schemas/<name>.schema.json`.
 
 **Manifests (8):** profiles.json, agents.json, commands.json, skills.json,
@@ -146,7 +154,7 @@ category: story | visual | production | generation | post
 ```
 
 Skill categories: story (script-analysis, narrative-structure,
-text-humanization), visual
+text-humanization, music-direction), visual
 (character-consistency, character-sheet-generation, location-design,
 location-mapping, visual-style-development), production (scene-blocking,
 cinematography, shot-sequencing, storyboard-generation, reference-selection,
@@ -187,6 +195,7 @@ video-generation), post (continuity-checking, edit-planning).
 | edit-plan | editor, sound-designer, colorist | edit-planning |
 | full-production | showrunner, production-qa (orchestrates all others) | production-orchestration |
 | humanize | script-editor, screenwriter | text-humanization |
+| music-brief | showrunner, sound-designer | music-direction |
 
 Commands may reference additional agents/skills in prose, but `Invokes Agents`
 and `Required Skills` lists MUST contain only roster names and MUST include the
@@ -208,7 +217,7 @@ rows above. `validate.js` cross-checks every listed name against the manifests.
 ```
 production/
 ├── project.yaml               # project.schema.json
-├── story/                     # story-bible.yaml, script.fountain, treatment.md
+├── story/                     # story-bible.yaml, script.fountain, treatment.md, music-brief.yaml
 ├── characters/                # <CHAR_ID>/character.yaml, wardrobe.yaml, refs/
 ├── locations/                 # <LOC_ID>/location.yaml, map.yaml, refs/
 ├── props/                     # <PROP_ID>/prop.yaml, refs/
@@ -284,3 +293,13 @@ commit values.
 - **Prose style:** all human-facing generated text follows the
   `text-humanization` skill by default (`rules/writing/prose-style.md`);
   model-facing prompt text is exempt and answers to `prompt-compilation`.
+- **Production-type separation:** cinema and commercial modes share the
+  common and domain rule layers but never each other's layer. Commercial
+  projects declare `deliverables[]` (platform, aspect ratio, max duration)
+  and design every variant at blocking time; cinema projects lock one master
+  deliverable. Commands read `production_type` before applying pacing,
+  coverage, or delivery defaults.
+- **Music first:** music strategy is set in development via
+  `production/story/music-brief.yaml` (`/music-brief`), not chosen in post;
+  the edit plan honors the brief or escalates. Temp/unlicensed tracks are
+  flagged from day one.

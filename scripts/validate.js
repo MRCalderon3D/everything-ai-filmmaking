@@ -47,7 +47,7 @@ Exit code 0 when everything passes, 1 otherwise.
 const SCHEMA_NAMES = [
   'project', 'story-bible', 'character', 'wardrobe', 'location',
   'location-map', 'prop', 'scene', 'beat', 'shot', 'reference-plan',
-  'prompt-package', 'continuity-state', 'generation-record',
+  'prompt-package', 'continuity-state', 'generation-record', 'music-brief',
 ];
 
 const AGENT_SECTIONS = ['Role', 'Responsibilities', 'Uses These Skills',

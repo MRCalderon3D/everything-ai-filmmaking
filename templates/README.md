@@ -21,6 +21,7 @@ production's, keep the structure.
 | `location/location.yaml` | `production/locations/<LOC_ID>/location.yaml` | `location.schema.json` |
 | `location/map.yaml` | `production/locations/<LOC_ID>/map.yaml` | `location-map.schema.json` |
 | `shot/shot.yaml` | `production/scenes/<SC_ID>/shots/<SH_ID>.yaml` | `shot.schema.json` |
+| `music-brief/music-brief.yaml` | `production/story/music-brief.yaml` | `music-brief.schema.json` |
 | `storyboard/storyboard.md` | `production/scenes/<SC_ID>/storyboard/storyboard.md` | — (human document) |
 | `storyboard/board-manifest.yaml` | `production/scenes/<SC_ID>/storyboard/board-manifest.yaml` | — (ID-checked by validate.js) |
 | `continuity/scene-state.yaml` | `production/scenes/<SC_ID>/continuity/scene-state.yaml` | `continuity-state.schema.json` |
@@ -40,3 +41,7 @@ production's, keep the structure.
   files are produced by their commands (`/scene-breakdown`, `/prop-bible`,
   `/reference-plan`, `/generate-keyframes`, …) rather than copied from
   templates.
+- `looks/` holds starter `LOOK_*` presets (analog VHS, documentary,
+  surrealist, classic cinematic) with model-ready prompt vocabulary. They are
+  schema-less seeds for the style bible: copy one, adapt it, and promote it
+  through draft → review → approved like any reference asset.

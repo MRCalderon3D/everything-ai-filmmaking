@@ -52,6 +52,11 @@ Every generation — live or dry-run — produces a
 - Imported third-party media (temp music, reference photos) gets a record with
   provider `external`, its origin, and its license status (see
   `audio/music.md`).
+- Licensed assets (stock footage, licensed music, commissioned work) MUST
+  record source, license identifier, cleared/uncleared status, and usage
+  scope (platforms, territories, term). An uncleared asset NEVER enters an
+  approved cut; commercial projects additionally clear trademarks and
+  likenesses per `rules/commercial/message-discipline.md`.
 - Failed and rejected attempts keep their records; NEVER delete a record to
   hide a bad attempt. Media of failed attempts MAY be deleted, records not.
 - Promoting an asset to a `_MASTER` copies it into `production/references/`

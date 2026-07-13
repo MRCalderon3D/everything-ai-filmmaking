@@ -1,0 +1,58 @@
+# production/story/music-brief.yaml — music strategy and cue plan
+# Schema: schemas/music-brief.schema.json
+# Written by /music-brief during development, BEFORE /scene-breakdown.
+# /smart-shot times shots and /edit-plan paces cuts against this brief.
+
+version: 1
+project: "The Red Suitcase"
+strategy_default: support          # song_as_concept|counterpoint|support|lyric_narrative|minimal_solo
+
+cues:
+  - id: CUE_SC004_PIANO            # CUE_<LABEL>, uppercase
+    scope:
+      type: scene_range            # whole_piece | scene_range | sequence
+      scenes:
+        - SC_004                   # the suitcase discovery
+    strategy: counterpoint         # music pulls against the picture to create subtext
+    genre: "solo piano"            # minimal instrumentation — silence between notes is part of the cue
+    era: "contemporary"            # era target for the audience's memory, not the filmmaker's taste
+    tempo_energy:                  # quoted timestamps ("m:ss" contains a colon) or lowercase beat markers
+      - at: "0:00"
+        energy: 0.2
+        note: "Delicate, almost naive entrance as Mara steps onto the platform."
+      - at: "0:14"
+        energy: 0.35
+        note: "Single sustained chord as she clocks the suitcase (SH_004_002); let it decay under the dolly-in."
+    lyric_sync_points: []          # instrumental cue — no lyrics to sync
+    diegetic: false                # score; Mara does not hear it
+    licensing:
+      status: temp                 # licensed | commissioned | generated | temp
+      source: "temp library reference only"
+      license_id: ""               # filled when cleared
+      cleared: false               # WARNING: clear or replace BEFORE edit lock — do not let the cut fall in love with a temp track (rules/audio/music.md)
+    reference_tracks:
+      - title: "Gymnopedie No. 1"
+        artist: "Erik Satie"
+        note: "Take the fragility against dread; do not imitate the melody."
+    notes: "Gentle piano against the wrongness of the abandoned suitcase — the delicacy makes the object more unsettling, not less. Pitched at treatment stage so the counterpoint reads as intent."
+
+  - id: CUE_MAIN_SUPPORT
+    scope:
+      type: whole_piece            # bed for every moment no scene cue claims
+      scenes: []                   # empty for whole_piece
+    strategy: support              # conventional mood-matching — the default, chosen on purpose
+    genre: "low-string underscore"
+    era: "contemporary"
+    tempo_energy:
+      - at: "0:00"
+        energy: 0.3
+        note: "Slow noir pulse under the whole piece; drops out entirely under CUE_SC004_PIANO."
+    lyric_sync_points: []
+    diegetic: false
+    licensing:
+      status: generated            # composed via an audio provider — no clearance risk
+      source: "audio provider (manifests/audio-providers.json)"
+      license_id: ""
+      cleared: true
+    reference_tracks: []
+    notes: "Rises only where no scene cue owns the moment; never competes with a counterpoint cue."

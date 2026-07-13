@@ -17,6 +17,7 @@ are cross-checked by `npm run validate`.
 |---|---|
 | [script-analyze](script-analyze.md) | Break a screenplay into scene structure, beats, and a complete entity inventory. |
 | [story-bible](story-bible.md) | Compile the canonical narrative reference — world rules, timeline, arcs, and tone. |
+| [music-brief](music-brief.md) | Set the music strategy in development — cues, tempo map, lyric sync points, licensing — before shot planning. |
 | [humanize](humanize.md) | Rewrite any generated or existing prose so it reads human — no AI-writing tells — or audit it with `--check`. |
 
 ## Pre-production (bibles and look)
@@ -65,6 +66,7 @@ are cross-checked by `npm run validate`.
 /project-init
 /script-analyze
 /story-bible
+/music-brief                 # music strategy before shot planning
 /character-bible → /location-bible → /prop-bible → /style-bible
 /visual-development          # first paid step: master references
 /scene-breakdown

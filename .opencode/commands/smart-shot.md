@@ -35,6 +35,10 @@ prompts inherit all of it without translation loss.
   e.g. `18s`; default derived from beat count and dialogue length.
 - `shot_count` (int, optional): target number of shots; default decided by
   coverage logic (typically one per beat plus earned inserts).
+- `coverage` (enum, optional, default `standard`): `minimal` (fewest shots
+  that serve the beats — the commercial default per
+  `rules/commercial/message-discipline.md`), `standard`, or `dense` (full
+  coverage for editorial choice — must be argued, not assumed).
 - `visual_style` (string, optional, default the scene's assigned LOOK):
   named LOOK from the style bible, or a modifier like `cinematic`.
 - `provider` (string, optional, default from `project.yaml`): primary video

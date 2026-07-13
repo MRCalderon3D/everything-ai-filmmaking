@@ -1,0 +1,42 @@
+# LOOK preset — analog VHS. Copy into your style bible, adapt, then promote
+# per templates/looks/README.md. No schema; validate.js skips this file.
+
+id: LOOK_ANALOG_VHS_V01
+name: Analog VHS
+intent: "Consumer-camcorder nostalgia and found-footage texture. Use when the story wants memory, home video, the late-80s/90s past, or deliberate lo-fi grit."
+status: draft
+
+prompt_vocabulary:
+  - RGB channel separation with color fringing at edges
+  - horizontal scan lines across the frame
+  - VHS tracking errors and dropout glitches
+  - motion ghosting trails behind moving subjects
+  - bleeding oversaturated color
+  - low-resolution consumer-camcorder softness
+  - CRT screen texture
+  - timestamp overlay in the corner
+  - "4:3 frame"
+  - analog video noise and chroma smear
+  - slightly crushed murky blacks
+
+negative_vocabulary:
+  - crisp 4K detail
+  - clean digital sharpness
+  - modern cinematic color grading
+  - shallow depth of field bokeh
+  - pristine high-dynamic-range image
+
+grade_notes: "Lift blacks slightly and let them drift green-magenta; clip highlights hard like tape. Push chroma bleed in reds, soften with a subtle vertical smear. Grade after adding artifacts, not before."
+
+pairs_with:
+  production_types:
+    - commercial
+    - cinema
+  registers:
+    - nostalgia and memory sequences
+    - found footage and home video
+    - music-video and social spots trading on retro texture
+  typical_genres:
+    - horror
+    - coming-of-age
+    - retro comedy

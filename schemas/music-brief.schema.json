@@ -1,0 +1,186 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://everything-ai-filmmaking.dev/schemas/music-brief.schema.json",
+  "title": "Music Brief",
+  "description": "Music strategy and cue plan (production/story/music-brief.yaml): per-cue strategy, genre/era targeting, tempo/energy map, lyric sync points, and licensing status. Written by /music-brief during development; /smart-shot paces shot timing and /edit-plan paces cut rhythm against it.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "project", "strategy_default", "cues"],
+  "properties": {
+    "version": {
+      "type": "number",
+      "description": "Brief format version (currently 1)."
+    },
+    "project": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Project title; must match production/project.yaml."
+    },
+    "strategy_default": {
+      "$ref": "#/$defs/strategy",
+      "description": "Strategy for any moment no cue claims; individual cues override it."
+    },
+    "cues": {
+      "type": "array",
+      "description": "The cue plan. One entry per musical decision — a whole-piece bed, a sequence cue, or a scene-range cue.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "scope", "strategy", "licensing"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^CUE_[A-Z0-9_]+$",
+            "description": "Cue ID (e.g. CUE_SC004_PIANO)."
+          },
+          "scope": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type"],
+            "description": "What part of the piece this cue owns.",
+            "properties": {
+              "type": {
+                "enum": ["whole_piece", "scene_range", "sequence"],
+                "description": "whole_piece covers everything without a dedicated cue; scene_range and sequence list their scenes."
+              },
+              "scenes": {
+                "type": "array",
+                "items": { "$ref": "#/$defs/sceneId" },
+                "description": "Scenes the cue plays under; empty for whole_piece."
+              }
+            }
+          },
+          "strategy": {
+            "$ref": "#/$defs/strategy",
+            "description": "Strategy for this cue; overrides strategy_default."
+          },
+          "genre": {
+            "type": "string",
+            "description": "Genre signal (e.g. \"solo piano\", \"cool jazz\") — chosen for what it says, not just how it sounds."
+          },
+          "era": {
+            "type": "string",
+            "description": "Era target carrying the audience's generational memory (e.g. \"late 1970s\")."
+          },
+          "tempo_energy": {
+            "type": "array",
+            "description": "Tempo/energy map: the pacing contract /smart-shot times shots against and /edit-plan cuts to.",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["at", "energy"],
+              "properties": {
+                "at": {
+                  "type": "string",
+                  "pattern": "^(\\d+:\\d{2}|[a-z][a-z0-9_]*)$",
+                  "description": "Position relative to the cut: a \"m:ss\" timestamp (e.g. \"0:00\") or a lowercase beat marker (e.g. \"drop\")."
+                },
+                "energy": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1,
+                  "description": "Energy level at this point, 0 (stillness) to 1 (peak)."
+                },
+                "note": {
+                  "type": "string",
+                  "description": "What the music is doing here and what the picture should do about it."
+                }
+              }
+            }
+          },
+          "lyric_sync_points": {
+            "type": "array",
+            "description": "Moments where a specific lyric must land on a specific image; empty for instrumental cues.",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["lyric", "image"],
+              "properties": {
+                "lyric": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "The lyric line, treated with the weight of dialogue."
+                },
+                "image": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "The image it lands on — avoid restating the lyric; find the unexpected pairing."
+                },
+                "scene": {
+                  "$ref": "#/$defs/sceneId",
+                  "description": "Scene where the sync point lands, once known."
+                },
+                "shot": {
+                  "$ref": "#/$defs/shotId",
+                  "description": "Shot where the sync point lands, once coverage exists."
+                }
+              }
+            }
+          },
+          "diegetic": {
+            "type": "boolean",
+            "description": "true if a character hears the music inside the story — a characterization choice, not a mixing note."
+          },
+          "licensing": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["status"],
+            "description": "Licensing ledger, tracked from day one (rules/audio/music.md).",
+            "properties": {
+              "status": {
+                "enum": ["licensed", "commissioned", "generated", "temp"],
+                "description": "temp MUST be flagged and cleared or replaced before edit lock."
+              },
+              "source": {
+                "type": "string",
+                "description": "Where the music comes from: rights holder, composer, provider, or temp library."
+              },
+              "license_id": {
+                "type": "string",
+                "description": "License or contract reference once cleared."
+              },
+              "cleared": {
+                "type": "boolean",
+                "description": "true only when the rights are secured; temp cues are never cleared."
+              }
+            }
+          },
+          "reference_tracks": {
+            "type": "array",
+            "description": "Tracks that define the target — direction, not material to imitate.",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["title"],
+              "properties": {
+                "title": { "type": "string", "minLength": 1, "description": "Track title." },
+                "artist": { "type": "string", "description": "Artist or composer." },
+                "note": { "type": "string", "description": "What to take from this reference — and what to leave." }
+              }
+            }
+          },
+          "notes": {
+            "type": "string",
+            "description": "Intent in prose — for counterpoint and song-as-concept cues, state the subtext explicitly."
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "strategy": {
+      "enum": ["song_as_concept", "counterpoint", "support", "lyric_narrative", "minimal_solo"],
+      "description": "Music strategy: song_as_concept (the track is the blueprint), counterpoint (music pulls against the visuals), support (mood-matching, the default), lyric_narrative (lyrics carry dialogue weight), minimal_solo (one instrument, silence as storytelling)."
+    },
+    "sceneId": {
+      "type": "string",
+      "pattern": "^SC_\\d{3}$",
+      "description": "Scene ID (e.g. SC_004)."
+    },
+    "shotId": {
+      "type": "string",
+      "pattern": "^SH_\\d{3}_\\d{3}$",
+      "description": "Shot ID (e.g. SH_004_002)."
+    }
+  }
+}

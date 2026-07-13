@@ -22,7 +22,8 @@
         "continuity-review",
         "edit-plan",
         "full-production",
-        "humanize"
+        "humanize",
+        "music-brief"
       ],
       "agents": [
         "showrunner",
@@ -62,7 +63,8 @@
         "continuity-checking",
         "edit-planning",
         "production-orchestration",
-        "text-humanization"
+        "text-humanization",
+        "music-direction"
       ]
     },
     "writing-room": {
@@ -72,14 +74,16 @@
         "script-analyze",
         "story-bible",
         "character-bible",
-        "humanize"
+        "humanize",
+        "music-brief"
       ],
       "agents": [
         "showrunner",
         "screenwriter",
         "script-editor",
         "character-designer",
-        "production-qa"
+        "production-qa",
+        "sound-designer"
       ],
       "skills": [
         "script-analysis",
@@ -87,7 +91,8 @@
         "character-consistency",
         "character-sheet-generation",
         "production-orchestration",
-        "text-humanization"
+        "text-humanization",
+        "music-direction"
       ]
     },
     "previs": {

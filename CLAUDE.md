@@ -39,12 +39,14 @@ cross-references.
 ## Architecture
 
 - `rules/` — policy. `common/` applies always; `writing/`, `visual/`, `image/`,
-  `video/`, `audio/` are domain layers.
+  `video/`, `audio/` are domain layers; `cinema/` and `commercial/` are
+  mutually exclusive production-type layers selected by `production_type` in
+  `production/project.yaml`.
 - `agents/` — 17 specialized roles (who owns the work).
-- `commands/` — 19 workflow entry points; `/smart-shot` is the orchestrator
+- `commands/` — 20 workflow entry points; `/smart-shot` is the orchestrator
   that turns a scene into shots + storyboard + reference plan + prompts +
   continuity state.
-- `skills/` — 19 reusable procedures commands and agents invoke.
+- `skills/` — 20 reusable procedures commands and agents invoke.
 - `schemas/` — JSON Schema (draft 2020-12) for every `production/` artifact.
 - `manifests/` — machine-readable index; validation and installers read these,
   so rosters live here, not in prose.

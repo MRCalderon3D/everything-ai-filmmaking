@@ -15,6 +15,7 @@ custom prompts; never edit them here.
 - generate-keyframes
 - humanize
 - location-bible
+- music-brief
 - project-init
 - prop-bible
 - reference-plan

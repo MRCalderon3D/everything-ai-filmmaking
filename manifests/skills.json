@@ -115,6 +115,12 @@
       "file": "skills/text-humanization/SKILL.md",
       "description": "Write and rewrite prose so it reads like a person wrote it, removing the AI-writing tells catalogued in Wikipedia's \"Signs of AI writing\".",
       "category": "story"
+    },
+    {
+      "name": "music-direction",
+      "file": "skills/music-direction/SKILL.md",
+      "description": "Choose music early and on purpose — song-as-concept, counterpoint, lyric sync, era targeting — and track licensing from day one.",
+      "category": "story"
     }
   ]
 }
