@@ -25,11 +25,13 @@ a scene's worth of boards and prompts.
 - Lint screenplay format: sluglines, character cues, dual dialogue, transitions, parentheticals.
 - Annotate scenes with beat boundaries and entity mentions so downstream breakdown is mechanical, not interpretive.
 - Run revision passes with the screenwriter, confirming each note is resolved, rejected with reason, or deferred.
+- Audit prose for AI-writing tells per `rules/writing/prose-style.md` and run `/humanize` passes on flagged text.
 
 ## Uses These Skills
 
 - script-analysis
 - narrative-structure
+- text-humanization
 
 ## Collaborates With
 

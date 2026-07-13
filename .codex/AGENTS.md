@@ -13,6 +13,7 @@ custom prompts; never edit them here.
 - full-production
 - generate-clips
 - generate-keyframes
+- humanize
 - location-bible
 - project-init
 - prop-bible

@@ -109,6 +109,12 @@
       "file": "skills/production-orchestration/SKILL.md",
       "description": "Sequence pipeline phases, route work to agents, and enforce approval gates.",
       "category": "production"
+    },
+    {
+      "name": "text-humanization",
+      "file": "skills/text-humanization/SKILL.md",
+      "description": "Write and rewrite prose so it reads like a person wrote it, removing the AI-writing tells catalogued in Wikipedia's \"Signs of AI writing\".",
+      "category": "story"
     }
   ]
 }

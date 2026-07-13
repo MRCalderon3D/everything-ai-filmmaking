@@ -41,10 +41,10 @@ cross-references.
 - `rules/` — policy. `common/` applies always; `writing/`, `visual/`, `image/`,
   `video/`, `audio/` are domain layers.
 - `agents/` — 17 specialized roles (who owns the work).
-- `commands/` — 18 workflow entry points; `/smart-shot` is the orchestrator
+- `commands/` — 19 workflow entry points; `/smart-shot` is the orchestrator
   that turns a scene into shots + storyboard + reference plan + prompts +
   continuity state.
-- `skills/` — 18 reusable procedures commands and agents invoke.
+- `skills/` — 19 reusable procedures commands and agents invoke.
 - `schemas/` — JSON Schema (draft 2020-12) for every `production/` artifact.
 - `manifests/` — machine-readable index; validation and installers read these,
   so rosters live here, not in prose.

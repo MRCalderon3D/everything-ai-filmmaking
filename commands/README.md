@@ -17,6 +17,7 @@ are cross-checked by `npm run validate`.
 |---|---|
 | [script-analyze](script-analyze.md) | Break a screenplay into scene structure, beats, and a complete entity inventory. |
 | [story-bible](story-bible.md) | Compile the canonical narrative reference — world rules, timeline, arcs, and tone. |
+| [humanize](humanize.md) | Rewrite any generated or existing prose so it reads human — no AI-writing tells — or audit it with `--check`. |
 
 ## Pre-production (bibles and look)
 
@@ -79,3 +80,7 @@ Or run the whole thing with gates: `/full-production`.
 Commands that spend generation budget (`/visual-development`,
 `/generate-keyframes`, `/generate-clips`, and rendered `/storyboard`) are
 dry-run by default and always show a cost estimate before a live batch.
+
+All prose these commands produce follows the `text-humanization` skill by
+default (`rules/writing/prose-style.md`); `/humanize` retrofits existing or
+imported text at any point in the pipeline.

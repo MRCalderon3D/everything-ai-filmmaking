@@ -10,6 +10,7 @@ command → agents → skills map lives in [docs/conventions.md](../docs/convent
 |---|---|
 | [script-analysis](script-analysis/SKILL.md) | Decompose a screenplay into scenes, beats, and a complete entity registry. |
 | [narrative-structure](narrative-structure/SKILL.md) | Map act structure, turning points, setups/payoffs, and pacing across the story. |
+| [text-humanization](text-humanization/SKILL.md) | Write and rewrite prose so it reads like a person wrote it — no AI-writing tells. Applies to all generated prose by default. |
 
 ## Visual
 

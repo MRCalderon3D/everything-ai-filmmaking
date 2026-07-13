@@ -6,71 +6,130 @@
       "name": "project-init",
       "file": "commands/project-init.md",
       "description": "Initialize a production/ workspace: project.yaml, directory layout, and phase plan.",
-      "agents": ["showrunner", "production-qa"],
-      "skills": ["production-orchestration"]
+      "agents": [
+        "showrunner",
+        "production-qa"
+      ],
+      "skills": [
+        "production-orchestration"
+      ]
     },
     {
       "name": "script-analyze",
       "file": "commands/script-analyze.md",
       "description": "Analyze a script for structure, beats, characters, locations, and production flags.",
-      "agents": ["screenwriter", "script-editor"],
-      "skills": ["script-analysis", "narrative-structure"]
+      "agents": [
+        "screenwriter",
+        "script-editor"
+      ],
+      "skills": [
+        "script-analysis",
+        "narrative-structure"
+      ]
     },
     {
       "name": "story-bible",
       "file": "commands/story-bible.md",
       "description": "Build or update the story bible: premise, themes, arcs, world rules, and timeline.",
-      "agents": ["showrunner", "screenwriter"],
-      "skills": ["narrative-structure", "script-analysis"]
+      "agents": [
+        "showrunner",
+        "screenwriter"
+      ],
+      "skills": [
+        "narrative-structure",
+        "script-analysis"
+      ]
     },
     {
       "name": "character-bible",
       "file": "commands/character-bible.md",
       "description": "Create character entries with identity anchors, wardrobe, and reference sheet plans.",
-      "agents": ["character-designer", "screenwriter"],
-      "skills": ["character-consistency", "character-sheet-generation"]
+      "agents": [
+        "character-designer",
+        "screenwriter"
+      ],
+      "skills": [
+        "character-consistency",
+        "character-sheet-generation"
+      ]
     },
     {
       "name": "location-bible",
       "file": "commands/location-bible.md",
       "description": "Create location entries with spatial maps, angles, lighting, and reference plans.",
-      "agents": ["production-designer"],
-      "skills": ["location-design", "location-mapping"]
+      "agents": [
+        "production-designer"
+      ],
+      "skills": [
+        "location-design",
+        "location-mapping"
+      ]
     },
     {
       "name": "prop-bible",
       "file": "commands/prop-bible.md",
       "description": "Catalog narrative props with visual specs, state tracking, and continuity notes.",
-      "agents": ["production-designer", "continuity-supervisor"],
-      "skills": ["visual-style-development", "continuity-checking"]
+      "agents": [
+        "production-designer",
+        "continuity-supervisor"
+      ],
+      "skills": [
+        "visual-style-development",
+        "continuity-checking"
+      ]
     },
     {
       "name": "style-bible",
       "file": "commands/style-bible.md",
       "description": "Define the visual language: palette, grain, lensing, grade intent, and style references.",
-      "agents": ["visual-director", "colorist"],
-      "skills": ["visual-style-development"]
+      "agents": [
+        "visual-director",
+        "colorist"
+      ],
+      "skills": [
+        "visual-style-development"
+      ]
     },
     {
       "name": "visual-development",
       "file": "commands/visual-development.md",
       "description": "Run look development across characters, locations, and style into approved masters.",
-      "agents": ["visual-director", "character-designer", "production-designer"],
-      "skills": ["visual-style-development", "character-sheet-generation", "location-design"]
+      "agents": [
+        "visual-director",
+        "character-designer",
+        "production-designer"
+      ],
+      "skills": [
+        "visual-style-development",
+        "character-sheet-generation",
+        "location-design"
+      ]
     },
     {
       "name": "scene-breakdown",
       "file": "commands/scene-breakdown.md",
       "description": "Break the script into scenes and beats with blocking, cast, and location assignments.",
-      "agents": ["showrunner", "shot-planner"],
-      "skills": ["scene-blocking", "narrative-structure"]
+      "agents": [
+        "showrunner",
+        "shot-planner"
+      ],
+      "skills": [
+        "scene-blocking",
+        "narrative-structure"
+      ]
     },
     {
       "name": "shot-list",
       "file": "commands/shot-list.md",
       "description": "Produce an ordered, schema-valid shot list with coverage, axes, and camera notes.",
-      "agents": ["cinematographer", "shot-planner"],
-      "skills": ["cinematography", "shot-sequencing"]
+      "agents": [
+        "cinematographer",
+        "shot-planner"
+      ],
+      "skills": [
+        "cinematography",
+        "shot-sequencing"
+      ]
     },
     {
       "name": "smart-shot",
@@ -97,50 +156,102 @@
       "name": "storyboard",
       "file": "commands/storyboard.md",
       "description": "Generate storyboard frames and staging notes for a scene's shot list.",
-      "agents": ["storyboard-artist", "visual-director"],
-      "skills": ["storyboard-generation", "cinematography"]
+      "agents": [
+        "storyboard-artist",
+        "visual-director"
+      ],
+      "skills": [
+        "storyboard-generation",
+        "cinematography"
+      ]
     },
     {
       "name": "reference-plan",
       "file": "commands/reference-plan.md",
       "description": "Select the reference images each shot's generation must use, within provider limits.",
-      "agents": ["prompt-director", "continuity-supervisor"],
-      "skills": ["reference-selection"]
+      "agents": [
+        "prompt-director",
+        "continuity-supervisor"
+      ],
+      "skills": [
+        "reference-selection"
+      ]
     },
     {
       "name": "generate-keyframes",
       "file": "commands/generate-keyframes.md",
       "description": "Compile prompts and generate keyframe images for shots via an image provider.",
-      "agents": ["image-generation-specialist", "prompt-director"],
-      "skills": ["image-generation", "prompt-compilation", "reference-selection"]
+      "agents": [
+        "image-generation-specialist",
+        "prompt-director"
+      ],
+      "skills": [
+        "image-generation",
+        "prompt-compilation",
+        "reference-selection"
+      ]
     },
     {
       "name": "generate-clips",
       "file": "commands/generate-clips.md",
       "description": "Compile prompts and generate video clips for shots via a video provider.",
-      "agents": ["video-generation-specialist", "prompt-director"],
-      "skills": ["video-generation", "prompt-compilation"]
+      "agents": [
+        "video-generation-specialist",
+        "prompt-director"
+      ],
+      "skills": [
+        "video-generation",
+        "prompt-compilation"
+      ]
     },
     {
       "name": "continuity-review",
       "file": "commands/continuity-review.md",
       "description": "Audit scenes for axis, screen-direction, wardrobe, and prop continuity issues.",
-      "agents": ["continuity-supervisor", "production-qa"],
-      "skills": ["continuity-checking"]
+      "agents": [
+        "continuity-supervisor",
+        "production-qa"
+      ],
+      "skills": [
+        "continuity-checking"
+      ]
     },
     {
       "name": "edit-plan",
       "file": "commands/edit-plan.md",
       "description": "Assemble the edit plan: clip order, transitions, sound, music, and grade notes.",
-      "agents": ["editor", "sound-designer", "colorist"],
-      "skills": ["edit-planning"]
+      "agents": [
+        "editor",
+        "sound-designer",
+        "colorist"
+      ],
+      "skills": [
+        "edit-planning"
+      ]
     },
     {
       "name": "full-production",
       "file": "commands/full-production.md",
       "description": "Run the entire pipeline from script to edit plan with approval gates between phases.",
-      "agents": ["showrunner", "production-qa"],
-      "skills": ["production-orchestration"]
+      "agents": [
+        "showrunner",
+        "production-qa"
+      ],
+      "skills": [
+        "production-orchestration"
+      ]
+    },
+    {
+      "name": "humanize",
+      "file": "commands/humanize.md",
+      "description": "Rewrite any generated or existing prose so it reads human — no AI-writing tells — or audit it with --check.",
+      "agents": [
+        "script-editor",
+        "screenwriter"
+      ],
+      "skills": [
+        "text-humanization"
+      ]
     }
   ]
 }

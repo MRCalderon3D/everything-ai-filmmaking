@@ -32,6 +32,7 @@ camera can actually see.
 - narrative-structure
 - character-consistency
 - character-sheet-generation
+- text-humanization
 
 ## Collaborates With
 

@@ -37,20 +37,21 @@ character-designer, production-designer, storyboard-artist, cinematographer,
 shot-planner, continuity-supervisor, prompt-director, image-generation-specialist,
 video-generation-specialist, editor, sound-designer, colorist, production-qa.
 
-**Commands (18):** project-init, script-analyze, story-bible, character-bible,
+**Commands (19):** project-init, script-analyze, story-bible, character-bible,
 location-bible, prop-bible, style-bible, visual-development, scene-breakdown,
 shot-list, smart-shot, storyboard, reference-plan, generate-keyframes,
-generate-clips, continuity-review, edit-plan, full-production.
+generate-clips, continuity-review, edit-plan, full-production, humanize.
 
-**Skills (18):** script-analysis, narrative-structure, character-consistency,
+**Skills (19):** script-analysis, narrative-structure, character-consistency,
 character-sheet-generation, location-design, location-mapping,
 visual-style-development, scene-blocking, cinematography, shot-sequencing,
 storyboard-generation, reference-selection, prompt-compilation, image-generation,
-video-generation, continuity-checking, edit-planning, production-orchestration.
+video-generation, continuity-checking, edit-planning, production-orchestration,
+text-humanization.
 
-**Rules (20):**
+**Rules (21):**
 `common/`: source-of-truth, project-structure, naming-conventions, asset-provenance, cost-control, approval-policy.
-`writing/`: screenplay-format, narrative-continuity.
+`writing/`: screenplay-format, narrative-continuity, prose-style.
 `visual/`: character-consistency, location-consistency, spatial-continuity, visual-language.
 `image/`: image-generation.
 `video/`: video-generation, motion-language, clip-boundaries.
@@ -144,7 +145,8 @@ category: story | visual | production | generation | post
 ## Notes
 ```
 
-Skill categories: story (script-analysis, narrative-structure), visual
+Skill categories: story (script-analysis, narrative-structure,
+text-humanization), visual
 (character-consistency, character-sheet-generation, location-design,
 location-mapping, visual-style-development), production (scene-blocking,
 cinematography, shot-sequencing, storyboard-generation, reference-selection,
@@ -184,6 +186,7 @@ video-generation), post (continuity-checking, edit-planning).
 | continuity-review | continuity-supervisor, production-qa | continuity-checking |
 | edit-plan | editor, sound-designer, colorist | edit-planning |
 | full-production | showrunner, production-qa (orchestrates all others) | production-orchestration |
+| humanize | script-editor, screenwriter | text-humanization |
 
 Commands may reference additional agents/skills in prose, but `Invokes Agents`
 and `Required Skills` lists MUST contain only roster names and MUST include the
@@ -278,3 +281,6 @@ commit values.
   confirmation; dry-run is always the default.
 - **Continuity:** every shot declares its axis, screen direction, and
   enters-from/exits-to neighbors; continuity-state is updated after each scene.
+- **Prose style:** all human-facing generated text follows the
+  `text-humanization` skill by default (`rules/writing/prose-style.md`);
+  model-facing prompt text is exempt and answers to `prompt-compilation`.
