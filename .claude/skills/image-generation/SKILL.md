@@ -26,8 +26,10 @@ without spending money that wasn't approved.
 
 ## Process
 1. Pick the provider per task: reference-image support and identity fidelity
-   for keyframes; resolution and cost for plates; harness-native for zero-cost
-   drafts. Check capabilities, not vibes.
+   for keyframes; resolution and cost for plates; harness-native for
+   zero-API-cost work when the harness generates images itself (Codex:
+   gpt-image on the user's subscription — attach the plan's references as
+   input images). Check capabilities, not vibes.
 2. Dry-run first — always the default: write the request spec and a pending
    generation record, call no network, and review what would be sent.
 3. Estimate cost for the batch (count × per-image rate) and obtain explicit

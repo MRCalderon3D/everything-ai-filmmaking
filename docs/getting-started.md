@@ -155,6 +155,15 @@ Provider notes the compiler already handles for you: Veo takes cinematography
 language first; FLUX-class image models are lens-literal; Runway Gen-4 video
 prompts are motion-only — its lens look rides in the keyframe.
 
+**Zero-API-cost images:** if your harness can generate images itself — Codex
+does, with gpt-image through your subscription — set
+`default_providers.image: harness-native` (or pass
+`--provider harness-native`). The pipeline compiles the same prompt package
+and reference plan; the assistant then generates in-chat, attaching the
+reference images as inputs, saves the file under `generations/`, and
+completes the generation record. No key, no per-image spend, same
+provenance discipline.
+
 ## 7. Review and assemble
 
 ```

@@ -62,6 +62,11 @@ reference plans, and generation records around them.
 
 - Dry-run is the default; `--live` and env vars per
   `common/cost-control.md`.
+- The harness-native path (Codex generating with gpt-image on the user's
+  subscription, an MCP image tool, or a human) follows every rule above:
+  package compiled first, the plan's references attached as input images,
+  and the generation record completed after the tool call. Zero marginal
+  cost does not waive provenance, reference discipline, or approval flow.
 - Seeds MUST be recorded in the generation record whenever the provider
   exposes them; reroll attempts vary the seed deliberately and record each
   one. Model version strings are recorded exactly.

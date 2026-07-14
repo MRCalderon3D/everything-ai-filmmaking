@@ -40,7 +40,7 @@ style:                             # global visual anchors; detail lives in the 
   notes: "Sodium-vapor warmth against blue-hour shadow; rain on every exterior."
 
 default_providers:                 # default generation backend per kind
-  image: fal                       # fal | replicate | comfyui | harness-native
+  image: fal                       # fal | replicate | comfyui | harness-native (no API key — e.g. gpt-image on Codex)
   video: veo                       # veo | kling | runway | seedance | fal
   audio: elevenlabs                # elevenlabs | fal | local
 
