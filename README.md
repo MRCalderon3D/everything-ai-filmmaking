@@ -102,7 +102,7 @@ direction, neighbors), required reference assets, and generation flags — see
 agents/       17 roles: showrunner, screenwriter, visual-director, cinematographer,
               shot-planner, continuity-supervisor, prompt-director, …
 commands/     22 workflow entry points (the slash commands above)
-skills/       22 procedures: scene-blocking, cinematography, reference-selection,
+skills/       23 procedures: scene-blocking, cinematography, reference-selection,
               prompt-compilation, continuity-checking, …
 rules/        policy layers: common/ writing/ visual/ image/ video/ audio/
               + one production-type layer: cinema/ OR commercial/

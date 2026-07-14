@@ -43,12 +43,13 @@ shot-list, smart-shot, storyboard, reference-plan, generate-keyframes,
 generate-clips, continuity-review, edit-plan, full-production, humanize,
 music-brief, self-review, ingest-references.
 
-**Skills (22):** script-analysis, narrative-structure, character-consistency,
+**Skills (23):** script-analysis, narrative-structure, character-consistency,
 character-sheet-generation, location-design, location-mapping,
 visual-style-development, scene-blocking, cinematography, shot-sequencing,
 storyboard-generation, reference-selection, prompt-compilation, image-generation,
 video-generation, continuity-checking, edit-planning, production-orchestration,
-text-humanization, music-direction, self-evaluation, reference-ingestion.
+text-humanization, music-direction, self-evaluation, reference-ingestion,
+performance-direction.
 
 **Rules (26):**
 `common/`: source-of-truth, project-structure, naming-conventions, asset-provenance, cost-control, approval-policy, self-review, ask-dont-assume.
@@ -158,7 +159,7 @@ text-humanization, music-direction), visual
 (character-consistency, character-sheet-generation, location-design,
 location-mapping, visual-style-development, reference-ingestion), production (scene-blocking,
 cinematography, shot-sequencing, storyboard-generation, reference-selection,
-production-orchestration, self-evaluation), generation (prompt-compilation, image-generation,
+production-orchestration, self-evaluation, performance-direction), generation (prompt-compilation, image-generation,
 video-generation), post (continuity-checking, edit-planning).
 
 ### Rule (`rules/<layer>/<name>.md`)
@@ -185,8 +186,8 @@ video-generation), post (continuity-checking, edit-planning).
 | style-bible | visual-director, colorist | visual-style-development |
 | visual-development | visual-director, character-designer, production-designer | visual-style-development, character-sheet-generation, location-design |
 | scene-breakdown | showrunner, shot-planner | scene-blocking, narrative-structure |
-| shot-list | cinematographer, shot-planner | cinematography, shot-sequencing |
-| smart-shot | visual-director, cinematographer, shot-planner, storyboard-artist, continuity-supervisor, prompt-director | scene-blocking, cinematography, shot-sequencing, reference-selection, storyboard-generation, prompt-compilation |
+| shot-list | cinematographer, shot-planner | cinematography, shot-sequencing, performance-direction |
+| smart-shot | visual-director, cinematographer, shot-planner, storyboard-artist, continuity-supervisor, prompt-director | scene-blocking, cinematography, shot-sequencing, performance-direction, reference-selection, storyboard-generation, prompt-compilation |
 | storyboard | storyboard-artist, visual-director | storyboard-generation, cinematography |
 | reference-plan | prompt-director, continuity-supervisor | reference-selection |
 | generate-keyframes | image-generation-specialist, prompt-director | image-generation, prompt-compilation, reference-selection |

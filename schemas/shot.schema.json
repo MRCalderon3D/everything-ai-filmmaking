@@ -169,6 +169,37 @@
         }
       }
     },
+    "performance": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Acting direction per character, keyed by lowercase handle (mara for CHAR_MARA). Playable behavior only — verbs, not emotion adjectives (skills/performance-direction).",
+      "patternProperties": {
+        "^[a-z][a-z0-9_]*$": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["playing"],
+          "properties": {
+            "playing": {
+              "type": "string",
+              "minLength": 1,
+              "description": "The playable action: what the character is doing, to get what, against what resistance. Never a result ('be scared')."
+            },
+            "body": {
+              "type": "string",
+              "description": "Physicality: posture, hands, gait. Carries the performance in wide and medium shots."
+            },
+            "face": {
+              "type": "string",
+              "description": "Facial behavior, eyes first. Carries the performance in close-ups; keep the mouth almost still."
+            },
+            "intensity": {
+              "enum": ["suppressed", "contained", "open", "extreme"],
+              "description": "Expression intensity. Default contained — models render one notch hotter than asked; extreme at most once per piece."
+            }
+          }
+        }
+      }
+    },
     "blocking": {
       "type": "object",
       "additionalProperties": false,

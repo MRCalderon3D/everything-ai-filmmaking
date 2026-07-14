@@ -37,6 +37,7 @@ proposal.
 
 - cinematography
 - shot-sequencing
+- performance-direction
 
 ## Process
 

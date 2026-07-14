@@ -38,6 +38,13 @@ camera:                            # compiled directly into prompt language
     distance_m: 0.7                # travel distance for dolly/truck/pedestal/crane/arc/tracking
     speed: slow                    # slow | medium | fast
 
+performance:                       # acting direction per character — playable verbs, never emotion adjectives
+  mara:
+    playing: "confirming the suitcase is the one she lost while forcing herself not to touch it yet"
+    body: "weight shifts back half a step; hand rises then stops mid-reach"
+    face: "eyes fixed on the case, one slow blink; mouth still"
+    intensity: contained           # suppressed | contained | open | extreme — models render one notch hotter than asked
+
 blocking:                          # keys are lowercase character handles (mara = CHAR_MARA)
   character_positions:
     mara: beside_bench             # mark or landmark the character occupies

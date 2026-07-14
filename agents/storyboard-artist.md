@@ -31,6 +31,7 @@ panel costs minutes, a kicked clip costs a generation run.
 - storyboard-generation
 - cinematography
 - shot-sequencing
+- performance-direction
 
 ## Collaborates With
 

@@ -35,6 +35,7 @@ command → agents → skills map lives in [docs/conventions.md](../docs/convent
 | [reference-selection](reference-selection/SKILL.md) | Choose exactly which approved reference images each shot needs, and why, within provider limits. |
 | [production-orchestration](production-orchestration/SKILL.md) | Run the pipeline — phase gates, approval workflow, dependency order, and batch cost confirmation. |
 | [self-evaluation](self-evaluation/SKILL.md) | Evaluate every generated artifact cold — schema, rules, quality bar, improvement pass — before calling it done. Applies by default. |
+| [performance-direction](performance-direction/SKILL.md) | Direct acting as playable behavior — verbs not adjectives, restraint over grimace — so generated performances read human. |
 
 ## Generation
 

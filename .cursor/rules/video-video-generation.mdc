@@ -61,6 +61,11 @@ frames, and records around clips.
   handoff lists the exact frames and reference files to upload, and the
   generation record is completed with the downloaded clip. Keyframe
   conditioning carries the look; the pasted prompt stays motion-first.
+- Models overact by default: prompts MUST carry playable behavior from the
+  shot's `performance` block, never emotion adjectives ("terrified"), and
+  declared intensity is written contained-or-below to photograph believable
+  (`skills/performance-direction`). A clip whose acting reads cartoon is a
+  prompt defect, not a model mood.
 
 ## Start/End Frames and Reproducibility
 

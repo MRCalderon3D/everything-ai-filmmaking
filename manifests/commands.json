@@ -128,7 +128,8 @@
       ],
       "skills": [
         "cinematography",
-        "shot-sequencing"
+        "shot-sequencing",
+        "performance-direction"
       ]
     },
     {
@@ -147,6 +148,7 @@
         "scene-blocking",
         "cinematography",
         "shot-sequencing",
+        "performance-direction",
         "reference-selection",
         "storyboard-generation",
         "prompt-compilation"

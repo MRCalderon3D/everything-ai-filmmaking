@@ -60,6 +60,7 @@ prompts inherit all of it without translation loss.
 - scene-blocking
 - cinematography
 - shot-sequencing
+- performance-direction
 - reference-selection
 - storyboard-generation
 - prompt-compilation
@@ -85,8 +86,10 @@ prompts inherit all of it without translation loss.
    propose the minimum count that covers every beat's job.
 4. **Create shots.** Author `SH_<scene>_###.yaml` per shot in cut order:
    narrative purpose (one sentence, mandatory), subject and action, beat
-   references, and blocking excerpt. A shot that only "looks good" is cut
-   here.
+   references, blocking excerpt, and a `performance` block per on-screen
+   character — playable action, body, face, intensity (contained by
+   default; verbs, never emotion adjectives). A shot that only "looks good"
+   is cut here.
 5. **Assign duration.** Distribute `target_duration` across shots by
    dramatic weight, not evenly — reaction shots breathe, transit shots are
    clipped. Add head/tail handles per shot, then check each shot's total

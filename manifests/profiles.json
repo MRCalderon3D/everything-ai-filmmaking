@@ -68,7 +68,8 @@
         "text-humanization",
         "music-direction",
         "self-evaluation",
-        "reference-ingestion"
+        "reference-ingestion",
+        "performance-direction"
       ]
     },
     "writing-room": {
@@ -153,7 +154,8 @@
         "production-orchestration",
         "text-humanization",
         "self-evaluation",
-        "reference-ingestion"
+        "reference-ingestion",
+        "performance-direction"
       ]
     },
     "generation": {

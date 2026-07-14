@@ -135,6 +135,15 @@ function composePrompt(shot, bibles, providerId, kind) {
   if (shot.narrative && shot.narrative.purpose) parts.push(shot.narrative.purpose);
   const blocking = shot.blocking || {};
   for (const action of blocking.actions || []) parts.push(action);
+  // Performance compiles as visible behavior, never emotion labels
+  // (skills/performance-direction): the playable action + body + face.
+  for (const [handle, perf] of Object.entries(shot.performance || {})) {
+    const bits = [perf.playing, perf.body, perf.face].filter(Boolean);
+    if (!bits.length) continue;
+    const held = perf.intensity && perf.intensity !== 'open'
+      ? `${perf.intensity} expression, ` : '';
+    parts.push(`${handle}: ${held}${bits.join('; ')}.`);
+  }
   for (const [handle, target] of Object.entries(blocking.eyelines || {})) {
     parts.push(`${handle} looks at ${humanize(target)}.`);
   }

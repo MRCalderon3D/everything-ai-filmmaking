@@ -133,6 +133,12 @@
       "file": "skills/reference-ingestion/SKILL.md",
       "description": "Analyze user-supplied reference images and turn what they show into bible entries, LOOK assets, and registered reference assets the pipeline can condition on.",
       "category": "visual"
+    },
+    {
+      "name": "performance-direction",
+      "file": "skills/performance-direction/SKILL.md",
+      "description": "Direct character acting as playable, visible behavior — verbs not adjectives, restraint over grimace — so generated performances read human instead of cartoon.",
+      "category": "production"
     }
   ]
 }

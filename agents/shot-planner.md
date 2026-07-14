@@ -33,6 +33,7 @@ on a shot without asking a question.
 - shot-sequencing
 - cinematography
 - narrative-structure
+- performance-direction
 
 ## Collaborates With
 

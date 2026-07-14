@@ -32,6 +32,7 @@ shot files, keeping one writer per artifact.
 - cinematography
 - shot-sequencing
 - scene-blocking
+- performance-direction
 
 ## Collaborates With
 

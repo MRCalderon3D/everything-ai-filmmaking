@@ -31,8 +31,8 @@ assert.deepStrictEqual(smartShot.agents, [
   'continuity-supervisor', 'prompt-director',
 ]);
 assert.deepStrictEqual(smartShot.skills, [
-  'scene-blocking', 'cinematography', 'shot-sequencing', 'reference-selection',
-  'storyboard-generation', 'prompt-compilation',
+  'scene-blocking', 'cinematography', 'shot-sequencing', 'performance-direction',
+  'reference-selection', 'storyboard-generation', 'prompt-compilation',
 ]);
 const refPlan = commands.find((c) => c.name === 'reference-plan');
 assert.deepStrictEqual(refPlan.agents, ['prompt-director', 'continuity-supervisor']);
@@ -40,7 +40,7 @@ assert.deepStrictEqual(refPlan.skills, ['reference-selection']);
 
 // skills.json
 const skills = manifests['skills.json'].skills;
-assert.strictEqual(skills.length, 22, `expected 22 skills, got ${skills.length}`);
+assert.strictEqual(skills.length, 23, `expected 23 skills, got ${skills.length}`);
 const categories = ['story', 'visual', 'production', 'generation', 'post'];
 for (const s of skills) {
   assert.ok(s.name && s.file && s.description, `skill entry incomplete: ${s.name}`);
@@ -76,7 +76,7 @@ assert.deepStrictEqual(Object.keys(profiles).sort(),
   ['full', 'generation', 'previs', 'writing-room']);
 assert.strictEqual(profiles.full.commands.length, 22);
 assert.strictEqual(profiles.full.agents.length, 17);
-assert.strictEqual(profiles.full.skills.length, 22);
+assert.strictEqual(profiles.full.skills.length, 23);
 assert.ok(profiles['writing-room'].commands.includes('story-bible'));
 assert.ok(!profiles['writing-room'].commands.includes('generate-clips'));
 assert.ok(profiles.previs.commands.includes('storyboard'));
