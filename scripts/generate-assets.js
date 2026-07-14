@@ -36,6 +36,10 @@ Options:
   --shot <shot.yaml> Generate for this shot's packages (<scene>/prompts/*/<SHOT>.yaml).
   --scene-dir <dir>  Generate for every package under <dir>/prompts/.
   --provider <id>    Only packages compiled for this provider.
+  --asset <ASSET_ID> Asset scope for packages without a shot (masters,
+                     reference sheets): records become GEN_<asset>_<attempt##>
+                     under generations/<ASSET_ID>/. Usually unnecessary —
+                     asset-scoped packages carry their own asset field.
   --kind <kind>      Provider kind; required only when the provider id is
                      ambiguous (fal serves image, video, and audio).
   --live             Actually call the provider API (default: DRY RUN).
@@ -154,12 +158,23 @@ async function runOne({ file, pkg }, flags, live) {
   const { module: provider } = loadProvider(kind, providerId);
 
   const spec = provider.compile(pkg);
-  const shotId = pkg.shot || (spec.meta && spec.meta.shot_id) || 'SH_000_000';
-  const dir = recordDir(file, shotId);
-  const attempt = nextAttempt(dir, shotId);
+  const shotId = pkg.shot || (spec.meta && spec.meta.shot_id) || null;
+  const assetId = (flags.asset && flags.asset !== true && String(flags.asset)) ||
+    pkg.asset || null;
+  // Scope: shot when the package has one, else asset (masters/reference
+  // sheets). Never invent a pseudo-shot like SH_000_000.
+  const scope = shotId || assetId;
+  if (!scope) {
+    console.warn(`  skip ${toPosix(file)}: package has neither shot nor asset scope — set pkg.shot or pkg.asset, or pass --asset <ASSET_ID>`);
+    return null;
+  }
+  const dir = recordDir(file, scope);
+  const attempt = nextAttempt(dir, scope);
   const cost = estimateCost(pkg, kind, providerId);
   spec.meta = Object.assign({}, spec.meta, {
-    record_id: `GEN_${shotId}_${String(attempt).padStart(2, '0')}`,
+    record_id: `GEN_${scope}_${String(attempt).padStart(2, '0')}`,
+    shot_id: shotId,
+    asset_id: shotId ? (spec.meta && spec.meta.asset_id) || null : assetId,
     cost_estimate: cost === null ? 0 : cost,
   });
 

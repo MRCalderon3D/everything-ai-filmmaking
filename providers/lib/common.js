@@ -74,14 +74,18 @@ function checkCapabilities(pkg, capabilities, providerId) {
  */
 function makeRecord(requestSpec, extra = {}) {
   const meta = requestSpec.meta || {};
-  const shot = meta.shot_id || 'SH_000_000';
+  // Scope: shot generations carry shot_id; asset-scoped generations
+  // (masters, reference sheets) carry asset_id with shot null.
+  const shot = meta.shot_id || null;
+  const asset = meta.asset_id || null;
+  const scope = shot || asset || 'SH_000_000';
   const record = {
-    id: meta.record_id || `GEN_${shot}_00`,
+    id: meta.record_id || `GEN_${scope}_00`,
     shot,
     provider: requestSpec.provider,
     model: requestSpec.model,
     kind: requestSpec.kind,
-    prompt_package: meta.prompt_package_id || `PP_${shot}_${String(requestSpec.provider || 'X').toUpperCase().replace(/[^A-Z0-9_-]+/g, '-')}`,
+    prompt_package: meta.prompt_package_id || `PP_${scope}_${String(requestSpec.provider || 'X').toUpperCase().replace(/[^A-Z0-9_-]+/g, '-')}`,
     request: {
       summary: `${requestSpec.method || 'LOCAL'} ${requestSpec.endpoint || '(no endpoint — manual/harness step)'} model=${requestSpec.model}`,
       payload_hash: hashObject(requestSpec.body || {}),
@@ -95,6 +99,7 @@ function makeRecord(requestSpec, extra = {}) {
     status: 'dry_run',
     created_at: new Date().toISOString(),
   };
+  if (asset) record.asset = asset;
   if (requestSpec.endpoint) record.request.endpoint = requestSpec.endpoint;
   return Object.assign(record, extra);
 }
