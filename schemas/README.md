@@ -44,8 +44,8 @@ file against its schema; a file that does not validate does not ship.
 | Asset | `^(CHAR|LOC|PROP|LOOK)_[A-Z][A-Z0-9_]*(_V\d{2})?$` | `CHAR_MARA_FACE_MASTER_V03` |
 | Camera station | `^LOC_[A-Z][A-Z0-9_]*_C\d+$` | `LOC_STATION_C1` |
 | Axis | `^AXIS_SC\d{3}_[A-Z]$` | `AXIS_SC004_A` |
-| Prompt package | `^PP_SH_\d{3}_\d{3}_[A-Z0-9][A-Z0-9_-]*$` | `PP_SH_004_002_VEO` |
-| Generation record | `^GEN_SH_\d{3}_\d{3}_\d{2}$` | `GEN_SH_004_002_01` |
+| Prompt package | `^PP_(SH_\d{3}_\d{3}\|(CHAR\|LOC\|PROP\|LOOK)_[A-Z][A-Z0-9_]*)_[A-Z0-9][A-Z0-9_-]*$` | `PP_SH_004_002_VEO`, `PP_CHAR_MARA_EXPRESSION_HARNESS-NATIVE` |
+| Generation record | `^GEN_(SH_\d{3}_\d{3}\|(CHAR\|LOC\|PROP\|LOOK)_[A-Z][A-Z0-9_]*)_\d{2}$` | `GEN_SH_004_002_01`, `GEN_CHAR_MARA_EXPRESSION_01` |
 
 ## Design decisions
 

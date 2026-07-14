@@ -40,8 +40,8 @@
     },
     "prompt_package": {
       "type": "string",
-      "pattern": "^PP_SH_\\d{3}_\\d{3}_[A-Z0-9][A-Z0-9_-]*$",
-      "description": "Prompt package this attempt was generated from."
+      "pattern": "^PP_(SH_\\d{3}_\\d{3}|(CHAR|LOC|PROP|LOOK)_[A-Z][A-Z0-9_]*)_[A-Z0-9][A-Z0-9_-]*$",
+      "description": "Prompt package this attempt was generated from (shot- or asset-scoped)."
     },
     "request": {
       "type": "object",

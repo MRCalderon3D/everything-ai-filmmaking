@@ -9,13 +9,20 @@
   "properties": {
     "id": {
       "type": "string",
-      "pattern": "^PP_SH_\\d{3}_\\d{3}_[A-Z0-9][A-Z0-9_-]*$",
-      "description": "Package ID: PP_<shot>_<PROVIDER-TAG> (e.g. PP_SH_004_002_VEO)."
+      "pattern": "^PP_(SH_\\d{3}_\\d{3}|(CHAR|LOC|PROP|LOOK)_[A-Z][A-Z0-9_]*)_[A-Z0-9][A-Z0-9_-]*$",
+      "description": "Package ID: PP_<shot>_<PROVIDER-TAG> for shot packages (e.g. PP_SH_004_002_VEO), or PP_<asset-id>_<PROVIDER-TAG> for asset-scoped packages such as masters (e.g. PP_CHAR_MARA_EXPRESSION_HARNESS-NATIVE)."
     },
     "shot": {
+      "oneOf": [
+        { "type": "string", "pattern": "^SH_\\d{3}_\\d{3}$" },
+        { "type": "null" }
+      ],
+      "description": "Shot this package generates; null for asset-scoped packages (masters, reference sheets), which set asset instead."
+    },
+    "asset": {
       "type": "string",
-      "pattern": "^SH_\\d{3}_\\d{3}$",
-      "description": "Shot this package generates."
+      "pattern": "^(CHAR|LOC|PROP|LOOK)_[A-Z][A-Z0-9_]*$",
+      "description": "Asset this package generates (asset-scoped packages); omit for shot packages."
     },
     "provider": {
       "type": "string",
