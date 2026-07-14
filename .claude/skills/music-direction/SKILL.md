@@ -39,6 +39,12 @@ scoring a finished cut as an afterthought.
      points where a specific lyric lands on a specific image.
    - **Minimal/solo.** One instrument creates space and intimacy; the silence
      between notes is part of the storytelling.
+   - **None/diegetic-only.** No score at all: scene sound — ambience, action,
+     interference — carries everything. The natural strategy for found
+     footage and witness-camera fiction, where a score would break the
+     reality claim. It is a deliberate cue (`none_diegetic`), not an
+     omission: declaring it early tells the sound designer that ambience and
+     effects ARE the soundtrack and must be designed with that weight.
 2. For song-driven strategies, refuse on-the-nose lyric/image pairing: a lyric
    saying "freedom" over a truck in an open landscape is a cliché with no
    payoff. Find the unexpected way in or change the track.

@@ -8,9 +8,10 @@ description: Choose the music strategy and write the cue-level music brief befor
 
 Make music a development decision instead of a postproduction afterthought:
 choose a strategy per piece or per sequence — song-as-concept, counterpoint,
-support, lyric-as-narrative, minimal/solo — define cues with tempo/energy
-maps and licensing status, and hand the result to shot planning and the edit
-as a binding brief.
+support, lyric-as-narrative, minimal/solo, or none/diegetic-only (no score;
+scene sound carries everything) — define cues with tempo/energy maps and
+licensing status, and hand the result to shot planning and the edit as a
+binding brief.
 
 ## Use When
 

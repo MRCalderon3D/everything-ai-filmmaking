@@ -42,6 +42,7 @@ production's, keep the structure.
   `/reference-plan`, `/generate-keyframes`, …) rather than copied from
   templates.
 - `looks/` holds starter `LOOK_*` presets (analog VHS, documentary,
-  surrealist, classic cinematic) with model-ready prompt vocabulary. They are
+  surrealist, classic cinematic, found-footage phone) with model-ready
+  prompt vocabulary. They are
   schema-less seeds for the style bible: copy one, adapt it, and promote it
   through draft → review → approved like any reference asset.

@@ -36,3 +36,4 @@ plan, not into prompts.
 | `documentary-observational.yaml` | `LOOK_DOC_OBSERVATIONAL_V01` | Available light, handheld imperfection, un-posed realism. |
 | `conceptual-surrealist.yaml` | `LOOK_CONCEPTUAL_SURREALIST_V01` | Deliberate impossibility rendered matter-of-factly, in service of one idea. |
 | `classic-cinematic.yaml` | `LOOK_CLASSIC_CINEMATIC_V01` | Anamorphic character, motivated light, controlled palette, filmic texture. |
+| `found-footage-phone.yaml` | `LOOK_FOUND_FOOTAGE_PHONE_V01` | Diegetic phone camera — vertical, deep focus, autofocus hunt, digital noise. |

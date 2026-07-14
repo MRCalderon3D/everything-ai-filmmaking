@@ -169,8 +169,8 @@
   },
   "$defs": {
     "strategy": {
-      "enum": ["song_as_concept", "counterpoint", "support", "lyric_narrative", "minimal_solo"],
-      "description": "Music strategy: song_as_concept (the track is the blueprint), counterpoint (music pulls against the visuals), support (mood-matching, the default), lyric_narrative (lyrics carry dialogue weight), minimal_solo (one instrument, silence as storytelling)."
+      "enum": ["song_as_concept", "counterpoint", "support", "lyric_narrative", "minimal_solo", "none_diegetic"],
+      "description": "Music strategy: song_as_concept (the track is the blueprint), counterpoint (music pulls against the visuals), support (mood-matching, the default), lyric_narrative (lyrics carry dialogue weight), minimal_solo (one instrument, silence as storytelling), none_diegetic (no score at all — scene sound carries everything; a deliberate choice, not an omission)."
     },
     "sceneId": {
       "type": "string",

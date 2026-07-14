@@ -108,8 +108,8 @@ that reads machine-made.
 
 Bibles are the source of truth: prompts are compiled *from* them, never
 freehanded. Starter look presets live in `templates/looks/` (analog VHS,
-documentary, surrealist, classic cinematic) — copy one into your style bible
-and adapt it.
+documentary, surrealist, classic cinematic, found-footage phone) — copy one
+into your style bible and adapt it.
 
 **Have your own material?** Drop it into `production/references/inbox/` —
 style frames, character lookalikes, location photos, mood boards, and also

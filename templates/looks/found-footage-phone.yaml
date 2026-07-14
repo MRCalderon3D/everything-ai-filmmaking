@@ -1,0 +1,55 @@
+# LOOK preset — found-footage phone. Copy into your style bible, adapt,
+# then promote per templates/looks/README.md. No schema; validate.js skips it.
+
+id: LOOK_FOUND_FOOTAGE_PHONE_V01
+name: Found-Footage Phone
+intent: "Everything reads as shot on a character's phone, in the moment, by someone who is not a filmmaker. Use for found footage, fake streams and stories, witness video, and social-native horror or drama where the camera itself is diegetic."
+status: draft
+
+prompt_vocabulary:
+  - vertical smartphone video footage
+  - shot on a phone camera, wide fixed lens look
+  - deep depth of field, everything in focus
+  - handheld with natural walking shake and grip adjustments
+  - autofocus hunting and refocusing mid-shot
+  - auto-exposure adapting with visible brightness shifts
+  - digital noise in low light
+  - video compression artifacts and slight banding
+  - blown highlights from streetlights and screens
+  - lens smudge flare and fingerprint haze
+  - accidental imperfect framing, horizon slightly off
+  - motion blur from sudden camera whips
+
+negative_vocabulary:
+  - cinematic anamorphic look
+  - shallow depth of field and creamy bokeh
+  - stabilized gimbal-smooth movement
+  - professional color grading
+  - film grain and halation
+  - deliberate symmetrical composition
+
+grade_notes: "No grade at all is the grade: consumer auto-processing, oversharpened edges, slightly crushed blacks in night footage, white balance drifting with the light sources. Any hint of a LUT breaks the illusion."
+
+pairs_with:
+  production_types:
+    - commercial
+    - cinema
+  registers:
+    - fake live streams, stories, and witness footage
+    - social-native vertical horror and thrillers
+    - unboxing-real, phone-diary and vlog fiction
+  typical_genres:
+    - found-footage horror
+    - mockumentary
+    - social realism
+
+# Craft notes for this look (they override the usual cinema grammar):
+#  - The camera is a CHARACTER'S phone: one wide focal (~24mm equivalent);
+#    "zoom" is digital crop with quality loss, never a lens change.
+#  - Composition rules relax on purpose: imperfect framing IS the look, but
+#    the subject must still read instantly at feed size.
+#  - Movement vocabulary shrinks to handheld and whips; dollies, cranes, and
+#    orbits would break the fiction (rules/video/motion-language.md still
+#    governs what models execute badly).
+#  - Digital glitches and signal interference can be narrative devices — and
+#    convenient seams between generated clips.
