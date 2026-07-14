@@ -137,7 +137,7 @@ generation requires the provider's env var and an explicit `--live` flag:
 | fal | image, video, audio | `FAL_KEY` |
 | replicate | image | `REPLICATE_API_TOKEN` |
 | comfyui | image | `COMFYUI_HOST` |
-| harness-native | image | — (your assistant's own tool — on Codex, gpt-image via your subscription: no API key, no per-call cost) |
+| harness-native | image | — (your assistant's own tool — on Codex, gpt-image via your subscription — or hand generation in any image UI) |
 | veo | video | `GOOGLE_API_KEY` |
 | kling | video | `KLING_ACCESS_KEY`, `KLING_SECRET_KEY` |
 | runway | video | `RUNWAY_API_KEY` |

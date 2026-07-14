@@ -185,6 +185,13 @@ upload with their exact file paths in priority order, duration, and aspect
 ratio. Paste, generate, download the clip into the shot's `generations/`
 directory, and the record is completed like any API run.
 
+The same manual pattern covers every media kind, tool-agnostic: `manual`
+for video (any web UI), `harness-native` for images (in-chat generation, an
+MCP tool, or hand generation in any image UI), and `local` for audio (DAW,
+recorded VO, licensed music). In all three, the scaffold compiles the full
+spec, hands it over, and the downloaded result completes its provenance
+record.
+
 ## 7. Review and assemble
 
 ```
