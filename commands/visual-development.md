@@ -74,6 +74,11 @@ every later shot conditions on the masters approved here.
    (`draft`/`review`); what approving it unlocks (which downstream assets
    condition on it); and how to reject ("say what's wrong; two re-roll
    rounds before we fix the bible instead").
+8. **After registering an approval, keep moving.** State what the approval
+   unlocked and proceed automatically to the next planned master (zero-cost
+   providers need no confirmation, `common/cost-control.md`). The session
+   pauses ONLY for review verdicts and paid batches — never to await a
+   nudge after an approval with planned work remaining.
 
 ## Outputs
 
