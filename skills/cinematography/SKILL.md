@@ -31,10 +31,16 @@ what the beat means — chosen deliberately, never by default.
    high to diminish or map, dutch only when the world itself tilts. Default
    height is subject eye level; shooting a child or a seated character means
    lowering the camera, not tilting down.
-4. Choose the lens by its argument: wide (18–28mm) embeds subject in context
-   and stretches space; 50mm renders human-neutral perspective; long (85mm+)
-   compresses space, isolates the subject, and flattens pursuit. Never mix
-   focal grammar within a matched pair of reverses.
+4. Choose the lens by its argument, from inside the project lens kit:
+   ultra-wides (<24mm) are for vistas and scale — they distort faces at close
+   range; 28–35mm is the workhorse wide that embeds the subject in context
+   and survives tight spaces; 50mm renders human-neutral perspective; 85mm is
+   the compressing beauty lens for close-ups; 100mm+ stacks planes for
+   isolation and surveillance. Declare depth of field when it argues
+   (shallow isolates, deep focus keeps both planes in play). Never mix focal
+   grammar within a matched pair of reverses, and never reach outside the
+   kit without an approved style deviation — whole features have been shot
+   on one lens; coherence comes from the limit.
 5. Motivate movement or lock it off: push-in for realization, pull-back for
    revelation of context or abandonment, pan/track to follow intent, handheld
    for instability, dolly-past for time and detachment. Unmotivated movement

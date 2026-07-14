@@ -41,6 +41,11 @@ reference plans, and generation records around them.
 - A package binds: shot or asset ID, prompt text, negative prompt where
   supported, reference image list from the plan, aspect ratio, resolution,
   and provider parameters. Its hash is what generation records cite.
+- Image prompts carry the full lens language (`scripts/lib/lens-language.js`):
+  FLUX-class models are lens-literal — a concrete "35mm lens, f/1.4, shallow
+  depth of field" outperforms vague quality words — and keyframes are where
+  the lens look MUST live for keyframe-conditioned video providers that
+  ignore lens tokens in their own prompts.
 - Aspect ratio and resolution MUST be within the provider's declared
   `capabilities`; `compile` MUST fail on unsupported values rather than
   silently clamp.

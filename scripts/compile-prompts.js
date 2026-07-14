@@ -17,6 +17,8 @@ const { loadProvider } = require('./lib/providers');
 const { parseArgs, helpIfRequested, fatal } = require('./lib/cli');
 const yaml = require('./lib/yaml');
 const schemaLib = require('./lib/schema');
+const cameraMoves = require('./lib/camera-moves');
+const lensLanguage = require('./lib/lens-language');
 const { hashObject } = require('../providers/lib/common');
 
 const HELP = `
@@ -32,6 +34,8 @@ Options:
   --kind <kind>      Provider kind (default: video).
   --scene-dir <dir>  Scene directory (default: parent of the shot's shots/ dir).
   --plan <file>      Reference plan (default: <scene>/references/<SHOT_ID>.reference-plan.yaml).
+  --allow-off-kit    Compile even when the shot's lens_mm is outside the
+                     project lens_kit (requires an approved style deviation).
   --help             Show this help.
 
 Output: <scene>/prompts/<provider>/<SHOT_ID>.yaml (prompt-package schema,
@@ -102,17 +106,26 @@ function styleLine(project) {
 }
 
 /** Compose the prompt text from the shot + bibles. */
-function composePrompt(shot, bibles) {
+function composePrompt(shot, bibles, providerId, kind) {
   const parts = [];
   const cam = shot.camera || {};
   const camBits = [humanize(cam.shot_size)];
   if (cam.angle) camBits.push(`${humanize(cam.angle)} angle`);
-  if (cam.lens_mm) camBits.push(`${cam.lens_mm}mm lens`);
+  // Lens language is provider-gated: Runway Gen-4 video prompts are
+  // motion-only (the look lives in the keyframe); everyone else takes lens
+  // tokens in text (see scripts/lib/lens-language.js and
+  // docs/research/lens-language.md).
+  if (lensLanguage.lensPolicy(providerId, kind) === 'text') {
+    const lensKit = bibles.project && bibles.project.lens_kit;
+    const lensPhrase = lensLanguage.describeLens(cam, lensKit);
+    if (lensPhrase) camBits.push(lensPhrase);
+  }
   const move = cam.movement || {};
-  if (move.type && move.type !== 'static') {
-    camBits.push(`${move.speed ? move.speed + ' ' : ''}${humanize(move.type)}${move.distance_m ? ` (${move.distance_m}m)` : ''}`);
-  } else if (move.type === 'static') {
-    camBits.push('locked-off camera');
+  const movePhrase = cameraMoves.describe(move);
+  if (movePhrase) {
+    camBits.push(movePhrase);
+  } else if (move.type) {
+    camBits.push(`${move.speed ? move.speed + ' ' : ''}${humanize(move.type)}`);
   }
   parts.push(`${camBits.filter(Boolean).join(', ')}.`);
   if (shot.narrative && shot.narrative.purpose) parts.push(shot.narrative.purpose);
@@ -179,7 +192,7 @@ function buildPromptPackage(shot, plan, refsManifest, providerId, kind, capabili
     shot: shot.id,
     provider: providerId,
     model: 'pending',
-    prompt: composePrompt(shot, bibles),
+    prompt: composePrompt(shot, bibles, providerId, kind),
     parameters: {
       aspect_ratio: (bibles.project && bibles.project.aspect_ratio) || '16:9',
     },
@@ -233,6 +246,13 @@ function main() {
   const prodRoot = findProductionRoot(sceneDir);
   const refsManifest = prodRoot ? safeYaml(path.join(prodRoot, 'references', 'manifest.yaml')) : null;
   const project = prodRoot ? safeYaml(path.join(prodRoot, 'project.yaml')) : null;
+
+  const kitCheck = lensLanguage.checkKit(shot.camera, project && project.lens_kit);
+  if (!kitCheck.ok) {
+    if (flags['allow-off-kit']) console.warn(`warning: ${kitCheck.message}`);
+    else fatal(kitCheck.message);
+  }
+
   const bibles = { project, characterLines: [], locationLine: null, styleLine: styleLine(project) };
   for (const charId of shotCharacterIds(shot)) {
     const line = characterLine(prodRoot, charId);

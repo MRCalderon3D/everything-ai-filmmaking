@@ -50,6 +50,12 @@ frames, and records around clips.
   re-plan the boundary.
 - Audio-generating providers have audio disabled unless the shot explicitly
   plans generated audio (see `audio/` rules).
+- Lens language is provider-gated (`scripts/lib/lens-language.js`): Veo-class
+  providers take lens/focus tokens at the head of the prompt; keyframe-driven
+  providers like Runway Gen-4 get motion-only prompts — their vendor guide
+  warns that restating image-borne visual attributes degrades motion, so the
+  lens look MUST be baked into the conditioning keyframe, never repeated in
+  the video prompt.
 
 ## Start/End Frames and Reproducibility
 

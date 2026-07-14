@@ -95,22 +95,44 @@
           "pattern": "^LOC_[A-Z][A-Z0-9_]*_C\\d+$",
           "description": "Optional camera station from the location map this shot is taken from."
         },
+        "lens_type": {
+          "enum": ["spherical", "anamorphic", "macro", "tilt_shift", "fisheye"],
+          "description": "Optical family. Defaults to the project lens_kit's type (spherical when unset). Anamorphic shots record their squeeze in anamorphic_squeeze."
+        },
+        "anamorphic_squeeze": {
+          "enum": [1.33, 1.5, 1.65, 1.8, 2],
+          "description": "Anamorphic squeeze ratio — anamorphic is a family of geometries, not one look. Only meaningful when lens_type is anamorphic."
+        },
+        "t_stop": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Aperture as a T-stop (e.g. 1.4, 2.8, 8). Drives depth-of-field language in compiled prompts."
+        },
+        "depth_of_field": {
+          "enum": ["shallow", "medium", "deep"],
+          "description": "Narrative depth-of-field intent: shallow isolates, deep keeps foreground and background in dramatic play. Compiled into prompt language for providers that honor it."
+        },
         "movement": {
           "type": "object",
           "additionalProperties": false,
           "required": ["type"],
           "properties": {
             "type": {
-              "enum": ["static", "pan", "tilt", "dolly_in", "dolly_out", "truck", "crane", "handheld", "steadicam", "zoom", "arc"]
+              "enum": ["static", "pan", "whip_pan", "tilt", "dolly_in", "dolly_out", "push_past", "truck", "pedestal", "tracking", "crane", "handheld", "steadicam", "zoom", "crash_zoom", "arc", "orbit", "fpv", "snorricam", "infinite_zoom", "earth_zoom_out", "pass_through"],
+              "description": "One primary camera move per shot (rules/video/motion-language.md). infinite_zoom, earth_zoom_out, and pass_through are AI-native devices requiring a declared motivation; whip_pan and crash_zoom are high-risk on current models."
+            },
+            "direction": {
+              "enum": ["left", "right", "up", "down", "in", "out", "clockwise", "counterclockwise"],
+              "description": "Direction for moves that need one: left/right (pan, whip_pan, truck, tracking), up/down (tilt, pedestal, crane), in/out (zoom, crash_zoom), clockwise/counterclockwise (arc, orbit). Omit for moves whose type already encodes it (dolly_in/dolly_out) or that have none (static, handheld, steadicam)."
             },
             "distance_m": {
               "type": "number",
               "minimum": 0,
-              "description": "Travel distance in meters for dolly/truck/crane/arc moves."
+              "description": "Travel distance in meters for dolly/truck/pedestal/crane/arc/tracking moves."
             },
             "degrees": {
               "type": "number",
-              "description": "Sweep in degrees for pan/tilt/arc moves."
+              "description": "Sweep in degrees for pan/tilt/arc/orbit moves."
             },
             "speed": {
               "enum": ["slow", "medium", "fast"]

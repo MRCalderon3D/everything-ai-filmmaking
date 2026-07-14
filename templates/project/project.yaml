@@ -24,6 +24,13 @@ deliverables:                      # delivery variants — REQUIRED for commerci
 #    duration_seconds_max: 30
 #    notes: "Safe area for UI overlays; must read with sound off."
 
+lens_kit:                          # the project's finite lens discipline — shots must stay inside it
+  focal_lengths_mm: [28, 50, 85]   # allowed focals (full-frame equivalent); single-lens projects are legitimate
+  lens_type: spherical             # spherical | anamorphic | macro | tilt_shift | fisheye
+  # anamorphic_squeeze: 2          # required when lens_type is anamorphic (1.33 | 1.5 | 1.65 | 1.8 | 2)
+  character: "vintage warmth, gentle halation, soft highlight roll-off"
+  notes: "28 for the station's geography, 50 for Mara neutral, 85 for the suitcase discoveries."
+
 style:                             # global visual anchors; detail lives in the style bible
   look_refs:                       # approved LOOK_* style reference assets
     - LOOK_NOIR_NIGHT_V01

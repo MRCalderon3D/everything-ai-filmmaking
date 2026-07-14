@@ -77,6 +77,36 @@
         "audio": { "enum": ["elevenlabs", "fal", "local"] }
       }
     },
+    "lens_kit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["focal_lengths_mm"],
+      "description": "The project's lens discipline: the finite set of focal lengths shots may use, plus the kit's optical family and character. Limiting the kit is how real productions build visual coherence; shots citing an off-kit focal length are a marked style event needing approval.",
+      "properties": {
+        "focal_lengths_mm": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "number", "exclusiveMinimum": 0 },
+          "description": "Allowed focal lengths in full-frame-equivalent millimeters (e.g. [28, 50, 85]). Single-lens projects are legitimate."
+        },
+        "lens_type": {
+          "enum": ["spherical", "anamorphic", "macro", "tilt_shift", "fisheye"],
+          "description": "The kit's default optical family; individual shots may override with approval."
+        },
+        "anamorphic_squeeze": {
+          "enum": [1.33, 1.5, 1.65, 1.8, 2],
+          "description": "Squeeze ratio when lens_type is anamorphic."
+        },
+        "character": {
+          "type": "string",
+          "description": "The glass's rendering character in prompt-ready language (e.g. \"vintage Cooke warmth, gentle halation, soft roll-off\" or \"modern clinical sharpness\")."
+        },
+        "notes": {
+          "type": "string",
+          "description": "Why this kit: the dramatic argument for the range and its limits."
+        }
+      }
+    },
     "deliverables": {
       "type": "array",
       "description": "Delivery variants. REQUIRED by rules/commercial/platform-deliverables.md when production_type is commercial; optional single-entry list for cinema. Each shot can carry per-deliverable reframing notes.",

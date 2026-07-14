@@ -79,3 +79,11 @@ inputs always compile to the same prompt.
 `scripts/compile-prompts.js` automates this procedure; manual compilation must
 follow the same rules. If a prompt keeps failing, the defect is upstream — in
 the bible, plan, or shot — and that is where the edit goes.
+
+Lens tokens are provider-gated per the vendors' own guides
+(`scripts/lib/lens-language.js`, `docs/research/lens-language.md`): Veo wants
+cinematography language — including lens and focus — at the head of the
+prompt; FLUX-class image models are lens-literal (numeric focal lengths and
+f-stops measurably shape output); Runway Gen-4 video prompts are motion-only,
+so its lens look is carried entirely by the conditioning keyframe. The
+compiler applies these policies; never hand-add lens text against them.

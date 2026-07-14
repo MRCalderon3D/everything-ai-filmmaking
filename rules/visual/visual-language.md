@@ -47,9 +47,24 @@ shot planning, and the look constraints compiled into every prompt package.
 
 ## Lens and Shot-Size Grammar
 
-- The style bible assigns a working lens range and what each end means
+- The project MUST declare a `lens_kit` in `project.yaml`: the finite set of
+  focal lengths shots may use, the kit's optical family (spherical or
+  anamorphic with its squeeze ratio), and its rendering character. Limiting
+  the kit is how productions build visual coherence — whole features have
+  been shot on a single lens; three to five focal lengths is a generous kit.
+- Shots MUST declare a `lens_mm` from the kit. An off-kit lens is a marked
+  style event: approved in the style bible first, compiled only with
+  `--allow-off-kit`. `scripts/compile-prompts.js` refuses off-kit shots
+  otherwise.
+- The style bible assigns what each end of the kit means
   (e.g. wide = isolation in space, long = compression and surveillance).
   Shots declare a lens consistent with that grammar.
+- Anamorphic is a family, not a look: record the squeeze ratio. Its traits
+  (oval bokeh, streak flares, cylindrical wides) and costs (breathing, edge
+  softness) are kit-level decisions, never per-shot whims.
+- Depth of field is narrative language: shallow isolates, deep focus keeps
+  fore- and background in dramatic play. Shots declare `depth_of_field`
+  intent when it matters; the default is unmarked.
 - Shot sizes follow a declared dramatic logic: what earns a close-up, what
   wides are for, default conversational coverage size. Escalation to closer
   sizes SHOULD track rising stakes within a scene.

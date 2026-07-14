@@ -21,11 +21,16 @@ camera:                            # compiled directly into prompt language
   shot_size: medium_close_up       # extreme_wide|wide|full|medium_wide|medium|medium_close_up|close_up|extreme_close_up|insert|over_the_shoulder
   angle: three_quarter             # front|three_quarter|profile|three_quarter_back|back|high_angle|low_angle|overhead|dutch
   height_m: 1.55                   # lens height above floor (eye level)
-  lens_mm: 50                      # full-frame-equivalent focal length
+  lens_mm: 50                      # full-frame-equivalent focal length — must be in the project lens_kit
+  # lens_type: anamorphic          # optional override of the kit's family (needs approval)
+  # anamorphic_squeeze: 2          # squeeze ratio when anamorphic (1.33|1.5|1.65|1.8|2)
+  # t_stop: 2.8                    # aperture — drives depth-of-field prompt language
+  # depth_of_field: shallow        # shallow | medium | deep — declare only when it argues
   station: LOC_STATION_C1          # optional camera station from the location map
   movement:
-    type: dolly_in                 # static|pan|tilt|dolly_in|dolly_out|truck|crane|handheld|steadicam|zoom|arc
-    distance_m: 0.7                # travel distance for dolly/truck/crane/arc
+    type: dolly_in                 # one primary move — full vocabulary in schemas/shot.schema.json + rules/video/motion-language.md
+    # direction: right             # left|right|up|down|in|out|clockwise|counterclockwise — for pan/tilt/truck/pedestal/crane/zoom/arc/orbit/tracking
+    distance_m: 0.7                # travel distance for dolly/truck/pedestal/crane/arc/tracking
     speed: slow                    # slow | medium | fast
 
 blocking:                          # keys are lowercase character handles (mara = CHAR_MARA)
