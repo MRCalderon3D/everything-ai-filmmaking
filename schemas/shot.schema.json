@@ -121,6 +121,10 @@
               "enum": ["static", "pan", "whip_pan", "tilt", "dolly_in", "dolly_out", "push_past", "truck", "pedestal", "tracking", "crane", "handheld", "steadicam", "zoom", "crash_zoom", "arc", "orbit", "fpv", "snorricam", "infinite_zoom", "earth_zoom_out", "pass_through"],
               "description": "One primary camera move per shot (rules/video/motion-language.md). infinite_zoom, earth_zoom_out, and pass_through are AI-native devices requiring a declared motivation; whip_pan and crash_zoom are high-risk on current models."
             },
+            "motivation": {
+              "enum": ["reveal", "follow", "emphasize", "disorient", "detach"],
+              "description": "Why the camera moves (rules/video/motion-language.md: no motivation, no move). Required by rule for every non-static move; static shots omit it."
+            },
             "direction": {
               "enum": ["left", "right", "up", "down", "in", "out", "clockwise", "counterclockwise"],
               "description": "Direction for moves that need one: left/right (pan, whip_pan, truck, tracking), up/down (tilt, pedestal, crane), in/out (zoom, crash_zoom), clockwise/counterclockwise (arc, orbit). Omit for moves whose type already encodes it (dolly_in/dolly_out) or that have none (static, handheld, steadicam)."

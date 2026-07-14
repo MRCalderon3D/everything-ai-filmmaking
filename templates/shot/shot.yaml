@@ -29,6 +29,7 @@ camera:                            # compiled directly into prompt language
   station: LOC_STATION_C1          # optional camera station from the location map
   movement:
     type: dolly_in                 # one primary move — full vocabulary in schemas/shot.schema.json + rules/video/motion-language.md
+    motivation: reveal             # reveal|follow|emphasize|disorient|detach — no motivation, no move
     # direction: right             # left|right|up|down|in|out|clockwise|counterclockwise — for pan/tilt/truck/pedestal/crane/zoom/arc/orbit/tracking
     distance_m: 0.7                # travel distance for dolly/truck/pedestal/crane/arc/tracking
     speed: slow                    # slow | medium | fast

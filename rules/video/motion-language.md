@@ -91,8 +91,10 @@ attempts on it.
 
 ## Validation
 
-- `scripts/validate.js` checks shot files use only the pinned move
-  vocabulary, one primary move, with motivation and speed fields present.
+- The shot schema pins the move vocabulary and carries
+  `movement.motivation`; `hooks/validate-after-write.js` schema-checks every
+  shot on write. A non-static move without a motivation fails the
+  self-evaluation craft gate (`common/self-review.md`) and human review.
 - `scripts/lib/camera-moves.js` is the single source of motion phrasing; a
   test asserts it covers every `movement.type` the shot schema allows.
 - `scripts/compile-prompts.js` refuses packages whose motion text omits the
