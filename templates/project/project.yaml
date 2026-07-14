@@ -41,7 +41,7 @@ style:                             # global visual anchors; detail lives in the 
 
 default_providers:                 # default generation backend per kind
   image: fal                       # fal | replicate | comfyui | harness-native (no API key — e.g. gpt-image on Codex)
-  video: veo                       # veo | kling | runway | seedance | fal
+  video: veo                       # veo | kling | runway | seedance | fal | manual (hand generation in a web UI, e.g. Higgsfield)
   audio: elevenlabs                # elevenlabs | fal | local
 
 created_at: "2026-07-13T00:00:00Z" # set by create-project.js

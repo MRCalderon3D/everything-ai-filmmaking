@@ -50,6 +50,11 @@ frames, and records around clips.
   warns that restating image-borne visual attributes degrades motion, so the
   lens look MUST be baked into the conditioning keyframe, never repeated in
   the video prompt.
+- The `manual` provider (hand generation in a web UI such as Higgsfield)
+  follows every rule here: package compiled and schema-checked first, the
+  handoff lists the exact frames and reference files to upload, and the
+  generation record is completed with the downloaded clip. Keyframe
+  conditioning carries the look; the pasted prompt stays motion-first.
 
 ## Start/End Frames and Reproducibility
 

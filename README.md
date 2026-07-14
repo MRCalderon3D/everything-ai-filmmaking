@@ -142,6 +142,7 @@ generation requires the provider's env var and an explicit `--live` flag:
 | kling | video | `KLING_ACCESS_KEY`, `KLING_SECRET_KEY` |
 | runway | video | `RUNWAY_API_KEY` |
 | seedance | video | `ARK_API_KEY` |
+| manual | video | — (hand generation in any web UI, e.g. Higgsfield: the scaffold hands you prompt + reference files + frames) |
 | elevenlabs | audio | `ELEVENLABS_API_KEY` |
 | local | audio | — |
 

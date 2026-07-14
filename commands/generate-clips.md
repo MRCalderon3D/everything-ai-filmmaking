@@ -81,6 +81,14 @@ spec, and continuity fields.
   prompt < keyframe < reference < shot design.
 - Never blame the model twice: a second identical failure means the input
   package is wrong.
+- **Manual generation (`--provider manual`)**: for web UIs the scaffold has
+  no API for (Higgsfield and similar). Per shot, the command delivers a
+  handoff: the final prompt (motion-first — the lens look rides in the
+  keyframes), the start/end frames and reference image files to upload with
+  their exact paths and priority order, duration, and aspect ratio. The
+  user pastes, generates, downloads the clip into the shot's `generations/`
+  directory, and the record is completed like any API run — provenance is
+  not optional because the API was a browser.
 - Run `/continuity-review` after each scene's clips before approving; an
   approved clip is immutable and only superseded by a new version.
 - Related: `/generate-keyframes` (upstream), `/continuity-review` (audit),

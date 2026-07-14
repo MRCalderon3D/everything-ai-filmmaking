@@ -16,7 +16,7 @@ function asSortedSet(list) {
 assert.strictEqual(rosters.counts.agents, 17);
 assert.strictEqual(rosters.counts.commands, 22);
 assert.strictEqual(rosters.counts.skills, 22);
-assert.strictEqual(rosters.counts.providers, 12);
+assert.strictEqual(rosters.counts.providers, 13);
 assert.strictEqual(rosters.agents.length, 17, `parsed ${rosters.agents.length} agent names`);
 assert.strictEqual(rosters.commands.length, 22);
 assert.strictEqual(rosters.skills.length, 22);

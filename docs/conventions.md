@@ -75,8 +75,8 @@ continuity-state, generation-record, music-brief. Files are `schemas/<name>.sche
 **Manifests (8):** profiles.json, agents.json, commands.json, skills.json,
 image-providers.json, video-providers.json, audio-providers.json, harnesses.json.
 
-**Providers (12):** image: fal, replicate, comfyui, harness-native ·
-video: veo, kling, runway, seedance, fal · audio: elevenlabs, fal, local.
+**Providers (13):** image: fal, replicate, comfyui, harness-native ·
+video: veo, kling, runway, seedance, fal, manual · audio: elevenlabs, fal, local.
 
 **Scripts (9):** install.js, doctor.js, validate.js, sync-harnesses.js,
 create-project.js, compile-prompts.js, build-reference-plan.js,

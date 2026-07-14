@@ -46,6 +46,10 @@ const DOF_TEXT = {
  */
 const PROVIDER_LENS_POLICY = {
   runway: 'keyframe_only',
+  // Manual web-UI generation is usually keyframe-conditioned (Higgsfield
+  // image-to-video): the lens look rides in the uploaded frames, and the
+  // pasted prompt stays motion-first.
+  manual: 'keyframe_only',
 };
 
 function lensPolicy(providerId, kind) {

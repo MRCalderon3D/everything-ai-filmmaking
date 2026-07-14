@@ -56,7 +56,7 @@ const img = manifests['image-providers.json'].providers;
 const vid = manifests['video-providers.json'].providers;
 const aud = manifests['audio-providers.json'].providers;
 assert.deepStrictEqual(img.map((p) => p.id), ['fal', 'replicate', 'comfyui', 'harness-native']);
-assert.deepStrictEqual(vid.map((p) => p.id), ['veo', 'kling', 'runway', 'seedance', 'fal']);
+assert.deepStrictEqual(vid.map((p) => p.id), ['veo', 'kling', 'runway', 'seedance', 'fal', 'manual']);
 assert.deepStrictEqual(aud.map((p) => p.id), ['elevenlabs', 'fal', 'local']);
 for (const p of [...img, ...vid, ...aud]) {
   assert.ok(p.file && typeof p.label === 'string' && Array.isArray(p.env) &&

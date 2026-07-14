@@ -178,6 +178,13 @@ reference images as inputs, saves the file under `generations/`, and
 completes the generation record. No key, no per-image spend, same
 provenance discipline.
 
+**Generating video by hand in a web UI** (Higgsfield or similar): set
+`default_providers.video: manual`. Per shot you get a complete handoff —
+the final motion-first prompt, the start/end frames and reference images to
+upload with their exact file paths in priority order, duration, and aspect
+ratio. Paste, generate, download the clip into the shot's `generations/`
+directory, and the record is completed like any API run.
+
 ## 7. Review and assemble
 
 ```
