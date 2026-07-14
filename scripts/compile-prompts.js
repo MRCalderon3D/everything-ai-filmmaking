@@ -110,13 +110,16 @@ function styleLine(project) {
 function composePrompt(shot, bibles, providerId, kind) {
   const parts = [];
   const cam = shot.camera || {};
-  const camBits = [humanize(cam.shot_size)];
-  if (cam.angle) camBits.push(`${humanize(cam.angle)} angle`);
-  // Lens language is provider-gated: Runway Gen-4 video prompts are
-  // motion-only (the look lives in the keyframe); everyone else takes lens
-  // tokens in text (see scripts/lib/lens-language.js and
-  // docs/research/lens-language.md).
-  if (lensLanguage.lensPolicy(providerId, kind) === 'text') {
+  // Keyframe-conditioned video providers (Runway Gen-4, manual web UIs like
+  // Higgsfield) take MOTION-FIRST prompts: describe only what moves or
+  // changes — framing, lens, composition, identity, and set live in the
+  // conditioning frames, and restating them degrades motion (Runway guide;
+  // Higgsfield I2V rule). Everyone else gets the full visual language.
+  const motionFirst = lensLanguage.lensPolicy(providerId, kind) === 'keyframe_only';
+  const camBits = [];
+  if (!motionFirst) {
+    camBits.push(humanize(cam.shot_size));
+    if (cam.angle) camBits.push(`${humanize(cam.angle)} angle`);
     const lensKit = bibles.project && bibles.project.lens_kit;
     const lensPhrase = lensLanguage.describeLens(cam, lensKit);
     if (lensPhrase) camBits.push(lensPhrase);
@@ -147,9 +150,13 @@ function composePrompt(shot, bibles, providerId, kind) {
   for (const [handle, target] of Object.entries(blocking.eyelines || {})) {
     parts.push(`${handle} looks at ${humanize(target)}.`);
   }
-  for (const line of bibles.characterLines || []) parts.push(line);
-  if (bibles.locationLine) parts.push(bibles.locationLine);
-  if (bibles.styleLine) parts.push(bibles.styleLine);
+  if (!motionFirst) {
+    // Bible descriptions are image-borne for keyframe-conditioned providers:
+    // identity, set, and style ride in the frames, not the motion prompt.
+    for (const line of bibles.characterLines || []) parts.push(line);
+    if (bibles.locationLine) parts.push(bibles.locationLine);
+    if (bibles.styleLine) parts.push(bibles.styleLine);
+  }
   if (shot.dialogue) parts.push(`Dialogue: "${shot.dialogue}"`);
   const dir = shot.continuity && shot.continuity.screen_direction;
   if (dir && dir !== 'neutral') parts.push(`Subject movement reads ${humanize(dir)}.`);

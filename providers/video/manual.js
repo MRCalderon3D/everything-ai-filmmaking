@@ -58,7 +58,13 @@ const provider = {
           'tool allows; 3) paste body.prompt, set the aspect ratio and ' +
           'duration; 4) download the result into the shot\'s generations/ ' +
           'directory and complete this generation record (media_files, ' +
-          'status, model actually used, seed if shown).',
+          'status, model actually used, seed if shown). ' +
+          'Prompt discipline (Higgsfield MCSLA: Model-Camera-Subject-Look-' +
+          'Action): this prompt is the MOTION layer — subject identity and ' +
+          'look live in the uploaded frames; describe only what moves or ' +
+          'changes, one primary action per clip, and phrase constraints ' +
+          'positively (some engines have no negative-prompt syntax). ' +
+          'On a reroll, change exactly ONE variable.',
       },
       meta: {
         shot_id: promptPackage.shot || null,

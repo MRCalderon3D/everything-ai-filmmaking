@@ -84,6 +84,17 @@ Current video models do these badly; do not prompt for them:
   clips at action seams with simple motion each.
 - **Long choreography** — anything requiring more than one beat of precise
   timing per clip gets split.
+- **Two characters in physical contact** — limbs merge when bodies overlap.
+  Keep characters at arm's length, or resolve contact with cut-around
+  coverage; ask for "distinct body separation" when proximity is the point.
+- **More than ~3 tracked characters** — identity assignment breaks down;
+  crowds are texture, not characters. A character who exits frame is GONE:
+  models do not remember off-screen entities, so re-entries need a cut.
+- **Named technique moves** (a roundhouse, a specific grapple) — describe the
+  outcome and energy, never the technique; grappling renders as embracing.
+- **Fast action escape hatch:** when speed itself is the point, generate the
+  action in slow motion and speed it up in the edit — temporal coherence
+  survives, and the conform notes it (`video/clip-boundaries.md` handles).
 
 When a shot's intent collides with this list, the shot-planner MUST redesign
 coverage (more cuts, closer inserts, static frames) rather than gamble

@@ -88,6 +88,17 @@ function checkHarnesses(report) {
 
 function checkEnv(report, manifests) {
   report.section('Provider environment (names only, values never shown)');
+  // Capability staleness: provider limits change between model releases.
+  // Manifests carry a snapshot_date; past 30 days, verify against the
+  // providers' current docs before trusting duration/reference limits.
+  for (const file of ['image-providers.json', 'video-providers.json', 'audio-providers.json']) {
+    const snap = manifests[file] && manifests[file].snapshot_date;
+    if (!snap) continue;
+    const ageDays = Math.floor((Date.now() - Date.parse(snap)) / 86400000);
+    if (Number.isFinite(ageDays) && ageDays > 30) {
+      report.warn(`${file}: capabilities snapshot is ${ageDays} days old (${snap}) — verify limits against current provider docs`);
+    }
+  }
   const seen = new Map(); // env var -> [provider labels]
   for (const file of ['image-providers.json', 'video-providers.json', 'audio-providers.json']) {
     for (const p of entries(manifests, file, 'providers')) {

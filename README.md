@@ -135,6 +135,7 @@ generation requires the provider's env var and an explicit `--live` flag:
 | replicate | image | `REPLICATE_API_TOKEN` |
 | comfyui | image | `COMFYUI_HOST` |
 | harness-native | image | — (your assistant's own tool — on Codex, gpt-image via your subscription — or hand generation in any image UI) |
+| gemini | image | `GOOGLE_API_KEY` (Nano Banana — same key as Veo) |
 | veo | video | `GOOGLE_API_KEY` |
 | kling | video | `KLING_ACCESS_KEY`, `KLING_SECRET_KEY` |
 | runway | video | `RUNWAY_API_KEY` |

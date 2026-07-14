@@ -87,3 +87,11 @@ prompt; FLUX-class image models are lens-literal (numeric focal lengths and
 f-stops measurably shape output); Runway Gen-4 video prompts are motion-only,
 so its lens look is carried entirely by the conditioning keyframe. The
 compiler applies these policies; never hand-add lens text against them.
+
+Two further provider dialects (see `docs/research/prompt-platform-notes.md`):
+Gemini-class image models (gemini/Nano Banana) respond to NARRATIVE PROSE —
+full sentences describing a scene — never comma-separated keyword lists; and
+providers without negative-prompt syntax (Seedance-class, Higgsfield Cinema
+Studio) take prevention phrased positively inside the main prompt ("all
+limbs naturally positioned"), because appended negations either get dropped
+or backfire by naming the artifact.

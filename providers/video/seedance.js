@@ -43,6 +43,10 @@ const provider = {
     if (params.seed !== undefined && params.seed !== null) {
       textParts.push(`--seed ${params.seed}`);
     }
+    // Seedance has no negative-prompt syntax: prevention must be phrased
+    // positively inside the main prompt (rules/video/video-generation.md).
+    // A package's negative_prompt is deliberately dropped, and flagged in
+    // meta so the generation record shows it.
     const content = [{ type: 'text', text: textParts.join(' ') }];
     if (promptPackage.start_frame) {
       content.push({ type: 'image_url', image_url: { url: promptPackage.start_frame }, role: 'first_frame' });
@@ -63,6 +67,7 @@ const provider = {
         prompt_package_id: promptPackage.id || null,
         prompt_package_hash: hashObject(promptPackage),
         references_used: refs.map(refId),
+        negative_prompt_dropped: Boolean(promptPackage.negative_prompt),
       },
     };
   },

@@ -74,6 +74,30 @@
           "4:5"
         ]
       }
+    },
+    {
+      "id": "gemini",
+      "file": "providers/image/gemini.js",
+      "label": "Google Gemini (Nano Banana)",
+      "env": [
+        "GOOGLE_API_KEY"
+      ],
+      "capabilities": {
+        "referenceImages": 3,
+        "aspectRatios": [
+          "1:1",
+          "2:3",
+          "3:2",
+          "3:4",
+          "4:3",
+          "4:5",
+          "5:4",
+          "9:16",
+          "16:9",
+          "21:9"
+        ]
+      }
     }
-  ]
+  ],
+  "snapshot_date": "2026-07-14"
 }

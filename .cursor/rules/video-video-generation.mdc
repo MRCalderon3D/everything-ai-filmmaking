@@ -75,6 +75,14 @@ frames, and records around clips.
 - Seeds, model version, and all parameters go into the generation record
   (`GEN_<shot>_<attempt##>`); dry-run default and `--live` gating per
   `common/cost-control.md`; reroll budgets apply per shot.
+- **Rerolls change exactly ONE variable** (seed, one prompt clause, one
+  reference, or one parameter) — otherwise a fixed clip teaches you nothing
+  about what fixed it. Diagnose failures in order: subject → action →
+  camera → style → audio → output; most failures live in the first two.
+- Providers without negative-prompt syntax (Seedance-class) get prevention
+  phrased POSITIVELY inside the main prompt ("all limbs naturally
+  positioned"), never as appended negations; the compiler drops
+  `negative_prompt` for them and flags it in the record.
 - Accepting a clip means checking: identity vs masters, spatial declarations
   (axis side, screen direction, enters/exits), motion as specified, and
   boundary-frame match. Any failure is a reroll or re-plan, regardless of
