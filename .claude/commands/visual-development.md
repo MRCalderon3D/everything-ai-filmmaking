@@ -46,7 +46,12 @@ every later shot conditions on the masters approved here.
 ## Process
 
 1. Collect every planned-but-missing master from the bibles' reference plans
-   and group them into batches by asset.
+   and group them into batches by asset. **Dependency gate:** generating any
+   asset whose parent master is not `approved` is BLOCKED — a turnaround,
+   wardrobe, or expression sheet conditions on its approved face master,
+   never on a draft. On a move-along instruction ("next") with parents still
+   in review, the correct response is stating the blocker and asking for
+   the verdict, not generating (`rules/common/approval-policy.md`).
 2. Compile prompts from the bibles — identity anchors, wardrobe state,
    geometry, LOOK language — never freehand. Each prompt package is written
    before any generation.

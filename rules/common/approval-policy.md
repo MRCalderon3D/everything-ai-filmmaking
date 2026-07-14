@@ -18,6 +18,10 @@ storyboards, prompt packages, generated media, and edit plans.
 - Approved is immutable. Change means supersede, never edit in place.
 - Approval is a human act. Agents prepare and recommend; they NEVER set an
   asset to `approved` on their own authority.
+- Approvals name what they approve. "Next", "continue", "ok", or any generic
+  move-along instruction approves NOTHING pending review — on receiving one
+  with items in `review`, the agent states the blocker and asks for the
+  explicit verdict instead of proceeding.
 
 ## Lifecycle
 
