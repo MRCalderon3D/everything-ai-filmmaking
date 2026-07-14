@@ -77,6 +77,10 @@ stills before any video budget is spent.
   spending an extra variant here routinely saves a clip re-render.
 - Never hand-edit generated frames; supersede via re-roll so provenance
   stays truthful.
+- Every frame handed to the user for review comes with its review card —
+  what to verify (identity anchors, axis side, screen direction, look
+  adherence), what it could not show, and what approving it unlocks
+  (`rules/common/approval-policy.md`). A bare image is not a submission.
 - Approved keyframes become conditioning inputs for `/generate-clips` on
   providers with `startEndFrames`.
 - Related: `/smart-shot` (builds the package), `/reference-plan`

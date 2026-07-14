@@ -23,10 +23,12 @@ storyboards, prompt packages, generated media, and edit plans.
 
 - **draft** — work in progress. Freely editable by the owning agent. Drafts
   MUST NOT be used as references for generation.
-- **review** — candidate submitted for human review with a short rationale
-  (what it is, what it replaces, known deviations from the bible). Editing a
-  file in `review` sends it back to `draft`. A candidate MUST pass its
-  self-evaluation before submission (`common/self-review.md`) so human
+- **review** — candidate submitted for human review WITH its review card:
+  what it is, the exact canon anchors to verify (named, from the bible),
+  anchors the candidate could not show, what it replaces, known deviations,
+  and what approving it unlocks downstream. A bare file is not a submission.
+  Editing a file in `review` sends it back to `draft`. A candidate MUST pass
+  its self-evaluation before submission (`common/self-review.md`) so human
   attention goes to judgment, not mechanical defects.
 - **approved** — canon. Recorded with reviewer and timestamp. Approved assets
   are copied or referenced into their canonical location (masters into

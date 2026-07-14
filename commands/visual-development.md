@@ -61,6 +61,14 @@ every later shot conditions on the masters approved here.
 6. Selected images are named `<ID>_MASTER_V##`, copied into the asset's
    `refs/` and `production/references/`, registered in the manifest, and
    marked `review` for the user's approval.
+7. **Every image handed to the user comes with its review card** — never a
+   bare file. The card states: what the asset is and its role; the exact
+   canon anchors to verify, pulled from the bible (e.g. "straight fringe /
+   stud in the RIGHT ear only / freckles on the nose"); anything this
+   candidate could NOT verify (an anchor not visible in frame); its status
+   (`draft`/`review`); what approving it unlocks (which downstream assets
+   condition on it); and how to reject ("say what's wrong; two re-roll
+   rounds before we fix the bible instead").
 
 ## Outputs
 
