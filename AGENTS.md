@@ -22,6 +22,9 @@ no build, no UI.
   their sources (`commands/`, `agents/`, `skills/`, `rules/`, `contexts/`).
 - A roster change (add/rename/remove an agent, command, skill, or provider)
   touches the file, its manifest entry, and `docs/conventions.md` together.
+- Documentation ships with the feature: the same change that adds a
+  capability updates the README, the affected layer READMEs, and
+  `docs/getting-started.md` where user-facing behavior changed.
 - Scripts and providers: Node >= 18, CommonJS, zero runtime dependencies,
   dry-run by default, no secrets in logs or commits.
 - Style: English, imperative, concise. Match the structure of neighboring files

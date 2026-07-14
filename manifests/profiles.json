@@ -23,7 +23,8 @@
         "edit-plan",
         "full-production",
         "humanize",
-        "music-brief"
+        "music-brief",
+        "self-review"
       ],
       "agents": [
         "showrunner",
@@ -64,7 +65,8 @@
         "edit-planning",
         "production-orchestration",
         "text-humanization",
-        "music-direction"
+        "music-direction",
+        "self-evaluation"
       ]
     },
     "writing-room": {
@@ -75,7 +77,8 @@
         "story-bible",
         "character-bible",
         "humanize",
-        "music-brief"
+        "music-brief",
+        "self-review"
       ],
       "agents": [
         "showrunner",
@@ -92,7 +95,8 @@
         "character-sheet-generation",
         "production-orchestration",
         "text-humanization",
-        "music-direction"
+        "music-direction",
+        "self-evaluation"
       ]
     },
     "previs": {
@@ -110,7 +114,8 @@
         "shot-list",
         "smart-shot",
         "storyboard",
-        "humanize"
+        "humanize",
+        "self-review"
       ],
       "agents": [
         "showrunner",
@@ -143,7 +148,8 @@
         "prompt-compilation",
         "continuity-checking",
         "production-orchestration",
-        "text-humanization"
+        "text-humanization",
+        "self-evaluation"
       ]
     },
     "generation": {
@@ -153,7 +159,8 @@
         "generate-keyframes",
         "generate-clips",
         "continuity-review",
-        "humanize"
+        "humanize",
+        "self-review"
       ],
       "agents": [
         "prompt-director",
@@ -162,7 +169,8 @@
         "video-generation-specialist",
         "production-qa",
         "script-editor",
-        "screenwriter"
+        "screenwriter",
+        "showrunner"
       ],
       "skills": [
         "reference-selection",
@@ -170,7 +178,8 @@
         "image-generation",
         "video-generation",
         "continuity-checking",
-        "text-humanization"
+        "text-humanization",
+        "self-evaluation"
       ]
     }
   }

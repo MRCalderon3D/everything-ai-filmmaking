@@ -6,7 +6,7 @@ command you run inside your assistant (Claude Code, Codex, Cursor, or
 OpenCode) and, where one exists, the equivalent CLI script.
 
 If you only read one other document, read
-[commands/README.md](../commands/README.md) — it lists all 20 commands in
+[commands/README.md](../commands/README.md) — it lists every command in
 pipeline order.
 
 ## 1. Install
@@ -183,8 +183,12 @@ confirmation before every generation batch. You approve; it proceeds.
    or shot file — not by hand-editing a prompt.
 2. **References before generation.** Every shot gets a reference plan naming
    exactly which approved masters it conditions on, and why.
-3. **Everything validates.** Artifacts are schema-checked on write (hooks),
-   and `production-qa` gates every phase transition.
+3. **Everything validates — and reviews itself.** Artifacts are
+   schema-checked on write (hooks), every output runs its own
+   self-evaluation before it's delivered (`rules/common/self-review.md`),
+   and `production-qa` gates every phase transition. Run
+   `/self-review SC_004` before a human review session so people judge
+   craft, not typos.
 4. **Cost is a gate.** If a command is about to spend money, it says how
    much and asks first.
 

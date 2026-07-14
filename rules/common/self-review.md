@@ -1,0 +1,62 @@
+# Self-Review
+
+## Purpose
+
+No artifact leaves its generating agent unexamined. Everything the scaffold
+writes gets the `self-evaluation` pass — schema, rules, quality bar, and an
+explicit "what would I change?" — before it is delivered or submitted for
+review.
+
+## Scope
+
+Every artifact written under `production/`: bibles, scenes, beats, shots,
+storyboards, reference plans, prompt packages, continuity states, music
+briefs, edit plans, and generated media acceptance. Applies at write time to
+new output and via `/self-review` to existing artifacts. Out of scope: the
+scaffold's own repository content, which is gated by `npm run validate` and
+code review.
+
+## Core Principles
+
+- Self-evaluation is part of generating, not a separate favor: an artifact
+  without its pass is unfinished, exactly as an asset without provenance is
+  unfinished (`common/asset-provenance.md`).
+- The pass is evidence-based: verdicts cite schema paths, rule names, and
+  quality-bar points. Impressions are not findings.
+- Self-review precedes human review and NEVER substitutes for it: the
+  `draft → review → approved` lifecycle and its human approval act are
+  untouched (`common/approval-policy.md`).
+- Improvements serve intent and canon. Cosmetic churn is not improvement,
+  and polishing MUST stop after two repair cycles — persistent failure means
+  the defect is upstream (`common/source-of-truth.md`).
+
+## Requirements
+
+- Every generating command MUST run the `self-evaluation` gates on its
+  output before reporting completion, and MUST deliver the verdict with the
+  work: pass, fixed (with the change list), or flagged.
+- An artifact MUST NOT be submitted to `review` status before its
+  self-evaluation passes.
+- Findings the generating agent cannot resolve on its own authority MUST be
+  recorded — in the artifact's `notes` or the scene's `open_issues` — with
+  the decision needed, not silently dropped.
+- Fixes MUST stay within the generating agent's authority: canon conflicts
+  escalate to the showrunner; approved assets are superseded, never edited.
+- Generated media MUST receive an acceptance verdict against its reference
+  plan and the `image/`/`video/` acceptance criteria before its generation
+  record is marked `approved` or the asset is promoted.
+- `production-qa` remains read-only: it audits that self-reviews happened
+  and holds the gates; it does not perform the fixes.
+
+## Validation
+
+- `hooks/validate-after-write.js` enforces the mechanical gate on every
+  write; artifacts failing schema validation never land.
+- `production-qa` gate reports at each `full-production` phase check for
+  recorded verdicts and unresolved flags; missing self-reviews send the
+  artifact back to its owner.
+- `/self-review <scene>` is the audit path before any human review session;
+  reviewers SHOULD run it first so human attention goes to judgment calls,
+  not mechanical failures.
+- Human review at approval gates remains the final authority on whether
+  "fixed" was actually fixed.

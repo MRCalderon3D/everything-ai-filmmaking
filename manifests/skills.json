@@ -121,6 +121,12 @@
       "file": "skills/music-direction/SKILL.md",
       "description": "Choose music early and on purpose — song-as-concept, counterpoint, lyric sync, era targeting — and track licensing from day one.",
       "category": "story"
+    },
+    {
+      "name": "self-evaluation",
+      "file": "skills/self-evaluation/SKILL.md",
+      "description": "After generating any artifact, evaluate it cold against schema, rules, and the producing skill's quality bar; apply clear improvements before calling it done.",
+      "category": "production"
     }
   ]
 }

@@ -25,7 +25,9 @@ storyboards, prompt packages, generated media, and edit plans.
   MUST NOT be used as references for generation.
 - **review** — candidate submitted for human review with a short rationale
   (what it is, what it replaces, known deviations from the bible). Editing a
-  file in `review` sends it back to `draft`.
+  file in `review` sends it back to `draft`. A candidate MUST pass its
+  self-evaluation before submission (`common/self-review.md`) so human
+  attention goes to judgment, not mechanical defects.
 - **approved** — canon. Recorded with reviewer and timestamp. Approved assets
   are copied or referenced into their canonical location (masters into
   `production/references/` + `manifest.yaml`).

@@ -33,6 +33,7 @@ command → agents → skills map lives in [docs/conventions.md](../docs/convent
 | [storyboard-generation](storyboard-generation/SKILL.md) | Render the shot list as boards — one framed panel per shot with composition and motion notes. |
 | [reference-selection](reference-selection/SKILL.md) | Choose exactly which approved reference images each shot needs, and why, within provider limits. |
 | [production-orchestration](production-orchestration/SKILL.md) | Run the pipeline — phase gates, approval workflow, dependency order, and batch cost confirmation. |
+| [self-evaluation](self-evaluation/SKILL.md) | Evaluate every generated artifact cold — schema, rules, quality bar, improvement pass — before calling it done. Applies by default. |
 
 ## Generation
 

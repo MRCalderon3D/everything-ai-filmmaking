@@ -21,6 +21,7 @@ custom prompts; never edit them here.
 - reference-plan
 - scene-breakdown
 - script-analyze
+- self-review
 - shot-list
 - smart-shot
 - story-bible

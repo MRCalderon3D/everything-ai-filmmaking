@@ -1,0 +1,113 @@
+---
+name: self-evaluation
+description: After generating any artifact, evaluate it cold against schema, rules, and the producing skill's quality bar; apply clear improvements before calling it done.
+origin: everything-ai-filmmaking
+category: production
+---
+
+# Self-Evaluation
+
+## Purpose
+
+Make every generated artifact pass its own review before anyone else sees
+it. The generating agent re-reads its output as a cold reviewer — not as the
+author — asks "is this right, and what would I change to make it better?",
+applies the unambiguous improvements, and records the rest. Self-evaluation
+runs by default on everything the scaffold writes
+(`rules/common/self-review.md`); it precedes human review, never replaces it.
+
+## Use When
+
+- Any command has just written or rewritten an artifact under `production/`
+  — bible entry, scene, shot, storyboard, reference plan, prompt package,
+  continuity state, edit plan.
+- Generated media (keyframes, clips) lands and needs acceptance judgment.
+- `/self-review` is invoked on an existing artifact or scene.
+
+## Inputs
+
+- The artifact just produced, read fresh from disk — not from memory of
+  writing it.
+- Its schema, the rule layers that governed its generation, and the Quality
+  Bar section of the skill that produced it.
+- The upstream canon it derives from (bible entries, plan, shot file).
+
+## Process
+
+1. Re-read the artifact cold, in its on-disk form. Author's memory of intent
+   does not count as evidence.
+2. Mechanical gate: schema validation, ID and naming compliance, and every
+   cross-reference resolving (neighbors, stations, asset IDs). Use
+   `scripts/validate.js` semantics; a mechanical failure is fixed
+   immediately, no judgment involved.
+3. Rules gate: check the artifact against each rule layer that governed it
+   (common + domain + production-type), citing the specific rule for any
+   violation found.
+4. Craft gate: score the artifact point by point against the producing
+   skill's Quality Bar. "Passes" means each point is demonstrably met, not
+   unobjectionable.
+5. Improvement pass: name at least two concrete changes that would make the
+   artifact better, then judge each — does it serve the dramatic intent and
+   the canon, or is it churn? Apply the clear wins. Discard cosmetic
+   rewrites.
+6. Verdict, one of three: **pass** (no findings), **fixed** (findings
+   applied — list what changed and why), **flagged** (a finding needs a
+   human or upstream decision — record it in the artifact's `notes` or the
+   scene's `open_issues` and name the decision needed).
+7. Re-run the gates once after fixes. One repair cycle, maximum two: if the
+   artifact still fails, the defect is upstream — in the bible, plan, or
+   brief — and that is where the work goes next, per
+   `rules/common/source-of-truth.md`.
+
+For generated media, gates 2–4 become the acceptance checks of
+`rules/image/image-generation.md` and `rules/video/video-generation.md`:
+identity against approved masters, reference plan honored, declared motion
+and axis executed, boundary frames matching. A failed clip's verdict names
+what to change in the plan or prompt package — never a freehand re-prompt.
+
+## Outputs
+
+- The artifact, unchanged or improved in place, still schema-valid.
+- A short self-review verdict delivered with the work: pass / fixed (with
+  the change list) / flagged (with the decision needed and where it was
+  recorded).
+
+## Quality Bar
+
+- Every verdict cites specific checks — a schema path, a rule name, a
+  quality-bar point — never overall impressions.
+- Applied fixes preserve canon and authorial intent; nothing established
+  upstream is silently altered downstream.
+- Flagged findings state the exact decision needed and who owns it.
+- The improvement pass produced real candidates; "nothing to improve" on a
+  first draft is a red flag, not a compliment.
+
+## Common Failure Modes
+
+- Rubber-stamping: re-reading your own output with the author's eyes and
+  finding it flawless. Score against the written quality bar, not taste.
+- Polishing loops: iterating past the second repair cycle on wording while
+  the real defect sits upstream.
+- Cosmetic churn counted as improvement: rephrasing that changes no
+  decision, reference, or number.
+- Fixing the artifact when the bible is wrong — the fix belongs upstream,
+  and patching downstream creates canon drift.
+- Treating a self-review pass as approval: `draft → review → approved` still
+  requires the human act (`rules/common/approval-policy.md`).
+
+## Related Agents
+
+- production-qa
+- showrunner
+
+## Related Commands
+
+- self-review
+- full-production
+
+## Notes
+
+Self-evaluation is the generating agent's job at write time; `production-qa`
+audits at phase gates and stays read-only. The two are complementary: an
+artifact that skipped its self-review and gets caught at a gate goes back to
+its owner with both reports.

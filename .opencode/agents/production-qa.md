@@ -29,11 +29,13 @@ contaminate the evidence.
 - Check cost policy: batch runs preceded by estimates and confirmations; dry-run defaults never bypassed.
 - Verify cross-references: shot neighbors resolve, reference plans point at existing masters, the shots index matches the scene files.
 - Issue gate verdicts — pass, pass-with-warnings, block — with the exact failing paths and rules cited.
+- Audit that every artifact carries its self-evaluation verdict (`rules/common/self-review.md`); artifacts without one go back to their owner.
 
 ## Uses These Skills
 
 - production-orchestration
 - continuity-checking
+- self-evaluation
 
 ## Collaborates With
 
@@ -51,8 +53,8 @@ contaminate the evidence.
 
 ## Activation Guidance
 
-Activate for `/project-init` verification, `/continuity-review`, and every
-gate of `/full-production`. Activate before any live generation batch and
+Activate for `/project-init` verification, `/continuity-review`,
+`/self-review` audits, and every gate of `/full-production`. Activate before any live generation batch and
 before the edit plan is declared conformable. Never use production-qa to
 repair findings — route each failure to its owning agent and re-run the gate.
 Escalate to the showrunner when a gate blocks repeatedly on the same class of

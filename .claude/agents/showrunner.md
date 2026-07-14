@@ -34,6 +34,7 @@ decision so it never gets relitigated.
 - script-analysis
 - scene-blocking
 - music-direction
+- self-evaluation
 
 ## Collaborates With
 

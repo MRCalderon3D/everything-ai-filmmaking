@@ -59,6 +59,7 @@ are cross-checked by `npm run validate`.
 | Command | Description |
 |---|---|
 | [full-production](full-production.md) | Orchestrate the entire pipeline from script to edit plan, with approval gates and cost confirmation. |
+| [self-review](self-review.md) | Run the self-evaluation pass on existing artifacts — gates plus improvement pass — reporting or fixing. |
 
 ## Typical end-to-end order
 
@@ -86,3 +87,7 @@ dry-run by default and always show a cost estimate before a live batch.
 All prose these commands produce follows the `text-humanization` skill by
 default (`rules/writing/prose-style.md`); `/humanize` retrofits existing or
 imported text at any point in the pipeline.
+
+Every artifact these commands generate passes the `self-evaluation` gates
+before delivery (`rules/common/self-review.md`); `/self-review` retrofits
+existing artifacts and audits scenes before human review.

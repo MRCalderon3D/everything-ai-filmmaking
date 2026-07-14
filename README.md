@@ -26,6 +26,7 @@ applied to audiovisual production.
 /generate-keyframes    # start/end frames via image providers
 /generate-clips        # video clips via video providers
 /continuity-review     # axis, wardrobe, props, screen-direction audit
+/self-review           # every output self-evaluates; this retrofits and audits
 /edit-plan             # assembly order, pacing, sound and color notes
 /humanize              # strip AI-writing tells from any prose, keep the voice
 /full-production       # orchestrate the whole pipeline
@@ -102,8 +103,8 @@ direction, neighbors), required reference assets, and generation flags — see
 ```
 agents/       17 roles: showrunner, screenwriter, visual-director, cinematographer,
               shot-planner, continuity-supervisor, prompt-director, …
-commands/     20 workflow entry points (the slash commands above)
-skills/       20 procedures: scene-blocking, cinematography, reference-selection,
+commands/     21 workflow entry points (the slash commands above)
+skills/       21 procedures: scene-blocking, cinematography, reference-selection,
               prompt-compilation, continuity-checking, …
 rules/        policy layers: common/ writing/ visual/ image/ video/ audio/
               + one production-type layer: cinema/ OR commercial/

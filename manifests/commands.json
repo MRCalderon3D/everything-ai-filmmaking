@@ -264,6 +264,18 @@
       "skills": [
         "music-direction"
       ]
+    },
+    {
+      "name": "self-review",
+      "file": "commands/self-review.md",
+      "description": "Run the self-evaluation pass on existing artifacts — schema, rules, and quality-bar gates plus an improvement pass — reporting or fixing.",
+      "agents": [
+        "production-qa",
+        "showrunner"
+      ],
+      "skills": [
+        "self-evaluation"
+      ]
     }
   ]
 }

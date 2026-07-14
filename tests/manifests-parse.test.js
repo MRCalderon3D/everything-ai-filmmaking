@@ -17,7 +17,7 @@ for (const a of agents) {
 
 // commands.json
 const commands = manifests['commands.json'].commands;
-assert.strictEqual(commands.length, 20, `expected 20 commands, got ${commands.length}`);
+assert.strictEqual(commands.length, 21, `expected 21 commands, got ${commands.length}`);
 for (const c of commands) {
   assert.ok(c.name && c.file && c.description, `command entry incomplete: ${c.name}`);
   assert.ok(Array.isArray(c.agents) && c.agents.length > 0, `${c.name}: agents[] required`);
@@ -40,7 +40,7 @@ assert.deepStrictEqual(refPlan.skills, ['reference-selection']);
 
 // skills.json
 const skills = manifests['skills.json'].skills;
-assert.strictEqual(skills.length, 20, `expected 20 skills, got ${skills.length}`);
+assert.strictEqual(skills.length, 21, `expected 21 skills, got ${skills.length}`);
 const categories = ['story', 'visual', 'production', 'generation', 'post'];
 for (const s of skills) {
   assert.ok(s.name && s.file && s.description, `skill entry incomplete: ${s.name}`);
@@ -74,9 +74,9 @@ assert.strictEqual(vid.find((p) => p.id === 'kling').capabilities.maxDurationSec
 const profiles = manifests['profiles.json'].profiles;
 assert.deepStrictEqual(Object.keys(profiles).sort(),
   ['full', 'generation', 'previs', 'writing-room']);
-assert.strictEqual(profiles.full.commands.length, 20);
+assert.strictEqual(profiles.full.commands.length, 21);
 assert.strictEqual(profiles.full.agents.length, 17);
-assert.strictEqual(profiles.full.skills.length, 20);
+assert.strictEqual(profiles.full.skills.length, 21);
 assert.ok(profiles['writing-room'].commands.includes('story-bible'));
 assert.ok(!profiles['writing-room'].commands.includes('generate-clips'));
 assert.ok(profiles.previs.commands.includes('storyboard'));

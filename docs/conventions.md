@@ -37,21 +37,21 @@ character-designer, production-designer, storyboard-artist, cinematographer,
 shot-planner, continuity-supervisor, prompt-director, image-generation-specialist,
 video-generation-specialist, editor, sound-designer, colorist, production-qa.
 
-**Commands (20):** project-init, script-analyze, story-bible, character-bible,
+**Commands (21):** project-init, script-analyze, story-bible, character-bible,
 location-bible, prop-bible, style-bible, visual-development, scene-breakdown,
 shot-list, smart-shot, storyboard, reference-plan, generate-keyframes,
 generate-clips, continuity-review, edit-plan, full-production, humanize,
-music-brief.
+music-brief, self-review.
 
-**Skills (20):** script-analysis, narrative-structure, character-consistency,
+**Skills (21):** script-analysis, narrative-structure, character-consistency,
 character-sheet-generation, location-design, location-mapping,
 visual-style-development, scene-blocking, cinematography, shot-sequencing,
 storyboard-generation, reference-selection, prompt-compilation, image-generation,
 video-generation, continuity-checking, edit-planning, production-orchestration,
-text-humanization, music-direction.
+text-humanization, music-direction, self-evaluation.
 
-**Rules (24):**
-`common/`: source-of-truth, project-structure, naming-conventions, asset-provenance, cost-control, approval-policy.
+**Rules (25):**
+`common/`: source-of-truth, project-structure, naming-conventions, asset-provenance, cost-control, approval-policy, self-review.
 `writing/`: screenplay-format, narrative-continuity, prose-style.
 `visual/`: character-consistency, location-consistency, spatial-continuity, visual-language.
 `image/`: image-generation.
@@ -158,7 +158,7 @@ text-humanization, music-direction), visual
 (character-consistency, character-sheet-generation, location-design,
 location-mapping, visual-style-development), production (scene-blocking,
 cinematography, shot-sequencing, storyboard-generation, reference-selection,
-production-orchestration), generation (prompt-compilation, image-generation,
+production-orchestration, self-evaluation), generation (prompt-compilation, image-generation,
 video-generation), post (continuity-checking, edit-planning).
 
 ### Rule (`rules/<layer>/<name>.md`)
@@ -196,6 +196,7 @@ video-generation), post (continuity-checking, edit-planning).
 | full-production | showrunner, production-qa (orchestrates all others) | production-orchestration |
 | humanize | script-editor, screenwriter | text-humanization |
 | music-brief | showrunner, sound-designer | music-direction |
+| self-review | production-qa, showrunner | self-evaluation |
 
 Commands may reference additional agents/skills in prose, but `Invokes Agents`
 and `Required Skills` lists MUST contain only roster names and MUST include the
@@ -303,3 +304,8 @@ commit values.
   `production/story/music-brief.yaml` (`/music-brief`), not chosen in post;
   the edit plan honors the brief or escalates. Temp/unlicensed tracks are
   flagged from day one.
+- **Self-review by default:** every generated artifact passes the
+  `self-evaluation` gates (schema, rules, quality bar, improvement pass)
+  before it is delivered or submitted for review
+  (`rules/common/self-review.md`); `/self-review` retrofits existing
+  artifacts. Self-review precedes human approval, never replaces it.
