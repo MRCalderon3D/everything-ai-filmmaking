@@ -55,6 +55,14 @@ every image/video generation that depicts a `CHAR_*` entity.
 - After each generation, compare against the face master: facial structure,
   eye and hair color, hairstyle, distinguishing marks, apparent age, build.
   Any mismatch on these is a reroll, regardless of how good the image is.
+- **Laterality protocol.** Mirror confusion is the most common visual audit
+  error — in humans and in model self-review alike. Anatomical sides are
+  derived BEFORE judging any asymmetric anchor (earrings, wounds, scars,
+  torn sleeves): in a profile or three-quarter view, the visible side is the
+  side the nose points toward in viewer terms. Findings name sides
+  anatomically ("her right ear"), never by frame side.
+- Asymmetric anchors are verified at zoom on the actual region, never from a
+  thumbnail; an anchor judged at contact-sheet size counts as unverified.
 - Hairstyle and makeup changes mid-scene are drift unless scripted.
 - Group shots are checked per character; one drifted face fails the shot.
 
