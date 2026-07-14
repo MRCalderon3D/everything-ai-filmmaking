@@ -39,6 +39,11 @@ script that can trigger generation, and every agent that plans batches.
 - Before any live batch, the agent MUST present: item count, provider and
   model per item, per-item and total estimated cost, and the reference plan
   status of each item — then wait for explicit confirmation.
+- Confirmation scales with cost. At zero external cost (harness-native,
+  manual, local providers) there is no spend to confirm: the agent INFORMS
+  ("generating 1 variant, no external cost") and proceeds — asking a user to
+  "confirm USD 0.00" is ceremony, not protection. Everything else about the
+  run (plan first, provenance, review) is unchanged.
 - `hooks/require-cost-confirmation.js` enforces this gate; bypassing it is
   NEVER acceptable, including for "just one more" additions to a confirmed
   batch. New items mean a new estimate.

@@ -27,6 +27,9 @@ reference plans, and generation records around them.
   (`reference-plan.schema.json`) before any prompt is written, listing the
   exact approved masters used: identity (`CHAR_*`), wardrobe, set geometry
   (`LOC_*_C#`), props (`PROP_*`), and look (`LOOK_*`).
+- A plan that only implements the user's immediately-given instructions is
+  approved BY those instructions (`common/ask-dont-assume.md`) — generate
+  and present the result; do not ask the user to bless their own words.
 - Reference plans cite only `approved` masters (see
   `common/approval-policy.md`); a plan citing a draft fails validation.
 - When the provider accepts fewer reference images than the plan lists, the

@@ -36,6 +36,11 @@ user about derivable detail.
 - **Recorded intent beats re-asking.** Once answered — in `project.yaml`, a
   bible, or the music brief — the answer is canon; commands read it instead
   of asking again. Re-ask only when an instruction contradicts it.
+- **Fresh instructions ARE the approval of the plan that implements them.**
+  When a plan or spec does nothing but execute what the user just said,
+  asking them to approve it is re-asking answered canon: proceed and deliver
+  the result for review. Formal plan approval is reserved for plans that add
+  decisions the user did not give.
 
 ## Command Requirements
 
