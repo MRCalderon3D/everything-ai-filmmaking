@@ -20,11 +20,12 @@ const HELP = `
 create-project.js — scaffold production/ in a target film project.
 
 Usage:
-  node scripts/create-project.js --target <dir> --title "<film title>"
+  node scripts/create-project.js --title "<film title>" [--target <dir>]
 
 Options:
-  --target <dir>   Project directory (production/ is created inside it).
-  --title <text>   Film title (required).
+  --title <text>   Film title (required). Names the workspace folder too.
+  --target <dir>   Project directory (default: ./<title-slug>;
+                   production/ is created inside it).
   --force          Overwrite an existing production/project.yaml.
   --help           Show this help.
 `;
@@ -37,6 +38,15 @@ const PRODUCTION_DIRS = [
 
 function slugifyId(title) {
   return String(title).toUpperCase().replace(/[^A-Z0-9]+/g, '_').replace(/^_+|_+$/g, '').slice(0, 40) || 'UNTITLED';
+}
+
+/** Folder-friendly slug: the project workspace directory is named after the
+ * project title (production/ inside it stays fixed — it is the path contract
+ * every schema, rule, and script relies on). */
+function slugifyDir(title) {
+  return String(title).toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60) || 'untitled';
 }
 
 function buildProjectYaml(title, templateText) {
@@ -82,7 +92,12 @@ function buildProjectYaml(title, templateText) {
 function main() {
   helpIfRequested(process.argv.slice(2), HELP);
   const { flags } = parseArgs();
-  if (!flags.target || flags.target === true) fatal('--target <dir> is required (see --help)');
+  if ((!flags.target || flags.target === true) && flags.title && flags.title !== true) {
+    // No --target: the workspace folder takes the project's name.
+    flags.target = path.join('.', slugifyDir(String(flags.title)));
+    console.log(`no --target given — creating workspace at ${flags.target}`);
+  }
+  if (!flags.target || flags.target === true) fatal('--target <dir> or --title required (see --help)');
   if (!flags.title || flags.title === true) fatal('--title "<film title>" is required (see --help)');
   const target = path.resolve(String(flags.target));
   const title = String(flags.title);
@@ -113,6 +128,6 @@ function main() {
   console.log('  3. node scripts/doctor.js --target "' + target + '" to verify the setup.');
 }
 
-module.exports = { buildProjectYaml, PRODUCTION_DIRS, slugifyId };
+module.exports = { buildProjectYaml, PRODUCTION_DIRS, slugifyId, slugifyDir };
 
 if (require.main === module) main();

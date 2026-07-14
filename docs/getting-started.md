@@ -59,7 +59,10 @@ downstream:
 - **`default_providers`** — which image/video/audio backends to compile
   prompts for by default.
 
-CLI equivalent: `node scripts/create-project.js --target . --title "My Film"`.
+CLI equivalent: `node scripts/create-project.js --title "My Film"` — with no
+`--target`, the workspace folder takes your project's name (`my-film/`).
+`production/` inside it is fixed plumbing every schema and script relies on;
+your name lives on the folder that contains it.
 
 ## 3. Develop the story
 
