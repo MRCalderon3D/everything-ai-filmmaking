@@ -9,34 +9,42 @@ If you only read one other document, read
 [commands/README.md](../commands/README.md) — it lists every command in
 pipeline order.
 
-## 1. Install
+## 1. Get set up
+
+**Clone and go (the friendly path — no install step):**
 
 ```bash
-git clone https://github.com/MRCalderon3D/everything-ai-filmmaking
-cd everything-ai-filmmaking
-npm test && npm run validate      # confirm the scaffold is healthy
+git clone https://github.com/MRCalderon3D/everything-ai-filmmaking my-film
+cd my-film
+# open your assistant here (claude / codex / cursor / opencode)
+```
 
-# install into your film project (creates the harness wiring there)
-node scripts/install.js --target ../my-film --harness claude --profile full
+The clone already contains every harness's wiring (`.claude/`, `.codex/`,
+`.cursor/`, `.opencode/`). Just tell the assistant what you want to make —
+`/project-init` creates your `production/` workspace right here, and git
+ignores it so your film stays out of the scaffold's history.
+
+**Installing into an existing project** (your own repo, or a lean profile):
+
+```bash
+node scripts/install.js --target ../my-film --harness codex --profile full
 ```
 
 - `--harness`: `claude` | `codex` | `cursor` | `opencode` | `all`.
 - `--profile`: `full` (everything), `writing-room` (story development only),
   `previs` (through storyboards and shot planning), `generation`
-  (reference plans through clips). Start with `full` unless you know you
-  want less.
-
-Open `../my-film` in your assistant. The slash commands are now available.
+  (reference plans through clips).
 
 Check your setup any time:
 
 ```bash
-node scripts/doctor.js --target ../my-film
+node scripts/doctor.js
 ```
 
 Doctor reports which provider keys are set (`FAL_KEY`, `GOOGLE_API_KEY`,
 `RUNWAY_API_KEY`, …). No keys are required to start — everything runs
-dry-run until you opt into live generation.
+dry-run until you opt into live generation, and the manual/harness-native
+providers never need one.
 
 ## 2. Start the workspace
 

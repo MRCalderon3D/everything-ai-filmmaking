@@ -6,3 +6,8 @@ node_modules/
 Thumbs.db
 production/generations/**/media/
 .playwright-mcp/
+
+# Clone-and-go: film workspaces created inside a scaffold clone stay out of
+# the scaffold's git history. Working in your own repo? Remove this line or
+# use scripts/install.js to set up a standalone project.
+production/

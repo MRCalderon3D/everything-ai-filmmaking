@@ -46,24 +46,21 @@ generated asset, and cost confirmation before every batch.
 
 ## Quickstart
 
-```bash
-git clone https://github.com/MRCalderon3D/everything-ai-filmmaking
-cd everything-ai-filmmaking
-npm install            # dev tooling only; the scaffold has zero runtime deps
-npm test               # self-tests
-npm run validate       # full validation gate
+Clone and talk — no install step:
 
-# install the scaffold into your film project
-node scripts/install.js --target ../my-film --harness claude
-cd ../my-film
-# open in Claude Code / Codex / Cursor and run:
-#   /project-init
+```bash
+git clone https://github.com/MRCalderon3D/everything-ai-filmmaking my-film
+cd my-film
+# open your assistant here (claude / codex / cursor) and say what you want:
+#   "I want a 40-second realistic zombie short. Set up the project."
+# /project-init creates production/ right here; every command is already wired.
 ```
 
-Or start a workspace directly:
+For an **existing** project of your own (or a lean profile), install the
+scaffold into it instead:
 
 ```bash
-node scripts/create-project.js --target ../my-film --title "The Red Suitcase"
+node scripts/install.js --target ../my-film --harness codex --profile full
 ```
 
 **New here? Follow the full walkthrough:** [docs/getting-started.md](docs/getting-started.md)
