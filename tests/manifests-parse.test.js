@@ -84,6 +84,18 @@ assert.ok(!profiles.previs.commands.includes('generate-keyframes'));
 assert.ok(profiles.generation.commands.includes('reference-plan'));
 assert.ok(profiles.generation.commands.includes('continuity-review'));
 
+// project schema default_providers enums must match the provider manifests —
+// adding a provider without updating the schema breaks user projects
+// (self-evaluation caught exactly this in the field for video: manual).
+const projectSchema = require('../schemas/project.schema.json');
+const dp = projectSchema.properties.default_providers.properties;
+assert.deepStrictEqual([...dp.image.enum].sort(), img.map((p) => p.id).sort(),
+  'project schema image providers enum != image-providers.json');
+assert.deepStrictEqual([...dp.video.enum].sort(), vid.map((p) => p.id).sort(),
+  'project schema video providers enum != video-providers.json');
+assert.deepStrictEqual([...dp.audio.enum].sort(), aud.map((p) => p.id).sort(),
+  'project schema audio providers enum != audio-providers.json');
+
 // harnesses
 const harnesses = manifests['harnesses.json'].harnesses;
 assert.deepStrictEqual(harnesses.map((h) => h.id), ['claude', 'codex', 'cursor', 'opencode', 'agents']);

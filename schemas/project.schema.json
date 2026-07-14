@@ -73,7 +73,7 @@
       "description": "Default generation backends per kind; commands may override per run.",
       "properties": {
         "image": { "enum": ["fal", "replicate", "comfyui", "harness-native"] },
-        "video": { "enum": ["veo", "kling", "runway", "seedance", "fal"] },
+        "video": { "enum": ["veo", "kling", "runway", "seedance", "fal", "manual"] },
         "audio": { "enum": ["elevenlabs", "fal", "local"] }
       }
     },
