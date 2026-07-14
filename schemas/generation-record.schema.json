@@ -9,13 +9,20 @@
   "properties": {
     "id": {
       "type": "string",
-      "pattern": "^GEN_SH_\\d{3}_\\d{3}_\\d{2}$",
-      "description": "Record ID: GEN_<shot>_<attempt##> (e.g. GEN_SH_004_002_01)."
+      "pattern": "^GEN_(SH_\\d{3}_\\d{3}|(CHAR|LOC|PROP|LOOK)_[A-Z][A-Z0-9_]*)_\\d{2}$",
+      "description": "Record ID: GEN_<shot>_<attempt##> for shot generations (e.g. GEN_SH_004_002_01), or GEN_<asset-id>_<attempt##> for asset-scoped generations such as masters (e.g. GEN_CHAR_MARA_EXPRESSION_01)."
     },
     "shot": {
+      "oneOf": [
+        { "type": "string", "pattern": "^SH_\\d{3}_\\d{3}$" },
+        { "type": "null" }
+      ],
+      "description": "Shot this attempt was generated for; null for asset-scoped generations (masters, reference sheets), which set asset instead."
+    },
+    "asset": {
       "type": "string",
-      "pattern": "^SH_\\d{3}_\\d{3}$",
-      "description": "Shot this attempt was generated for."
+      "pattern": "^(CHAR|LOC|PROP|LOOK)_[A-Z][A-Z0-9_]*$",
+      "description": "Asset this attempt was generated for (asset-scoped records); omit for shot generations."
     },
     "provider": {
       "type": "string",

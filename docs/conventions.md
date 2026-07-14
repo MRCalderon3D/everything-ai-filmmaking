@@ -211,7 +211,8 @@ rows above. `validate.js` cross-checks every listed name against the manifests.
 - Assets: `CHAR_*`, `LOC_*`, `PROP_*`, `LOOK_*`, versioned `_V##`
   (e.g. `CHAR_MARA_FACE_MASTER_V03`). Approved masters carry `_MASTER`.
 - Axes (180° line): `AXIS_<scene>_<letter>` (e.g. `AXIS_SC004_A`).
-- Generation records: `GEN_<shot>_<attempt##>`.
+- Generation records: `GEN_<shot>_<attempt##>` (shot generations) or
+  `GEN_<asset-id>_<attempt##>` (asset-scoped: masters, reference sheets).
 - Files are lowercase-kebab or the ID itself; YAML for structured data, Markdown
   for human documents.
 

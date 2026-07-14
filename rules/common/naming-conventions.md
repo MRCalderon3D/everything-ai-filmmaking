@@ -32,8 +32,11 @@ every cross-reference inside structured files.
   `CHAR_MARA_FACE_MASTER_V03`.
 - **Axes (180° line):** `AXIS_<scene>_<letter>` (`AXIS_SC004_A`); letters
   advance only when a new axis is legally established.
-- **Generation records:** `GEN_<shot>_<attempt##>` (`GEN_SH_004_002_ATTEMPT03`);
-  attempt numbers are sequential per shot and never reused.
+- **Generation records:** `GEN_<shot>_<attempt##>` for shot generations
+  (`GEN_SH_004_002_03`), or `GEN_<asset-id>_<attempt##>` for asset-scoped
+  generations such as masters and reference sheets
+  (`GEN_CHAR_MARA_EXPRESSION_01`, with `asset` set and `shot: null`);
+  attempt numbers are two digits, sequential per scope, never reused.
 
 ## File Naming
 
@@ -44,7 +47,7 @@ every cross-reference inside structured files.
   `wardrobe.yaml`, `location.yaml`, `map.yaml`, `prop.yaml`, `scene.yaml`,
   `blocking.yaml`).
 - Files named after an artifact use the ID verbatim: `SH_004_002.yaml`,
-  `GEN_SH_004_002_ATTEMPT03.yaml`. Media takes the record's basename plus
+  `GEN_SH_004_002_03.yaml`. Media takes the record's basename plus
   extension.
 - Everything else is lowercase-kebab (`reference-plan.yaml`,
   `scene-state.yaml`, `edit-plan.yaml`). NEVER use spaces, camelCase, or
