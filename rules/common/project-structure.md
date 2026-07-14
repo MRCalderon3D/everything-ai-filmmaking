@@ -31,7 +31,9 @@ production/
 ├── scenes/                    # <SC_ID>/scene.yaml, blocking.yaml, shots/,
 │                              #   storyboard/, references/, prompts/, continuity/
 ├── shots/                     # shots.yaml — generated flat index
-├── references/                # approved masters + manifest.yaml; inbox/ for user images pending /ingest-references
+├── references/                # approved masters + manifest.yaml (registry of ALL reference
+│   │                          #   material, any kind); inbox/ = universal drop zone pending
+│   │                          #   /ingest-references; audio/ video/ docs/ = non-visual refs
 ├── prompts/                   # compiled prompt packages per provider
 ├── generations/               # generation records + media, by shot
 ├── continuity/                # continuity-state.yaml per scene + global

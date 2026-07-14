@@ -220,12 +220,16 @@ rows above. `validate.js` cross-checks every listed name against the manifests.
 production/
 ├── project.yaml               # project.schema.json
 ├── story/                     # story-bible.yaml, script.fountain, treatment.md, music-brief.yaml
-├── characters/                # <CHAR_ID>/character.yaml, wardrobe.yaml, refs/
+├── characters/                # <CHAR_ID>/character.yaml, wardrobe.yaml, refs/, voice/ (voice identity samples)
 ├── locations/                 # <LOC_ID>/location.yaml, map.yaml, refs/
 ├── props/                     # <PROP_ID>/prop.yaml, refs/
 ├── scenes/                    # <SC_ID>/scene.yaml, blocking.yaml, shots/, storyboard/, references/, prompts/, continuity/
 ├── shots/                     # flat index shots.yaml (generated)
-├── references/                # approved master assets + manifest.yaml; inbox/ for user images awaiting /ingest-references
+├── references/                # approved masters + manifest.yaml (registry of ALL reference material, any kind)
+│   ├── inbox/                 #   universal drop zone: user material of any kind awaiting /ingest-references
+│   ├── audio/                 #   audio references: music ref tracks, sfx refs (music-brief cites these files)
+│   ├── video/                 #   video references: style/motion clips
+│   └── docs/                  #   text references: lore docs, mood writeups, articles
 ├── prompts/                   # compiled prompt packages per provider
 ├── generations/               # generation-record.yaml + media, by shot
 ├── continuity/                # continuity-state.yaml per scene + global

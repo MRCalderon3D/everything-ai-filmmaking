@@ -31,7 +31,8 @@ Options:
 
 const PRODUCTION_DIRS = [
   'story', 'characters', 'locations', 'props', 'scenes', 'shots',
-  'references', 'prompts', 'generations', 'continuity', 'edit',
+  'references', 'references/inbox', 'references/audio', 'references/video',
+  'references/docs', 'prompts', 'generations', 'continuity', 'edit',
 ];
 
 function slugifyId(title) {

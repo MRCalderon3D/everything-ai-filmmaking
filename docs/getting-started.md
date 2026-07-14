@@ -96,8 +96,9 @@ freehanded. Starter look presets live in `templates/looks/` (analog VHS,
 documentary, surrealist, classic cinematic) — copy one into your style bible
 and adapt it.
 
-**Have your own images?** Drop style frames, character lookalikes, location
-photos, or a mood board into `production/references/inbox/` and run:
+**Have your own material?** Drop it into `production/references/inbox/` —
+style frames, character lookalikes, location photos, mood boards, and also
+non-visual references: music tracks, motion clips, lore documents — and run:
 
 ```
 /ingest-references
@@ -106,7 +107,11 @@ photos, or a mood board into `production/references/inbox/` and run:
 The assistant analyzes each image — palette, lighting, lens cues for looks;
 identity vs. costume for characters; geography and materials for locations —
 and writes what it sees into the bibles and `LOOK_*` assets, registering
-every image with provenance and license state. Your images become the canon
+every file with provenance and license state. Files are routed to their
+homes: entity `refs/` for visual material, `characters/<ID>/voice/` for
+voice samples, `references/audio|video|docs/` for music refs, motion clips,
+and documents (audio/video are cataloged with your one-line description —
+the assistant can't hear or watch them). Your material becomes the canon
 that `/visual-development` then generates masters from, instead of the
 pipeline inventing a look from prose.
 

@@ -20,9 +20,10 @@ alone.
 
 ## Use When
 
-- The user drops images into `production/references/inbox/` or points at
+- The user drops material of any kind into `production/references/inbox/` —
+  images, video clips, audio tracks, text documents — or points at
   files/URLs and says "this is the look", "she looks like this", "this is
-  the apartment".
+  the apartment", "the score should feel like this".
 - `/ingest-references` is invoked.
 - `/visual-development` finds inbox material it should analyze before
   generating masters from scratch.
@@ -57,17 +58,25 @@ alone.
    `negative_vocabulary` like `templates/looks/`) and style-bible pillars;
    character/location/prop analyses fill the matching bible entry's
    canonical description fields.
-4. Register each image as a reference asset: proper ID
+4. Register each file as a reference asset: proper ID
    (`CHAR_*/LOC_*/PROP_*/LOOK_*` per naming conventions), file moved from
-   `inbox/` to its entity's `refs/` directory, registry entry with
+   `inbox/` to its home — entity `refs/` for visual material,
+   `characters/<ID>/voice/` for voice samples, `references/audio|video|docs/`
+   for music refs, motion clips, and text documents — registry entry with
    `status: draft`, and provenance recorded — provider `external`, origin,
-   license status. Uncleared or unknown-license images are flagged
+   license status. Uncleared or unknown-license files are flagged
    immediately.
-5. Detect conflicts instead of merging silently: an ingested image that
+5. Non-visual kinds are handled honestly: text documents are read and
+   analyzed like images; audio and video files are cataloged (the assistant
+   cannot hear or watch them) — the user supplies the one-line description
+   ("slow build, sparse piano, tension without release"), which becomes the
+   registry entry's note, and `/music-brief` or the style bible cites the
+   file by path.
+6. Detect conflicts instead of merging silently: an ingested image that
    contradicts an approved bible fact or style pillar (different eye color,
    different palette temperature) is reported as a decision for the user —
    supersede the canon or demote the image to inspiration.
-6. Hand off: recommend which ingested assets should be promoted to `_MASTER`
+7. Hand off: recommend which ingested assets should be promoted to `_MASTER`
    directly (the user's image IS the canon) and which should condition
    `/visual-development` generation (image-to-image toward a consistent
    master set). Promotion itself follows `draft → review → approved`.
