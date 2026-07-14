@@ -53,7 +53,11 @@ providers never need one.
 ```
 
 This scaffolds `production/` and writes `production/project.yaml`, the file
-every command reads first. Three decisions live here and shape everything
+every command reads first. Anything you don't specify gets asked in one
+short batched interview, each question offering a recommended default you
+can accept in a word — the scaffold never silently assumes a
+project-shaping value (`rules/common/ask-dont-assume.md`). Once answered,
+it's canon: downstream commands read `project.yaml` instead of re-asking. Three decisions live here and shape everything
 downstream:
 
 - **`production_type`** — `cinema` (short/feature/series) or `commercial`

@@ -8,7 +8,7 @@ normative: MUST, SHOULD, and NEVER carry their RFC-2119 meanings.
 
 | Layer | Applies to | Files |
 |---|---|---|
-| `common/` | Every task, always loaded | source-of-truth, project-structure, naming-conventions, asset-provenance, cost-control, approval-policy, self-review |
+| `common/` | Every task, always loaded | source-of-truth, project-structure, naming-conventions, asset-provenance, cost-control, approval-policy, self-review, ask-dont-assume |
 | `writing/` | Script, story, and dialogue work | screenplay-format, narrative-continuity, prose-style |
 | `visual/` | Design, storyboards, shot planning, any framed image | character-consistency, location-consistency, spatial-continuity, visual-language |
 | `image/` | Keyframe and still generation | image-generation |
@@ -49,6 +49,6 @@ human review.
 
 ## Roster
 
-The rule roster is exhaustive (25 rules). Do not add, remove, or rename rules
+The rule roster is exhaustive (26 rules). Do not add, remove, or rename rules
 without updating `docs/conventions.md` and the manifests; `npm run validate`
 cross-checks the roster.

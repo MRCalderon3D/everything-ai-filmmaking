@@ -50,8 +50,8 @@ storyboard-generation, reference-selection, prompt-compilation, image-generation
 video-generation, continuity-checking, edit-planning, production-orchestration,
 text-humanization, music-direction, self-evaluation, reference-ingestion.
 
-**Rules (25):**
-`common/`: source-of-truth, project-structure, naming-conventions, asset-provenance, cost-control, approval-policy, self-review.
+**Rules (26):**
+`common/`: source-of-truth, project-structure, naming-conventions, asset-provenance, cost-control, approval-policy, self-review, ask-dont-assume.
 `writing/`: screenplay-format, narrative-continuity, prose-style.
 `visual/`: character-consistency, location-consistency, spatial-continuity, visual-language.
 `image/`: image-generation.

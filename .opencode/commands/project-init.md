@@ -22,13 +22,22 @@ files so downstream commands never have to guess where anything lives.
 
 ## Inputs
 
-- `title` (string, required): working title of the project.
-- `format` (string, optional, default `short`): `short` | `feature` | `episode` | `spot`.
-- `aspect_ratio` (string, optional, default `16:9`): must be supported by the
-  default video provider.
-- `target_runtime` (duration, optional): e.g. `90s`, `12m`.
-- `image_provider` / `video_provider` (string, optional, defaults `fal` / `veo`):
-  must exist in `manifests/*-providers.json`.
+Anything not provided is ASKED in one batched interview, each question
+offering a recommended default (`rules/common/ask-dont-assume.md`) — never
+silently defaulted:
+
+- `title` (string): working title of the project.
+- `production_type`: `cinema` | `commercial` — selects the rules layer.
+- `format`: cinema: `short` | `feature` | `series` · commercial: `spot` |
+  `social` | `branded-content` | `music-video`.
+- `aspect_ratio`: must be supported by the video provider; commercial
+  projects define per-platform `deliverables[]` instead of a single answer.
+- `target_runtime` (duration): e.g. `40s`, `12m`.
+- `lens_kit`: allowed focals + glass character (suggest `[28, 50, 85]`
+  spherical as the starting kit).
+- `image_provider` / `video_provider` / `audio_provider`: from
+  `manifests/*-providers.json` — including the no-API paths
+  (`harness-native` image, `manual` video, `local` audio).
 
 ## Invokes Agents
 
@@ -43,9 +52,11 @@ files so downstream commands never have to guess where anything lives.
 
 1. Confirm there is no existing valid `production/project.yaml`; if one exists,
    report its state and stop unless the user explicitly asks to repair.
-2. showrunner interviews for missing inputs — title, format, aspect ratio,
-   runtime target, provider defaults — and records intent, logline, and
-   audience in the project file.
+2. showrunner interviews for ALL missing inputs in one batched pass — each
+   question offers a recommended default the user can accept in a word
+   (`rules/common/ask-dont-assume.md`) — and records intent, logline, and
+   audience in the project file. Answers become canon: downstream commands
+   read them instead of re-asking.
 3. Create the directory skeleton: `story/`, `characters/`, `locations/`,
    `props/`, `scenes/`, `shots/`, `references/`, `prompts/`, `generations/`,
    `continuity/`, `edit/`.
