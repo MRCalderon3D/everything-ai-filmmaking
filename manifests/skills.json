@@ -127,6 +127,12 @@
       "file": "skills/self-evaluation/SKILL.md",
       "description": "After generating any artifact, evaluate it cold against schema, rules, and the producing skill's quality bar; apply clear improvements before calling it done.",
       "category": "production"
+    },
+    {
+      "name": "reference-ingestion",
+      "file": "skills/reference-ingestion/SKILL.md",
+      "description": "Analyze user-supplied reference images and turn what they show into bible entries, LOOK assets, and registered reference assets the pipeline can condition on.",
+      "category": "visual"
     }
   ]
 }

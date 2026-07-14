@@ -276,6 +276,20 @@
       "skills": [
         "self-evaluation"
       ]
+    },
+    {
+      "name": "ingest-references",
+      "file": "commands/ingest-references.md",
+      "description": "Analyze user-supplied reference images and fold them into the bibles, style system, and reference registry with provenance.",
+      "agents": [
+        "visual-director",
+        "character-designer",
+        "production-designer"
+      ],
+      "skills": [
+        "reference-ingestion",
+        "visual-style-development"
+      ]
     }
   ]
 }

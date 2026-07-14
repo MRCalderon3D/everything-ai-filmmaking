@@ -31,6 +31,7 @@ references, and wardrobe states tracked against the script's timeline.
 - character-consistency
 - character-sheet-generation
 - visual-style-development
+- reference-ingestion
 
 ## Collaborates With
 

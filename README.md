@@ -18,6 +18,7 @@ applied to audiovisual production.
 /character-bible       # identity, wardrobe, and reference sheets per character
 /location-bible        # locations, camera-angle maps, spatial geometry
 /style-bible           # visual language, palette, lighting, lensing
+/ingest-references     # bring your own images; they become the canon
 /scene-breakdown       # scenes -> beats, entities, blocking needs
 /shot-list             # coverage plan per scene
 /smart-shot            # scene -> full multi-shot cinematic proposal
@@ -103,8 +104,8 @@ direction, neighbors), required reference assets, and generation flags — see
 ```
 agents/       17 roles: showrunner, screenwriter, visual-director, cinematographer,
               shot-planner, continuity-supervisor, prompt-director, …
-commands/     21 workflow entry points (the slash commands above)
-skills/       21 procedures: scene-blocking, cinematography, reference-selection,
+commands/     22 workflow entry points (the slash commands above)
+skills/       22 procedures: scene-blocking, cinematography, reference-selection,
               prompt-compilation, continuity-checking, …
 rules/        policy layers: common/ writing/ visual/ image/ video/ audio/
               + one production-type layer: cinema/ OR commercial/

@@ -43,10 +43,10 @@ cross-references.
   mutually exclusive production-type layers selected by `production_type` in
   `production/project.yaml`.
 - `agents/` — 17 specialized roles (who owns the work).
-- `commands/` — 21 workflow entry points; `/smart-shot` is the orchestrator
+- `commands/` — 22 workflow entry points; `/smart-shot` is the orchestrator
   that turns a scene into shots + storyboard + reference plan + prompts +
   continuity state.
-- `skills/` — 21 reusable procedures commands and agents invoke.
+- `skills/` — 22 reusable procedures commands and agents invoke.
 - `schemas/` — JSON Schema (draft 2020-12) for every `production/` artifact.
 - `manifests/` — machine-readable index; validation and installers read these,
   so rosters live here, not in prose.

@@ -37,18 +37,18 @@ character-designer, production-designer, storyboard-artist, cinematographer,
 shot-planner, continuity-supervisor, prompt-director, image-generation-specialist,
 video-generation-specialist, editor, sound-designer, colorist, production-qa.
 
-**Commands (21):** project-init, script-analyze, story-bible, character-bible,
+**Commands (22):** project-init, script-analyze, story-bible, character-bible,
 location-bible, prop-bible, style-bible, visual-development, scene-breakdown,
 shot-list, smart-shot, storyboard, reference-plan, generate-keyframes,
 generate-clips, continuity-review, edit-plan, full-production, humanize,
-music-brief, self-review.
+music-brief, self-review, ingest-references.
 
-**Skills (21):** script-analysis, narrative-structure, character-consistency,
+**Skills (22):** script-analysis, narrative-structure, character-consistency,
 character-sheet-generation, location-design, location-mapping,
 visual-style-development, scene-blocking, cinematography, shot-sequencing,
 storyboard-generation, reference-selection, prompt-compilation, image-generation,
 video-generation, continuity-checking, edit-planning, production-orchestration,
-text-humanization, music-direction, self-evaluation.
+text-humanization, music-direction, self-evaluation, reference-ingestion.
 
 **Rules (25):**
 `common/`: source-of-truth, project-structure, naming-conventions, asset-provenance, cost-control, approval-policy, self-review.
@@ -156,7 +156,7 @@ category: story | visual | production | generation | post
 Skill categories: story (script-analysis, narrative-structure,
 text-humanization, music-direction), visual
 (character-consistency, character-sheet-generation, location-design,
-location-mapping, visual-style-development), production (scene-blocking,
+location-mapping, visual-style-development, reference-ingestion), production (scene-blocking,
 cinematography, shot-sequencing, storyboard-generation, reference-selection,
 production-orchestration, self-evaluation), generation (prompt-compilation, image-generation,
 video-generation), post (continuity-checking, edit-planning).
@@ -197,6 +197,7 @@ video-generation), post (continuity-checking, edit-planning).
 | humanize | script-editor, screenwriter | text-humanization |
 | music-brief | showrunner, sound-designer | music-direction |
 | self-review | production-qa, showrunner | self-evaluation |
+| ingest-references | visual-director, character-designer, production-designer | reference-ingestion, visual-style-development |
 
 Commands may reference additional agents/skills in prose, but `Invokes Agents`
 and `Required Skills` lists MUST contain only roster names and MUST include the
@@ -224,7 +225,7 @@ production/
 ├── props/                     # <PROP_ID>/prop.yaml, refs/
 ├── scenes/                    # <SC_ID>/scene.yaml, blocking.yaml, shots/, storyboard/, references/, prompts/, continuity/
 ├── shots/                     # flat index shots.yaml (generated)
-├── references/                # approved master assets + manifest.yaml
+├── references/                # approved master assets + manifest.yaml; inbox/ for user images awaiting /ingest-references
 ├── prompts/                   # compiled prompt packages per provider
 ├── generations/               # generation-record.yaml + media, by shot
 ├── continuity/                # continuity-state.yaml per scene + global

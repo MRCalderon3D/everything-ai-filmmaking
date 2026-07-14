@@ -28,6 +28,7 @@ are cross-checked by `npm run validate`.
 | [location-bible](location-bible.md) | Define locations with spatial geometry, camera-angle maps, and lighting logic. |
 | [prop-bible](prop-bible.md) | Catalog plot-critical props with appearance, state timeline, and custody tracking. |
 | [style-bible](style-bible.md) | Lock the film's visual language — palette, lighting, lensing, grain, and grade intent. |
+| [ingest-references](ingest-references.md) | Analyze the user's own reference images and fold them into bibles, looks, and the registry with provenance. |
 | [visual-development](visual-development.md) | Generate and iterate the master reference images — character sheets, location plates, look frames. |
 
 ## Shot planning (previs)
@@ -69,6 +70,7 @@ are cross-checked by `npm run validate`.
 /story-bible
 /music-brief                 # music strategy before shot planning
 /character-bible → /location-bible → /prop-bible → /style-bible
+/ingest-references           # if the user brings images: analyze them first
 /visual-development          # first paid step: master references
 /scene-breakdown
 /smart-shot                  # per scene (or /shot-list + /storyboard + /reference-plan)

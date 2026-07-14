@@ -37,7 +37,7 @@ production/
 ├── scenes/                    # <SC_ID>/scene.yaml, blocking.yaml, shots/,
 │                              #   storyboard/, references/, prompts/, continuity/
 ├── shots/                     # shots.yaml — generated flat index
-├── references/                # approved masters + manifest.yaml
+├── references/                # approved masters + manifest.yaml; inbox/ for user images pending /ingest-references
 ├── prompts/                   # compiled prompt packages per provider
 ├── generations/               # generation records + media, by shot
 ├── continuity/                # continuity-state.yaml per scene + global

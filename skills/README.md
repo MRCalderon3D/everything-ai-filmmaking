@@ -22,6 +22,7 @@ command → agents → skills map lives in [docs/conventions.md](../docs/convent
 | [location-design](location-design/SKILL.md) | Define each location's architecture, dressing, lighting logic, and time-of-day states. |
 | [location-mapping](location-mapping/SKILL.md) | Build camera-angle maps and spatial geometry for each location. |
 | [visual-style-development](visual-style-development/SKILL.md) | Define the film's visual language — palette, lighting, lensing, texture — as an enforceable style bible. |
+| [reference-ingestion](reference-ingestion/SKILL.md) | Analyze user-supplied images and turn what they show into bibles, LOOK assets, and registered references with provenance. |
 
 ## Production
 

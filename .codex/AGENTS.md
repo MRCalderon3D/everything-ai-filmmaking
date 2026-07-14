@@ -14,6 +14,7 @@ custom prompts; never edit them here.
 - generate-clips
 - generate-keyframes
 - humanize
+- ingest-references
 - location-bible
 - music-brief
 - project-init

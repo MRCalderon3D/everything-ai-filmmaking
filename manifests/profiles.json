@@ -24,7 +24,8 @@
         "full-production",
         "humanize",
         "music-brief",
-        "self-review"
+        "self-review",
+        "ingest-references"
       ],
       "agents": [
         "showrunner",
@@ -66,7 +67,8 @@
         "production-orchestration",
         "text-humanization",
         "music-direction",
-        "self-evaluation"
+        "self-evaluation",
+        "reference-ingestion"
       ]
     },
     "writing-room": {
@@ -115,7 +117,8 @@
         "smart-shot",
         "storyboard",
         "humanize",
-        "self-review"
+        "self-review",
+        "ingest-references"
       ],
       "agents": [
         "showrunner",
@@ -149,7 +152,8 @@
         "continuity-checking",
         "production-orchestration",
         "text-humanization",
-        "self-evaluation"
+        "self-evaluation",
+        "reference-ingestion"
       ]
     },
     "generation": {

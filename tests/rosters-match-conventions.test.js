@@ -14,12 +14,12 @@ function asSortedSet(list) {
 
 // counts declared in conventions.md headers
 assert.strictEqual(rosters.counts.agents, 17);
-assert.strictEqual(rosters.counts.commands, 21);
-assert.strictEqual(rosters.counts.skills, 21);
+assert.strictEqual(rosters.counts.commands, 22);
+assert.strictEqual(rosters.counts.skills, 22);
 assert.strictEqual(rosters.counts.providers, 12);
 assert.strictEqual(rosters.agents.length, 17, `parsed ${rosters.agents.length} agent names`);
-assert.strictEqual(rosters.commands.length, 21);
-assert.strictEqual(rosters.skills.length, 21);
+assert.strictEqual(rosters.commands.length, 22);
+assert.strictEqual(rosters.skills.length, 22);
 
 assert.deepStrictEqual(
   asSortedSet(manifests['agents.json'].agents.map((a) => a.name)),

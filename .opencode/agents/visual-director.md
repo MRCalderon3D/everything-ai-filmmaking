@@ -33,6 +33,7 @@ That separation keeps the look opinionated and the canon auditable.
 - cinematography
 - storyboard-generation
 - reference-selection
+- reference-ingestion
 
 ## Collaborates With
 

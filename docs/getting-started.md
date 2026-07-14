@@ -96,6 +96,20 @@ freehanded. Starter look presets live in `templates/looks/` (analog VHS,
 documentary, surrealist, classic cinematic) — copy one into your style bible
 and adapt it.
 
+**Have your own images?** Drop style frames, character lookalikes, location
+photos, or a mood board into `production/references/inbox/` and run:
+
+```
+/ingest-references
+```
+
+The assistant analyzes each image — palette, lighting, lens cues for looks;
+identity vs. costume for characters; geography and materials for locations —
+and writes what it sees into the bibles and `LOOK_*` assets, registering
+every image with provenance and license state. Your images become the canon
+that `/visual-development` then generates masters from, instead of the
+pipeline inventing a look from prose.
+
 ```
 /visual-development    # FIRST PAID STEP — generate the master references
 ```
