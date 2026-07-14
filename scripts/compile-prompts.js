@@ -19,6 +19,7 @@ const yaml = require('./lib/yaml');
 const schemaLib = require('./lib/schema');
 const cameraMoves = require('./lib/camera-moves');
 const lensLanguage = require('./lib/lens-language');
+const compositionLanguage = require('./lib/composition-language');
 const { hashObject } = require('../providers/lib/common');
 
 const HELP = `
@@ -119,6 +120,9 @@ function composePrompt(shot, bibles, providerId, kind) {
     const lensKit = bibles.project && bibles.project.lens_kit;
     const lensPhrase = lensLanguage.describeLens(cam, lensKit);
     if (lensPhrase) camBits.push(lensPhrase);
+    // Composition is a framing attribute like lens character: same gate.
+    const compPhrase = compositionLanguage.describeComposition(cam.composition);
+    if (compPhrase) camBits.push(compPhrase);
   }
   const move = cam.movement || {};
   const movePhrase = cameraMoves.describe(move);

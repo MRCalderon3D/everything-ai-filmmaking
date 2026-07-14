@@ -79,6 +79,29 @@ shot planning, and the look constraints compiled into every prompt package.
 - Headroom, lead room, and symmetry conventions come from the style bible
   and stay constant unless a pillar-level exception is approved.
 
+## Composition Grammar
+
+- Composition is declared per shot (`camera.composition`) when it argues the
+  beat; boards and keyframes MUST match the declaration, and compiled
+  prompts carry it for providers that take framing in text.
+- **Rule of thirds** is the narrative default: subject on an intersection,
+  looking room in the gaze direction. It is the unmarked case — declare it
+  only when a shot must NOT drift to something else.
+- **Centered symmetry** reads as power, ritual, or wrongness. It is a marked
+  event: rationed, motivated, and NEVER the accidental output of a model's
+  centering bias — an undeclared centered frame fails review.
+- **Short-siding** (gaze pressed against the near edge) breaks comfort:
+  unease, isolation, something unseen behind. Use when the audience should
+  feel the missing space.
+- **Negative space** makes absence a presence: threat, loneliness, scale.
+  The empty area is a subject — name what it means in the shot file.
+- **Frame-within-frame** (doorways, windows, mirrors within the rules of
+  `visual/character-consistency.md`) is entrapment or observation.
+- **Headroom tightens as tension rises**; generous headroom diminishes or
+  isolates. Looking room denied is a device, not a framing error.
+- One scheme per shot. Composition changes across a cut are cut energy —
+  plan them in `shot-sequencing`, do not let them happen.
+
 ## Validation
 
 - `scripts/validate.js` checks each shot declares size, lens, and height

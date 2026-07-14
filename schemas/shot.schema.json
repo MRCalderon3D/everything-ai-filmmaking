@@ -112,6 +112,29 @@
           "enum": ["shallow", "medium", "deep"],
           "description": "Narrative depth-of-field intent: shallow isolates, deep keeps foreground and background in dramatic play. Compiled into prompt language for providers that honor it."
         },
+        "composition": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "Framing intent (rules/visual/visual-language.md Composition Grammar). Declared when composition argues the beat; boards and keyframes must match it.",
+          "properties": {
+            "scheme": {
+              "enum": ["thirds", "centered_symmetry", "short_sided", "negative_space", "frame_within_frame", "leading_lines"],
+              "description": "thirds = narrative default; centered_symmetry = power/ritual/wrongness (ration it); short_sided = comfort broken, gaze against the near edge; negative_space = absence or threat as presence; frame_within_frame = entrapment/observation; leading_lines = the eye is steered."
+            },
+            "looking_room": {
+              "enum": ["ample", "standard", "denied"],
+              "description": "Space in the gaze/movement direction. Denied looking room is a tension device, not an accident."
+            },
+            "headroom": {
+              "enum": ["generous", "standard", "tight"],
+              "description": "Headroom SHOULD tighten as tension rises."
+            },
+            "notes": {
+              "type": "string",
+              "description": "Free framing intent for boards; not compiled into prompts."
+            }
+          }
+        },
         "movement": {
           "type": "object",
           "additionalProperties": false,

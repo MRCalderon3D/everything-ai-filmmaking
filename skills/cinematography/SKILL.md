@@ -45,13 +45,18 @@ what the beat means — chosen deliberately, never by default.
    revelation of context or abandonment, pan/track to follow intent, handheld
    for instability, dolly-past for time and detachment. Unmotivated movement
    is noise; static is a choice, not an absence.
-6. Pick the coverage pattern from blocking: master + matched singles for
+6. Compose the frame to the beat: thirds with looking room as the default;
+   deny the looking room (short-siding) when comfort must break; center and
+   mirror only for power, ritual, or wrongness - rationed; negative space as
+   threat or absence; frame-within-frame for entrapment; headroom tightening
+   as tension rises. Declare it in camera.composition when it argues.
+7. Pick the coverage pattern from blocking: master + matched singles for
    dialogue; shot-reverse-shot on the axis side with equal size/lens/height;
    dirty OTS to keep power relations in frame; clean singles to isolate a
    character who is emotionally alone.
-7. Specify each camera fully — size, angle, height, lens, movement, and the
+8. Specify each camera fully — size, angle, height, lens, movement, and the
    nearest mapped location angle — so shots are generable and auditable.
-8. Check the set as a whole: sizes should progress with the scene's tension
+9. Check the set as a whole: sizes should progress with the scene's tension
    curve, and adjacent shots must differ by more than 30 degrees or one full size.
 
 ## Outputs

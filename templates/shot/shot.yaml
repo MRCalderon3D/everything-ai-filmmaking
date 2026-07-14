@@ -27,6 +27,10 @@ camera:                            # compiled directly into prompt language
   # t_stop: 2.8                    # aperture — drives depth-of-field prompt language
   # depth_of_field: shallow        # shallow | medium | deep — declare only when it argues
   station: LOC_STATION_C1          # optional camera station from the location map
+  composition:                     # declared when framing argues the beat (visual-language: Composition Grammar)
+    scheme: thirds                 # thirds | centered_symmetry | short_sided | negative_space | frame_within_frame | leading_lines
+    looking_room: ample            # ample | standard | denied — space toward Mara's eyeline to the suitcase
+    headroom: standard             # generous | standard | tight — tighten as tension rises
   movement:
     type: dolly_in                 # one primary move — full vocabulary in schemas/shot.schema.json + rules/video/motion-language.md
     motivation: reveal             # reveal|follow|emphasize|disorient|detach — no motivation, no move
