@@ -30,6 +30,10 @@ every cross-reference inside structured files.
   `PROP_*` props, `LOOK_*` style/look assets. Versioned with `_V##`
   (`CHAR_MARA_FACE_V03`). Approved masters carry `_MASTER` before the version:
   `CHAR_MARA_FACE_MASTER_V03`.
+- **Namespaces are exclusive.** `LOOK_*` belongs to the film's visual
+  language (style looks) only. Anything owned by a character lives in its
+  namespace: wardrobe states are `CHAR_<NAME>_WARDROBE_<STATE>_V##`, never
+  `LOOK_*` — the prefix drives reference purpose and weighting downstream.
 - **Axes (180° line):** `AXIS_<scene>_<letter>` (`AXIS_SC004_A`); letters
   advance only when a new axis is legally established.
 - **Generation records:** `GEN_<shot>_<attempt##>` for shot generations

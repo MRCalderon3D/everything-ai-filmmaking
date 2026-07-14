@@ -14,7 +14,7 @@ axes:                              # 180-degree lines; every shot's axis_id must
 
 character_states:                  # keyed by character ID — state at scene time
   CHAR_MARA:
-    wardrobe: LOOK_MARA_TRAVEL_V01 # outfit from wardrobe.yaml
+    wardrobe: CHAR_MARA_WARDROBE_TRAVEL_V01 # outfit from wardrobe.yaml
     wardrobe_state: wet            # clean|dirty|wet|torn|bloodied|burned|wrinkled|repaired
     props_held: []                 # hands free; the suitcase is NOT picked up in this scene
     position: beside_bench         # mark or landmark at scene time

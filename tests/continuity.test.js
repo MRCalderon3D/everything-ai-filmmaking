@@ -50,7 +50,7 @@ const prior = {
   scene: 'SC_020',
   axes: [{ id: 'AXIS_SC020_A', established_in: 'SH_020_001', subjects: ['CHAR_MARA'] }],
   character_states: {
-    CHAR_MARA: { wardrobe: 'LOOK_MARA_TRAVEL_V01', position: 'off_screen', last_seen_in: null },
+    CHAR_MARA: { wardrobe: 'CHAR_MARA_WARDROBE_TRAVEL_V01', position: 'off_screen', last_seen_in: null },
   },
   lighting: 'sodium-vapor night',
   last_validated: '2026-07-01T00:00:00Z',
@@ -58,7 +58,7 @@ const prior = {
 const withState = analyzeScene(goodShots, prior);
 assert.deepStrictEqual(withState.issues, []);
 const mara = withState.state.character_states.CHAR_MARA;
-assert.strictEqual(mara.wardrobe, 'LOOK_MARA_TRAVEL_V01', 'wardrobe must be preserved');
+assert.strictEqual(mara.wardrobe, 'CHAR_MARA_WARDROBE_TRAVEL_V01', 'wardrobe must be preserved');
 assert.strictEqual(mara.last_seen_in, 'SH_020_003');
 assert.strictEqual(mara.position, 'bench_seated');
 assert.strictEqual(withState.state.lighting, 'sodium-vapor night', 'prior fields survive the refresh');

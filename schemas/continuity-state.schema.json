@@ -55,8 +55,8 @@
           "properties": {
             "wardrobe": {
               "type": "string",
-              "pattern": "^LOOK_[A-Z][A-Z0-9_]*(_V\\d{2})?$",
-              "description": "Outfit ID worn in this scene (from the character's wardrobe.yaml)."
+              "pattern": "^CHAR_[A-Z][A-Z0-9_]*_WARDROBE_[A-Z][A-Z0-9_]*(_V\\d{2})?$",
+              "description": "Outfit ID worn in this scene (from the character's wardrobe.yaml; character namespace — LOOK_* is reserved for film looks)."
             },
             "wardrobe_state": {
               "enum": ["clean", "dirty", "wet", "torn", "bloodied", "burned", "wrinkled", "repaired"],

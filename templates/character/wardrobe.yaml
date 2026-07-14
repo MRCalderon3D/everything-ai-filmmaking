@@ -6,7 +6,7 @@
 character: CHAR_MARA               # character this wardrobe belongs to
 
 outfits:
-  - id: LOOK_MARA_TRAVEL_V01       # outfit asset ID (LOOK_* prefix, versioned)
+  - id: CHAR_MARA_WARDROBE_TRAVEL_V01 # outfit asset ID — character namespace (LOOK_* is for film looks)
     name: "Travel outfit"
     description: >
       Belted charcoal wool trench coat over a moss-green sweater, dark straight
@@ -31,14 +31,14 @@ outfits:
         state: wet
         note: "Still raining on the platform; coat shoulders visibly darkened."
     references:                    # outfit reference registry; files live in refs/
-      - asset_id: LOOK_MARA_TRAVEL_FRONT_V01
-        path: refs/look_mara_travel_front_v01.png
+      - asset_id: CHAR_MARA_WARDROBE_TRAVEL_FRONT_V01
+        path: refs/char_mara_wardrobe_travel_front_v01.png
         kind: outfit               # outfit | detail | fabric | worn
         status: approved           # draft | review | approved
         version: 1
         notes: "Full outfit, front view, dry state."
-      - asset_id: LOOK_MARA_TRAVEL_WET_V01
-        path: refs/look_mara_travel_wet_v01.png
+      - asset_id: CHAR_MARA_WARDROBE_TRAVEL_WET_V01
+        path: refs/char_mara_wardrobe_travel_wet_v01.png
         kind: worn                 # in-scene state reference
         status: review
         version: 1

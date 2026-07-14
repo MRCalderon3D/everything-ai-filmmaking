@@ -31,8 +31,8 @@
       "properties": {
         "id": {
           "type": "string",
-          "pattern": "^LOOK_[A-Z][A-Z0-9_]*(_V\\d{2})?$",
-          "description": "Outfit asset ID (e.g. LOOK_MARA_TRAVEL_V01)."
+          "pattern": "^CHAR_[A-Z][A-Z0-9_]*_WARDROBE_[A-Z][A-Z0-9_]*(_V\\d{2})?$",
+          "description": "Outfit asset ID in the character namespace (e.g. CHAR_MARA_WARDROBE_TRAVEL_V01). LOOK_* is reserved for the film's visual-language assets."
         },
         "name": { "type": "string", "minLength": 1 },
         "description": {
@@ -80,7 +80,7 @@
             "properties": {
               "asset_id": {
                 "type": "string",
-                "pattern": "^LOOK_[A-Z][A-Z0-9_]*(_V\\d{2})?$"
+                "pattern": "^CHAR_[A-Z][A-Z0-9_]*_WARDROBE_[A-Z][A-Z0-9_]*(_V\\d{2})?$"
               },
               "path": { "type": "string", "minLength": 1 },
               "kind": {

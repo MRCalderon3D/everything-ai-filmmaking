@@ -52,6 +52,14 @@ every later shot conditions on the masters approved here.
    never on a draft. On a move-along instruction ("next") with parents still
    in review, the correct response is stating the blocker and asking for
    the verdict, not generating (`rules/common/approval-policy.md`).
+   **The character master ladder is ordered:** face master → turnaround and
+   expression sheets (head) → body master (full figure — requires lower-body
+   canon in the bible; if missing, ASK for it with a proposal, per
+   `common/ask-dont-assume.md`) → wardrobe state masters (FULL figure, one
+   per state, `CHAR_<NAME>_WARDROBE_<STATE>_V##`, conditioned on the
+   approved body master). Never generate a wardrobe state before the body
+   master exists — a torso-only wardrobe card cannot anchor half the outfit.
+   Locations run establishing plates first, then camera-angle stations.
 2. Compile prompts from the bibles — identity anchors, wardrobe state,
    geometry, LOOK language — never freehand. Each prompt package is written
    before any generation.
