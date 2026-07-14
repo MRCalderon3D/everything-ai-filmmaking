@@ -125,7 +125,7 @@ async function checkProvider(entry) {
 
 async function main() {
   const providers = listProviders();
-  assert.strictEqual(providers.length, 12, `expected 12 providers, got ${providers.length}`);
+  assert.strictEqual(providers.length, 13, `expected 13 providers, got ${providers.length}`);
 
   for (const entry of providers) {
     await checkProvider(entry);
@@ -166,7 +166,7 @@ async function main() {
       /GOOGLE_API_KEY/, 'live mode without env must refuse');
   }
 
-  console.log('provider-interface: OK (12 providers)');
+  console.log('provider-interface: OK (13 providers)');
 }
 
 main().catch((err) => {
