@@ -64,6 +64,10 @@ Or start a workspace directly:
 node scripts/create-project.js --target ../my-film --title "The Red Suitcase"
 ```
 
+**New here? Follow the full walkthrough:** [docs/getting-started.md](docs/getting-started.md)
+— install to edit plan on the worked noir example, with every command and
+its CLI equivalent.
+
 ## The centerpiece: `/smart-shot`
 
 Turns one scene into a complete multi-shot cinematic proposal:
