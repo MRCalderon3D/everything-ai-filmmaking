@@ -133,6 +133,8 @@ All under the scene directory `production/scenes/SC_###/`:
   `schemas/shot.schema.json`.
 - `storyboard/storyboard.md` — boards in cut order (human document).
 - `storyboard/board-manifest.yaml` — frame-to-shot map (manifest).
+- `storyboard/board.html` — composed one-page visual production board from
+  approved assets (`npm run board -- --scene-dir <dir>`).
 - `references/reference-plan.yaml` — validates against
   `schemas/reference-plan.schema.json`.
 - `prompts/<provider>/` — one prompt package per shot (plus `prompts/generic/`);

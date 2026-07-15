@@ -155,6 +155,15 @@ stations: `/shot-list`, `/storyboard`, `/reference-plan`.
 Useful flags: `--coverage minimal|standard|dense` (minimal is the commercial
 default), `--style <LOOK_ID>`.
 
+At any point, compose the scene's one-page visual production board —
+character strips, location plates, a data-faithful blocking floor plan, and
+the storyboard grid with whatever keyframes exist so far:
+
+```bash
+npm run board -- --scene-dir production/scenes/SC_004
+# writes production/scenes/SC_004/storyboard/board.html
+```
+
 Each shot file carries the full craft record: narrative purpose, timing with
 handles, camera (size, angle, height, `lens_mm` from your kit, movement with
 direction), blocking with eyelines, continuity (axis, screen direction,

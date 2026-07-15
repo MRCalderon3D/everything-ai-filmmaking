@@ -144,7 +144,7 @@ schemas/      15 JSON Schemas for every artifact in production/
 manifests/    machine-readable index (validation + install profiles)
 templates/    starter files for new workspaces
 scripts/      Node >= 18, zero-dep tooling: install, doctor, validate,
-              sync-harnesses, create-project, compile-prompts,
+              sync-harnesses, create-project, compile-prompts, build-board,
               build-reference-plan, generate-assets, check-continuity
 providers/    image: fal, replicate, comfyui, harness-native
               video: veo, kling, runway, seedance, fal

@@ -20,7 +20,8 @@
     "compile:prompts": "node scripts/compile-prompts.js",
     "build:reference-plan": "node scripts/build-reference-plan.js",
     "generate:assets": "node scripts/generate-assets.js",
-    "check:continuity": "node scripts/check-continuity.js"
+    "check:continuity": "node scripts/check-continuity.js",
+    "board": "node scripts/build-board.js"
   },
   "keywords": [
     "ai-filmmaking",

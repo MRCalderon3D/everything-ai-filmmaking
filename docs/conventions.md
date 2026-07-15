@@ -79,9 +79,10 @@ image-providers.json, video-providers.json, audio-providers.json, harnesses.json
 **Providers (14):** image: fal, replicate, comfyui, harness-native, gemini ·
 video: veo, kling, runway, seedance, fal, manual · audio: elevenlabs, fal, local.
 
-**Scripts (9):** install.js, doctor.js, validate.js, sync-harnesses.js,
+**Scripts (10):** install.js, doctor.js, validate.js, sync-harnesses.js,
 create-project.js, compile-prompts.js, build-reference-plan.js,
-generate-assets.js, check-continuity.js. Shared helpers live in `scripts/lib/`.
+generate-assets.js, check-continuity.js, build-board.js. Shared helpers live
+in `scripts/lib/`.
 
 **Hooks (4):** validate-after-write.js, protect-approved-assets.js,
 detect-continuity-drift.js, require-cost-confirmation.js, wired by `hooks/hooks.json`.

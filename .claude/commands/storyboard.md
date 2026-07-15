@@ -68,6 +68,11 @@ re-generated clip does not.
   map with image paths and render provenance (manifest, no schema).
 - `production/generations/<batch>/generation-record.yaml` — one per rendered
   frame batch, validates against `schemas/generation-record.schema.json`.
+- `production/scenes/SC_###/storyboard/board.html` — the composed one-page
+  visual production board (characters, plates, data-faithful blocking floor
+  plan, storyboard grid), built from approved assets via `npm run board --
+  --scene-dir <dir>` (`scripts/build-board.js`). Nothing on it is generated;
+  it is faithful composition and re-runs at any time.
 
 ## Notes
 
