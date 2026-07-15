@@ -1,14 +1,47 @@
-# everything-ai-filmmaking
+<div align="center">
 
-An open-source workflow scaffold for **AI-assisted filmmaking**. Open your film
-project in **Claude Code, Codex, Cursor, or OpenCode** and run production
-commands — the scaffold's agents, skills, and rules take a story from script to
-edit plan, generating and maintaining structured files inside your project.
+# Everything AI Filmmaking
 
-This is not an app and has no interface. It is a coordinated system of **rules,
-agents, commands, skills, and contexts** that a coding assistant loads — the
-same architecture as [everything-game-dev-code](https://github.com/MRCalderon3D/everything-game-dev-code),
-applied to audiovisual production.
+### A universal scaffold for AI-assisted filmmaking.
+
+### From script to edit plan. Multi-harness. One coordinated production office.
+
+[![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+![agents](https://img.shields.io/badge/agents-17-blueviolet)
+![commands](https://img.shields.io/badge/commands-22-orange)
+![skills](https://img.shields.io/badge/skills-23-brightgreen)
+![rules](https://img.shields.io/badge/rules-26-yellow)
+![schemas](https://img.shields.io/badge/schemas-15-red)
+![contexts](https://img.shields.io/badge/contexts-5-00b4c8)
+![harnesses](https://img.shields.io/badge/harnesses-5-8b5e3c)
+![providers](https://img.shields.io/badge/providers-image%20%7C%20video%20%7C%20audio-9b30ff)
+
+**Claude Code · Codex · Cursor · OpenCode** — bibles as canon, references before
+prompts, continuity as state, strict provenance, shared standards.
+
+</div>
+
+---
+
+Not just a prompt collection — a structured operating system for film
+productions that combines:
+
+- **Rules** for policy and craft standards (with mutually exclusive
+  cinema/commercial production layers)
+- **Agents** for role specialization — a full production office
+- **Commands** for repeatable entry points, `/smart-shot` as the centerpiece
+- **Skills** for reusable execution patterns
+- **Schemas** validating every artifact in `production/`
+- **Providers** for image, video, and audio generation — API, in-harness
+  (gpt-image, Nano Banana), or fully manual (Higgsfield and any web UI)
+- **Contexts** for phase-specific behavior
+- **Hooks** for workflow automation and asset protection
+- **Harness adapters** generated from one source of truth
+
+Same architecture as
+[everything-game-dev-code](https://github.com/MRCalderon3D/everything-game-dev-code),
+applied to audiovisual production. Open your film project in your assistant
+and run production commands — no app, no interface, just structured files.
 
 ```
 /project-init          # scaffold a production/ workspace
