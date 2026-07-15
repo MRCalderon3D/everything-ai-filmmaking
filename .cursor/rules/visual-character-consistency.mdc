@@ -55,6 +55,12 @@ every image/video generation that depicts a `CHAR_*` entity.
 - After each generation, compare against the face master: facial structure,
   eye and hair color, hairstyle, distinguishing marks, apparent age, build.
   Any mismatch on these is a reroll, regardless of how good the image is.
+- **Approved masters outrank bible text.** New assets are checked against
+  the approved master IMAGES first, the bible's words second — including
+  the rendered EXTENT of marks (a wound's spread, wear, staining), not just
+  their side and presence. Where image and text disagree, the image is
+  canon and the bible is stale: sync it (`common/approval-policy.md`)
+  before generating anything that would inherit the discrepancy.
 - **Laterality protocol.** Mirror confusion is the most common visual audit
   error — in humans and in model self-review alike. Anatomical sides are
   derived BEFORE judging any asymmetric anchor (earrings, wounds, scars,

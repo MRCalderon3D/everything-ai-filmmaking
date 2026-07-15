@@ -37,6 +37,14 @@ storyboards, prompt packages, generated media, and edit plans.
 - **approved** — canon. Recorded with reviewer and timestamp. Approved assets
   are copied or referenced into their canonical location (masters into
   `production/references/` + `manifest.yaml`).
+- **Approval syncs the bible — same act, never later.** An approved image
+  outranks the bible's written anchors (`common/source-of-truth.md`): where
+  the approved render differs from the written canon (a wound's rendered
+  extent, a garment detail), the bible is updated to the rendered reality as
+  part of registering the approval — or the difference is surfaced and the
+  approval reconsidered. Skipping the sync forks canon: the next asset
+  follows the stale text while conditioning on the richer image, and the
+  masters drift apart.
 
 ## Immutability and Supersession
 
