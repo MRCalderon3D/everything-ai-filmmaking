@@ -51,6 +51,18 @@ function eventCommand(event) {
  */
 function findProductionRoot(file) {
   const abs = path.resolve(file);
+  // A workspace root is any ancestor directory containing project.yaml —
+  // 'production' is the default name, not a requirement (multi-production
+  // clones rename their workspaces, e.g. production-zombie-test/).
+  let dir = fs.existsSync(abs) && fs.statSync(abs).isDirectory() ? abs : path.dirname(abs);
+  for (let i = 0; i < 12; i++) {
+    if (fs.existsSync(path.join(dir, 'project.yaml'))) return dir;
+    const parent = path.dirname(dir);
+    if (parent === dir) break;
+    dir = parent;
+  }
+  // Fallback: literal 'production' path segment (fresh workspaces whose
+  // project.yaml has not been written yet).
   const parts = abs.split(path.sep);
   const idx = parts.lastIndexOf('production');
   if (idx === -1) return null;

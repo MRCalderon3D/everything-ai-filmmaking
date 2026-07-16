@@ -219,6 +219,12 @@ rows above. `validate.js` cross-checks every listed name against the manifests.
 
 ## `production/` workspace layout
 
+`production/` is the default workspace name, not a requirement: a workspace
+root is any directory containing `project.yaml`, and hooks/scripts resolve
+roots by that marker. Parallel productions in one clone live side by side
+(`production/`, `production-<slug>/`), each fully self-contained — assets,
+references, and continuity NEVER cross workspace roots.
+
 ```
 production/
 ├── project.yaml               # project.schema.json

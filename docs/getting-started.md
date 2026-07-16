@@ -24,6 +24,11 @@ The clone already contains every harness's wiring (`.claude/`, `.codex/`,
 `/project-init` creates your `production/` workspace right here, and git
 ignores it so your film stays out of the scaffold's history.
 
+Running several productions in one clone? Rename per project
+(`production-my-film/`): any directory containing `project.yaml` is a valid
+workspace root, and each production stays fully self-contained. Add each
+folder to `.gitignore` like the default `production/` line.
+
 **Installing into an existing project** (your own repo, or a lean profile):
 
 ```bash

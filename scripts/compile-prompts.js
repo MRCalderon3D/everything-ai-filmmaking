@@ -52,10 +52,13 @@ function safeYaml(file) {
   }
 }
 
-/** production/ root: walk up from the scene dir to the dir holding scenes/. */
+/** Workspace root: any ancestor holding project.yaml ('production' is the
+ * default name, not a requirement — renamed multi-production workspaces
+ * like production-zombie-test/ count), else the dir holding scenes/. */
 function findProductionRoot(sceneDir) {
   let dir = path.resolve(sceneDir);
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < 12; i++) {
+    if (exists(path.join(dir, 'project.yaml'))) return dir;
     if (path.basename(path.dirname(dir)) === 'scenes') return path.dirname(path.dirname(dir));
     if (path.basename(dir) === 'production') return dir;
     const parent = path.dirname(dir);

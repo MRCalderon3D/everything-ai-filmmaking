@@ -144,14 +144,27 @@ function checkTarget(report, targetDir) {
       report.fail(`install-manifest.json unreadable: ${err.message}`);
     }
   }
-  const prod = path.join(targetDir, 'production');
-  if (!exists(prod)) {
-    report.info('production/ not created yet — run scripts/create-project.js');
+  // Workspace roots: production/ plus any sibling directory holding a
+  // project.yaml (renamed multi-production workspaces).
+  const fs = require('fs');
+  const roots = [];
+  for (const d of fs.readdirSync(targetDir)) {
+    const full = path.join(targetDir, d);
+    try {
+      if (fs.statSync(full).isDirectory() && exists(path.join(full, 'project.yaml'))) roots.push(full);
+    } catch (err) { /* unreadable entry: skip */ }
+  }
+  if (!roots.length && exists(path.join(targetDir, 'production'))) roots.push(path.join(targetDir, 'production'));
+  if (!roots.length) {
+    report.info('no workspace found (no directory with project.yaml) — run scripts/create-project.js');
     return;
   }
-  report.check(exists(path.join(prod, 'project.yaml')), 'production/project.yaml exists');
-  for (const dir of ['story', 'characters', 'locations', 'scenes', 'references', 'continuity']) {
-    report.check(exists(path.join(prod, dir)), `production/${dir}/ exists`);
+  for (const prod of roots) {
+    const name = path.basename(prod);
+    report.check(exists(path.join(prod, 'project.yaml')), `${name}/project.yaml exists`);
+    for (const dir of ['story', 'characters', 'locations', 'scenes', 'references', 'continuity']) {
+      report.check(exists(path.join(prod, dir)), `${name}/${dir}/ exists`);
+    }
   }
 }
 
